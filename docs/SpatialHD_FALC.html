@@ -361,7 +361,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -372,8 +372,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -386,9 +386,9 @@ aria-hidden="true"></span> </a>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>Spatial_HD_2026/</code> <span
@@ -411,21 +411,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R
-Markdown file created these results, you’ll want to first commit it to
-the Git repo. If you’re still working on the analysis, you can ignore
-this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -516,15 +513,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomHWC0406SpatialHD2026tree5ba5883d20d41cd50ae7998dfb777c89ff69c6aftargetblank5ba5883a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomHWC0406SpatialHD2026tree09e48bd17c44e28fc925b01e359461dc24fa5861targetblank09e48bda">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/HWC0406/Spatial_HD_2026/tree/5ba5883d20d41cd50ae7998dfb777c89ff69c6af" target="_blank">5ba5883</a>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/tree/09e48bd17c44e28fc925b01e359461dc24fa5861" target="_blank">09e48bd</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomHWC0406SpatialHD2026tree5ba5883d20d41cd50ae7998dfb777c89ff69c6aftargetblank5ba5883a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomHWC0406SpatialHD2026tree09e48bd17c44e28fc925b01e359461dc24fa5861targetblank09e48bda"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -534,7 +531,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/HWC0406/Spatial_HD_2026/tree/5ba5883d20d41cd50ae7998dfb777c89ff69c6af" target="_blank">5ba5883</a>.
+<a href="https://github.com/HWC0406/Spatial_HD_2026/tree/09e48bd17c44e28fc925b01e359461dc24fa5861" target="_blank">09e48bd</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -551,10 +548,6 @@ were generated:
 Ignored files:
     Ignored:    .Rproj.user/
 
-Untracked files:
-    Untracked:  analysis/SpatialHD_FALC.Rmd
-    Untracked:  analysis/detected_genes_obj2.txt
-
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not
@@ -569,9 +562,72 @@ have uncommitted changes.
 </div>
 <div id="versions" class="tab-pane fade">
 <p>
-There are no past versions. Publish this analysis with
-<code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/SpatialHD_FALC.Rmd</code>) and
+HTML (<code>docs/SpatialHD_FALC.html</code>) files. If you’ve configured
+a remote Git repository (see <code>?wflow_git_remote</code>), click on
+the hyperlinks in the table below to view the files as they were in that
+past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/analysis/SpatialHD_FALC.Rmd" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+<td>
+Spatial_HD_FALC
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/HWC0406/Spatial_HD_2026/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/SpatialHD_FALC.html" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+<td>
+Spatial_HD_FALC
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -706,7 +762,82 @@ for (nm in c(&quot;obj1&quot;, &quot;obj2&quot;)) {
 
   message(&quot;Done: &quot;, nm)
 }</code></pre>
-<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20TOP20%20genes-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20TOP20%20genes-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20TOP20%20genes-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-TOP20-genes-1">
+Past versions of "Ploting of TOP20 genes-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-TOP20-genes-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of TOP20 genes-1.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20TOP20%20genes-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-TOP20-genes-2">
+Past versions of "Ploting of TOP20 genes-2.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-TOP20-genes-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of TOP20 genes-2.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div id="ploting-of-top50-genes" class="section level3 tabset">
 <h3 class="tabset">Ploting of TOP50 genes</h3>
 <div id="um_bin" class="section level4">
@@ -767,7 +898,1906 @@ for (i in seq_along(top_HVG)) {
   )
   print(p)
 }</code></pre>
-<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-2.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-3.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-4.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-5.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-6.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-7.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-8.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-9.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-10.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-11.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-12.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-13.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-14.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-15.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-16.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-17.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-18.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-19.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-20.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-21.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-22.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-23.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-24.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-25.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-26.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-27.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-28.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-29.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-30.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-31.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-32.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-33.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-34.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-35.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-36.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-37.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-38.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-39.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-40.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-41.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-42.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-43.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-44.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-45.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-46.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-47.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-48.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-49.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-50.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-1">
+Past versions of 8_um_bin-1.png
+</button>
+</p>
+<div id="fig-8_um_bin-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-1.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-2">
+Past versions of 8_um_bin-2.png
+</button>
+</p>
+<div id="fig-8_um_bin-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-2.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-3.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-3">
+Past versions of 8_um_bin-3.png
+</button>
+</p>
+<div id="fig-8_um_bin-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-3.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-4.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-4">
+Past versions of 8_um_bin-4.png
+</button>
+</p>
+<div id="fig-8_um_bin-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-4.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-5.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-5">
+Past versions of 8_um_bin-5.png
+</button>
+</p>
+<div id="fig-8_um_bin-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-5.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-6.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-6">
+Past versions of 8_um_bin-6.png
+</button>
+</p>
+<div id="fig-8_um_bin-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-6.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-7.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-7">
+Past versions of 8_um_bin-7.png
+</button>
+</p>
+<div id="fig-8_um_bin-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-7.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-8.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-8">
+Past versions of 8_um_bin-8.png
+</button>
+</p>
+<div id="fig-8_um_bin-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-8.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-9.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-9">
+Past versions of 8_um_bin-9.png
+</button>
+</p>
+<div id="fig-8_um_bin-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-9.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-10.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-10">
+Past versions of 8_um_bin-10.png
+</button>
+</p>
+<div id="fig-8_um_bin-10" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-10.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-11.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-11">
+Past versions of 8_um_bin-11.png
+</button>
+</p>
+<div id="fig-8_um_bin-11" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-11.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-12.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-12">
+Past versions of 8_um_bin-12.png
+</button>
+</p>
+<div id="fig-8_um_bin-12" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-12.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-13.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-13">
+Past versions of 8_um_bin-13.png
+</button>
+</p>
+<div id="fig-8_um_bin-13" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-13.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-14.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-14">
+Past versions of 8_um_bin-14.png
+</button>
+</p>
+<div id="fig-8_um_bin-14" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-14.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-15.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-15">
+Past versions of 8_um_bin-15.png
+</button>
+</p>
+<div id="fig-8_um_bin-15" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-15.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-16.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-16">
+Past versions of 8_um_bin-16.png
+</button>
+</p>
+<div id="fig-8_um_bin-16" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-16.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-17.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-17">
+Past versions of 8_um_bin-17.png
+</button>
+</p>
+<div id="fig-8_um_bin-17" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-17.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-18.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-18">
+Past versions of 8_um_bin-18.png
+</button>
+</p>
+<div id="fig-8_um_bin-18" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-18.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-19.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-19">
+Past versions of 8_um_bin-19.png
+</button>
+</p>
+<div id="fig-8_um_bin-19" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-19.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-20.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-20">
+Past versions of 8_um_bin-20.png
+</button>
+</p>
+<div id="fig-8_um_bin-20" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-20.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-21.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-21">
+Past versions of 8_um_bin-21.png
+</button>
+</p>
+<div id="fig-8_um_bin-21" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-21.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-22.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-22">
+Past versions of 8_um_bin-22.png
+</button>
+</p>
+<div id="fig-8_um_bin-22" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-22.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-23.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-23">
+Past versions of 8_um_bin-23.png
+</button>
+</p>
+<div id="fig-8_um_bin-23" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-23.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-24.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-24">
+Past versions of 8_um_bin-24.png
+</button>
+</p>
+<div id="fig-8_um_bin-24" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-24.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-25.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-25">
+Past versions of 8_um_bin-25.png
+</button>
+</p>
+<div id="fig-8_um_bin-25" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-25.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-26.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-26">
+Past versions of 8_um_bin-26.png
+</button>
+</p>
+<div id="fig-8_um_bin-26" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-26.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-27.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-27">
+Past versions of 8_um_bin-27.png
+</button>
+</p>
+<div id="fig-8_um_bin-27" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-27.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-28.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-28">
+Past versions of 8_um_bin-28.png
+</button>
+</p>
+<div id="fig-8_um_bin-28" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-28.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-29.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-29">
+Past versions of 8_um_bin-29.png
+</button>
+</p>
+<div id="fig-8_um_bin-29" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-29.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-30.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-30">
+Past versions of 8_um_bin-30.png
+</button>
+</p>
+<div id="fig-8_um_bin-30" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-30.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-31.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-31">
+Past versions of 8_um_bin-31.png
+</button>
+</p>
+<div id="fig-8_um_bin-31" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-31.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-32.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-32">
+Past versions of 8_um_bin-32.png
+</button>
+</p>
+<div id="fig-8_um_bin-32" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-32.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-33.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-33">
+Past versions of 8_um_bin-33.png
+</button>
+</p>
+<div id="fig-8_um_bin-33" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-33.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-34.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-34">
+Past versions of 8_um_bin-34.png
+</button>
+</p>
+<div id="fig-8_um_bin-34" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-34.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-35.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-35">
+Past versions of 8_um_bin-35.png
+</button>
+</p>
+<div id="fig-8_um_bin-35" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-35.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-36.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-36">
+Past versions of 8_um_bin-36.png
+</button>
+</p>
+<div id="fig-8_um_bin-36" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-36.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-37.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-37">
+Past versions of 8_um_bin-37.png
+</button>
+</p>
+<div id="fig-8_um_bin-37" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-37.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-38.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-38">
+Past versions of 8_um_bin-38.png
+</button>
+</p>
+<div id="fig-8_um_bin-38" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-38.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-39.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-39">
+Past versions of 8_um_bin-39.png
+</button>
+</p>
+<div id="fig-8_um_bin-39" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-39.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-40.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-40">
+Past versions of 8_um_bin-40.png
+</button>
+</p>
+<div id="fig-8_um_bin-40" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-40.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-41.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-41">
+Past versions of 8_um_bin-41.png
+</button>
+</p>
+<div id="fig-8_um_bin-41" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-41.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-42.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-42">
+Past versions of 8_um_bin-42.png
+</button>
+</p>
+<div id="fig-8_um_bin-42" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-42.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-43.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-43">
+Past versions of 8_um_bin-43.png
+</button>
+</p>
+<div id="fig-8_um_bin-43" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-43.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-44.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-44">
+Past versions of 8_um_bin-44.png
+</button>
+</p>
+<div id="fig-8_um_bin-44" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-44.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-45.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-45">
+Past versions of 8_um_bin-45.png
+</button>
+</p>
+<div id="fig-8_um_bin-45" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-45.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-46.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-46">
+Past versions of 8_um_bin-46.png
+</button>
+</p>
+<div id="fig-8_um_bin-46" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-46.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-47.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-47">
+Past versions of 8_um_bin-47.png
+</button>
+</p>
+<div id="fig-8_um_bin-47" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-47.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-48.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-48">
+Past versions of 8_um_bin-48.png
+</button>
+</p>
+<div id="fig-8_um_bin-48" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-48.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-49.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-49">
+Past versions of 8_um_bin-49.png
+</button>
+</p>
+<div id="fig-8_um_bin-49" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-49.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-50.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-8_um_bin-50">
+Past versions of 8_um_bin-50.png
+</button>
+</p>
+<div id="fig-8_um_bin-50" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/8_um_bin-50.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="um_bin-1" class="section level4">
 <h4>16_um_bin</h4>
@@ -827,7 +2857,1906 @@ for (i in seq_along(top_HVG)) {
   )
   print(p)
 }</code></pre>
-<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-2.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-3.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-4.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-5.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-6.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-7.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-8.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-9.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-10.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-11.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-12.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-13.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-14.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-15.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-16.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-17.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-18.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-19.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-20.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-21.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-22.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-23.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-24.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-25.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-26.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-27.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-28.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-29.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-30.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-31.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-32.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-33.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-34.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-35.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-36.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-37.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-38.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-39.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-40.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-41.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-42.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-43.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-44.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-45.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-46.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-47.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-48.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-49.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-50.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-1">
+Past versions of 16_um_bin-1.png
+</button>
+</p>
+<div id="fig-16_um_bin-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-1.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-2">
+Past versions of 16_um_bin-2.png
+</button>
+</p>
+<div id="fig-16_um_bin-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-2.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-3.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-3">
+Past versions of 16_um_bin-3.png
+</button>
+</p>
+<div id="fig-16_um_bin-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-3.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-4.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-4">
+Past versions of 16_um_bin-4.png
+</button>
+</p>
+<div id="fig-16_um_bin-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-4.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-5.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-5">
+Past versions of 16_um_bin-5.png
+</button>
+</p>
+<div id="fig-16_um_bin-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-5.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-6.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-6">
+Past versions of 16_um_bin-6.png
+</button>
+</p>
+<div id="fig-16_um_bin-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-6.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-7.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-7">
+Past versions of 16_um_bin-7.png
+</button>
+</p>
+<div id="fig-16_um_bin-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-7.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-8.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-8">
+Past versions of 16_um_bin-8.png
+</button>
+</p>
+<div id="fig-16_um_bin-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-8.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-9.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-9">
+Past versions of 16_um_bin-9.png
+</button>
+</p>
+<div id="fig-16_um_bin-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-9.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-10.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-10">
+Past versions of 16_um_bin-10.png
+</button>
+</p>
+<div id="fig-16_um_bin-10" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-10.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-11.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-11">
+Past versions of 16_um_bin-11.png
+</button>
+</p>
+<div id="fig-16_um_bin-11" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-11.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-12.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-12">
+Past versions of 16_um_bin-12.png
+</button>
+</p>
+<div id="fig-16_um_bin-12" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-12.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-13.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-13">
+Past versions of 16_um_bin-13.png
+</button>
+</p>
+<div id="fig-16_um_bin-13" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-13.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-14.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-14">
+Past versions of 16_um_bin-14.png
+</button>
+</p>
+<div id="fig-16_um_bin-14" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-14.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-15.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-15">
+Past versions of 16_um_bin-15.png
+</button>
+</p>
+<div id="fig-16_um_bin-15" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-15.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-16.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-16">
+Past versions of 16_um_bin-16.png
+</button>
+</p>
+<div id="fig-16_um_bin-16" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-16.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-17.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-17">
+Past versions of 16_um_bin-17.png
+</button>
+</p>
+<div id="fig-16_um_bin-17" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-17.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-18.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-18">
+Past versions of 16_um_bin-18.png
+</button>
+</p>
+<div id="fig-16_um_bin-18" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-18.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-19.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-19">
+Past versions of 16_um_bin-19.png
+</button>
+</p>
+<div id="fig-16_um_bin-19" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-19.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-20.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-20">
+Past versions of 16_um_bin-20.png
+</button>
+</p>
+<div id="fig-16_um_bin-20" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-20.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-21.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-21">
+Past versions of 16_um_bin-21.png
+</button>
+</p>
+<div id="fig-16_um_bin-21" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-21.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-22.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-22">
+Past versions of 16_um_bin-22.png
+</button>
+</p>
+<div id="fig-16_um_bin-22" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-22.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-23.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-23">
+Past versions of 16_um_bin-23.png
+</button>
+</p>
+<div id="fig-16_um_bin-23" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-23.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-24.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-24">
+Past versions of 16_um_bin-24.png
+</button>
+</p>
+<div id="fig-16_um_bin-24" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-24.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-25.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-25">
+Past versions of 16_um_bin-25.png
+</button>
+</p>
+<div id="fig-16_um_bin-25" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-25.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-26.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-26">
+Past versions of 16_um_bin-26.png
+</button>
+</p>
+<div id="fig-16_um_bin-26" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-26.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-27.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-27">
+Past versions of 16_um_bin-27.png
+</button>
+</p>
+<div id="fig-16_um_bin-27" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-27.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-28.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-28">
+Past versions of 16_um_bin-28.png
+</button>
+</p>
+<div id="fig-16_um_bin-28" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-28.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-29.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-29">
+Past versions of 16_um_bin-29.png
+</button>
+</p>
+<div id="fig-16_um_bin-29" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-29.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-30.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-30">
+Past versions of 16_um_bin-30.png
+</button>
+</p>
+<div id="fig-16_um_bin-30" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-30.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-31.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-31">
+Past versions of 16_um_bin-31.png
+</button>
+</p>
+<div id="fig-16_um_bin-31" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-31.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-32.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-32">
+Past versions of 16_um_bin-32.png
+</button>
+</p>
+<div id="fig-16_um_bin-32" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-32.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-33.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-33">
+Past versions of 16_um_bin-33.png
+</button>
+</p>
+<div id="fig-16_um_bin-33" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-33.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-34.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-34">
+Past versions of 16_um_bin-34.png
+</button>
+</p>
+<div id="fig-16_um_bin-34" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-34.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-35.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-35">
+Past versions of 16_um_bin-35.png
+</button>
+</p>
+<div id="fig-16_um_bin-35" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-35.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-36.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-36">
+Past versions of 16_um_bin-36.png
+</button>
+</p>
+<div id="fig-16_um_bin-36" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-36.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-37.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-37">
+Past versions of 16_um_bin-37.png
+</button>
+</p>
+<div id="fig-16_um_bin-37" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-37.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-38.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-38">
+Past versions of 16_um_bin-38.png
+</button>
+</p>
+<div id="fig-16_um_bin-38" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-38.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-39.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-39">
+Past versions of 16_um_bin-39.png
+</button>
+</p>
+<div id="fig-16_um_bin-39" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-39.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-40.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-40">
+Past versions of 16_um_bin-40.png
+</button>
+</p>
+<div id="fig-16_um_bin-40" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-40.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-41.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-41">
+Past versions of 16_um_bin-41.png
+</button>
+</p>
+<div id="fig-16_um_bin-41" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-41.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-42.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-42">
+Past versions of 16_um_bin-42.png
+</button>
+</p>
+<div id="fig-16_um_bin-42" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-42.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-43.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-43">
+Past versions of 16_um_bin-43.png
+</button>
+</p>
+<div id="fig-16_um_bin-43" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-43.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-44.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-44">
+Past versions of 16_um_bin-44.png
+</button>
+</p>
+<div id="fig-16_um_bin-44" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-44.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-45.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-45">
+Past versions of 16_um_bin-45.png
+</button>
+</p>
+<div id="fig-16_um_bin-45" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-45.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-46.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-46">
+Past versions of 16_um_bin-46.png
+</button>
+</p>
+<div id="fig-16_um_bin-46" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-46.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-47.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-47">
+Past versions of 16_um_bin-47.png
+</button>
+</p>
+<div id="fig-16_um_bin-47" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-47.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-48.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-48">
+Past versions of 16_um_bin-48.png
+</button>
+</p>
+<div id="fig-16_um_bin-48" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-48.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-49.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-49">
+Past versions of 16_um_bin-49.png
+</button>
+</p>
+<div id="fig-16_um_bin-49" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-49.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-50.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-16_um_bin-50">
+Past versions of 16_um_bin-50.png
+</button>
+</p>
+<div id="fig-16_um_bin-50" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/16_um_bin-50.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>##Ploting of selected genes_16um_bin</p>
 <pre class="r"><code>nm &lt;- &quot;obj2&quot;
 sce_obj &lt;- sce_list[[nm]]
@@ -879,7 +4808,708 @@ for (i in seq_along(genes_of_interest)) {
 
   print(p)
 }</code></pre>
-<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-2.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-3.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-4.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-5.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-6.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-7.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-8.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-9.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-10.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-11.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-12.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-13.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-14.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-15.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-16.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-17.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-18.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-1">
+Past versions of "Ploting of selected genes_16um_bin-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-1.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-2">
+Past versions of "Ploting of selected genes_16um_bin-2.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-2"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-2.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-3.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-3">
+Past versions of "Ploting of selected genes_16um_bin-3.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-3"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-3.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-4.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-4">
+Past versions of "Ploting of selected genes_16um_bin-4.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-4"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-4.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-5.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-5">
+Past versions of "Ploting of selected genes_16um_bin-5.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-5"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-5.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-6.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-6">
+Past versions of "Ploting of selected genes_16um_bin-6.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-6"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-6.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-7.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-7">
+Past versions of "Ploting of selected genes_16um_bin-7.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-7"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-7.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-8.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-8">
+Past versions of "Ploting of selected genes_16um_bin-8.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-8"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-8.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-9.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-9">
+Past versions of "Ploting of selected genes_16um_bin-9.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-9"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-9.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-10.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-10">
+Past versions of "Ploting of selected genes_16um_bin-10.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-10"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-10.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-11.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-11">
+Past versions of "Ploting of selected genes_16um_bin-11.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-11"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-11.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-12.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-12">
+Past versions of "Ploting of selected genes_16um_bin-12.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-12"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-12.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-13.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-13">
+Past versions of "Ploting of selected genes_16um_bin-13.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-13"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-13.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-14.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-14">
+Past versions of "Ploting of selected genes_16um_bin-14.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-14"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-14.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-15.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-15">
+Past versions of "Ploting of selected genes_16um_bin-15.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-15"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-15.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-16.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-16">
+Past versions of "Ploting of selected genes_16um_bin-16.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-16"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-16.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-17.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-17">
+Past versions of "Ploting of selected genes_16um_bin-17.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-17"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-17.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-18.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Ploting-of-selected-genes_16um_bin-18">
+Past versions of "Ploting of selected genes_16um_bin-18.png"
+</button>
+</p>
+<div id="fig-no-spaces-Ploting-of-selected-genes_16um_bin-18"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Ploting of selected genes_16um_bin-18.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>##Set up cell types</p>
 <pre class="r"><code>my_signatures &lt;- list(
 
@@ -944,6 +5574,43 @@ sig_plots &lt;- lapply(colnames(sig_scores), function(s) {
 names(sig_plots) &lt;- colnames(sig_scores)
 wrap_plots(sig_plots, ncol = 3)</code></pre>
 <p><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20projection-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Cell-type-projection-1">
+Past versions of "Cell type projection-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-Cell-type-projection-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Cell type projection-1.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>##Cell type distribution</p>
 <pre class="r"><code># --- drop dead signatures ---
 sig_scores &lt;- sig_scores[, apply(sig_scores, 2, sd) &gt; 0, drop = FALSE]
@@ -990,6 +5657,43 @@ ggplot(df, aes(x = x, y = y, fill = label)) +
   guides(fill = guide_legend(override.aes = list(size = 3))) +
   theme(plot.title = element_text(hjust = 0.5, face = &quot;bold&quot;))</code></pre>
 <p><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Cell-type-distribution-1">
+Past versions of "Cell type distribution-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-Cell-type-distribution-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Cell type distribution-1.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>##Cell type distribution_scaling</p>
 <pre class="r"><code># only loop over columns we have a colour for
 cts &lt;- intersect(colnames(sig_scores), names(cell_colors))
@@ -1020,16 +5724,287 @@ for (i in seq_along(cts)) {
   score_plots[[ct]] &lt;- p
   print(p)
 }</code></pre>
-<p><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-2.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-3.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-4.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-5.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-6.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Cell-type-distribution_scaling-1">
+Past versions of "Cell type distribution_scaling-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-Cell-type-distribution_scaling-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Cell type distribution_scaling-1.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Cell-type-distribution_scaling-2">
+Past versions of "Cell type distribution_scaling-2.png"
+</button>
+</p>
+<div id="fig-no-spaces-Cell-type-distribution_scaling-2"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Cell type distribution_scaling-2.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-3.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Cell-type-distribution_scaling-3">
+Past versions of "Cell type distribution_scaling-3.png"
+</button>
+</p>
+<div id="fig-no-spaces-Cell-type-distribution_scaling-3"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Cell type distribution_scaling-3.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-4.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Cell-type-distribution_scaling-4">
+Past versions of "Cell type distribution_scaling-4.png"
+</button>
+</p>
+<div id="fig-no-spaces-Cell-type-distribution_scaling-4"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Cell type distribution_scaling-4.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-5.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Cell-type-distribution_scaling-5">
+Past versions of "Cell type distribution_scaling-5.png"
+</button>
+</p>
+<div id="fig-no-spaces-Cell-type-distribution_scaling-5"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Cell type distribution_scaling-5.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-6.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Cell-type-distribution_scaling-6">
+Past versions of "Cell type distribution_scaling-6.png"
+</button>
+</p>
+<div id="fig-no-spaces-Cell-type-distribution_scaling-6"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Cell type distribution_scaling-6.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>wrap_plots(score_plots, ncol = 3)</code></pre>
 <p><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-7.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Cell-type-distribution_scaling-7">
+Past versions of "Cell type distribution_scaling-7.png"
+</button>
+</p>
+<div id="fig-no-spaces-Cell-type-distribution_scaling-7"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/73426a4139cbb6a6ab2aa2ffb26c9f6aa37a8376/docs/figure/SpatialHD_FALC.Rmd/Cell type distribution_scaling-7.png" target="_blank">73426a4</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-07-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="session-info" class="section level2">
 <h2>session info</h2>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Wed Jul 22 14:16:23 2026&quot;</code></pre>
+<pre><code>[1] &quot;Wed Jul 22 15:21:20 2026&quot;</code></pre>
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 4.4.1 (2024-06-14 ucrt)
 Platform: x86_64-w64-mingw32/x64
@@ -1135,8 +6110,8 @@ loaded via a namespace (and not attached):
 [166] miscTools_0.6-30          VGAM_1.1-13               hms_1.1.4                
 [169] pbapply_1.7-4             minqa_1.2.8               cachem_1.1.0             
 [172] tidytree_0.4.7            listenv_1.0.0             XVector_0.44.0           
-[175] plotly_4.12.0             mutoss_0.1-14             ggtree_3.12.0            
-[178] jpeg_0.1-11               GetoptLong_1.1.1          ggfun_0.2.0              
+[175] plotly_4.12.0             jpeg_0.1-11               mutoss_0.1-14            
+[178] ggtree_3.12.0             GetoptLong_1.1.1          ggfun_0.2.0              
 [181] htmlwidgets_1.6.4         Formula_1.2-5             class_7.3-23             
 [184] memoise_2.0.1             crayon_1.5.3              gridGraphics_0.5-1       
 [187] rappdirs_0.3.4            smoother_1.3              filelock_1.0.3           
@@ -1147,41 +6122,41 @@ loaded via a namespace (and not attached):
 [202] laeken_0.5.3              coda_0.19-4.1             tidygraph_1.3.1          
 [205] vcd_1.4-13                blme_1.0-7                pkgconfig_2.0.3          
 [208] cli_3.6.5                 beeswarm_0.4.0            ggforce_0.5.0            
-[211] TMB_1.9.18                ggiraph_0.9.6             ggsignif_0.6.4           
-[214] nnet_7.3-20               zeallot_0.2.0             ggalluvial_0.12.6        
-[217] maxLik_1.5-2.2            lmtest_0.9-40             textshaping_1.0.5        
-[220] RcppAnnoy_0.0.22          evmix_2.12                lmerTest_3.2-1           
-[223] gdtools_0.5.0             DEoptimR_1.2-0            timechange_0.3.0         
-[226] ggdendro_0.2.0            splines_4.4.1             blob_1.3.0               
-[229] XML_3.99-0.19             numDeriv_2016.8-1.1       globals_0.19.1           
-[232] ggbeeswarm_0.7.3          ica_1.0-3                 spam_2.11-1              
-[235] compiler_4.4.1            RcppEigen_0.3.4.0.2       rjson_0.2.23             
-[238] sf_1.1-1                  reformulas_0.4.4          qqconf_1.3.2             
-[241] leidenAlg_1.1.8           bit_4.6.0                 hexbin_1.28.5            
-[244] sn_2.1.3                  BiocNeighbors_1.22.0      glue_1.8.0               
-[247] estimability_1.5.1        formatR_1.14              digest_0.6.36            
-[250] irlba_2.3.5.1             tiff_0.1-12               graphlayouts_1.2.3       
-[253] magick_2.9.1              fontLiberation_0.1.0      foreach_1.5.2            
-[256] fontBitstreamVera_0.1.1   spatstat.random_3.4-2     SparseM_1.84-2           
-[259] zlibbioc_1.50.0           dotCall64_1.2             tweenr_2.0.3             
-[262] lattice_0.22-7            statmod_1.5.1             ggraph_2.2.2             
-[265] rsvd_1.0.5                gson_0.1.0                ggnewscale_0.5.2         
-[268] nloptr_2.2.1              mvtnorm_1.3-3             yaml_2.3.10              
-[271] qvalue_2.36.0             later_1.4.4               backports_1.5.0          
-[274] rstatix_0.7.3             shadowtext_0.1.6          Rsamtools_2.20.0         
-[277] parallel_4.4.1            fontquiver_0.2.1          quantreg_6.1             
-[280] miniUI_0.1.2              gtable_0.3.6              xfun_0.52                
-[283] Cairo_1.6-5               Biostrings_2.72.1         curl_7.0.0               
-[286] doParallel_1.0.17         KernSmooth_2.23-26        futile.options_1.0.1     
-[289] survival_3.8-3            jsonlite_2.0.0            svglite_2.2.2            
-[292] iterators_1.0.14          TH.data_1.1-5             spatstat.univar_3.1-4    
-[295] pbkrtest_0.5.5            RhpcBLASctl_0.23-42       EBImage_4.46.0           
-[298] fastmatch_1.1-8           gtools_3.9.5              spatstat.sparse_3.1-0    
-[301] RANN_2.6.2                bluster_1.14.0            wk_0.9.5                 
-[304] dbscan_1.2.4              spatstat.explore_3.5-3    scico_1.5.0              
-[307] bit64_4.6.0-1             DirichletReg_0.7-2        cluster_2.1.8.1          
-[310] Rdpack_2.6.6              farver_2.1.2              corpcor_1.6.10           
-[313] gplots_3.3.0              ranger_0.18.0            </code></pre>
+[211] whisker_0.4.1             TMB_1.9.18                ggiraph_0.9.6            
+[214] ggsignif_0.6.4            nnet_7.3-20               zeallot_0.2.0            
+[217] ggalluvial_0.12.6         maxLik_1.5-2.2            lmtest_0.9-40            
+[220] textshaping_1.0.5         RcppAnnoy_0.0.22          evmix_2.12               
+[223] lmerTest_3.2-1            gdtools_0.5.0             DEoptimR_1.2-0           
+[226] timechange_0.3.0          ggdendro_0.2.0            splines_4.4.1            
+[229] blob_1.3.0                XML_3.99-0.19             numDeriv_2016.8-1.1      
+[232] globals_0.19.1            ggbeeswarm_0.7.3          ica_1.0-3                
+[235] spam_2.11-1               compiler_4.4.1            RcppEigen_0.3.4.0.2      
+[238] rjson_0.2.23              sf_1.1-1                  reformulas_0.4.4         
+[241] qqconf_1.3.2              leidenAlg_1.1.8           bit_4.6.0                
+[244] hexbin_1.28.5             sn_2.1.3                  BiocNeighbors_1.22.0     
+[247] glue_1.8.0                estimability_1.5.1        formatR_1.14             
+[250] digest_0.6.36             irlba_2.3.5.1             tiff_0.1-12              
+[253] graphlayouts_1.2.3        magick_2.9.1              fontLiberation_0.1.0     
+[256] foreach_1.5.2             fontBitstreamVera_0.1.1   spatstat.random_3.4-2    
+[259] SparseM_1.84-2            zlibbioc_1.50.0           dotCall64_1.2            
+[262] tweenr_2.0.3              lattice_0.22-7            statmod_1.5.1            
+[265] ggraph_2.2.2              rsvd_1.0.5                gson_0.1.0               
+[268] ggnewscale_0.5.2          nloptr_2.2.1              mvtnorm_1.3-3            
+[271] yaml_2.3.10               qvalue_2.36.0             later_1.4.4              
+[274] backports_1.5.0           rstatix_0.7.3             shadowtext_0.1.6         
+[277] Rsamtools_2.20.0          parallel_4.4.1            fontquiver_0.2.1         
+[280] quantreg_6.1              miniUI_0.1.2              gtable_0.3.6             
+[283] xfun_0.52                 Cairo_1.6-5               Biostrings_2.72.1        
+[286] curl_7.0.0                doParallel_1.0.17         KernSmooth_2.23-26       
+[289] futile.options_1.0.1      survival_3.8-3            jsonlite_2.0.0           
+[292] svglite_2.2.2             iterators_1.0.14          TH.data_1.1-5            
+[295] spatstat.univar_3.1-4     pbkrtest_0.5.5            RhpcBLASctl_0.23-42      
+[298] EBImage_4.46.0            fastmatch_1.1-8           gtools_3.9.5             
+[301] spatstat.sparse_3.1-0     RANN_2.6.2                bluster_1.14.0           
+[304] wk_0.9.5                  dbscan_1.2.4              spatstat.explore_3.5-3   
+[307] scico_1.5.0               bit64_4.6.0-1             DirichletReg_0.7-2       
+[310] cluster_2.1.8.1           Rdpack_2.6.6              farver_2.1.2             
+[313] corpcor_1.6.10            gplots_3.3.0              ranger_0.18.0            </code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1295,8 +6270,8 @@ loaded via a namespace (and not attached):
 [166] miscTools_0.6-30          VGAM_1.1-13               hms_1.1.4                
 [169] pbapply_1.7-4             minqa_1.2.8               cachem_1.1.0             
 [172] tidytree_0.4.7            listenv_1.0.0             XVector_0.44.0           
-[175] plotly_4.12.0             mutoss_0.1-14             ggtree_3.12.0            
-[178] jpeg_0.1-11               GetoptLong_1.1.1          ggfun_0.2.0              
+[175] plotly_4.12.0             jpeg_0.1-11               mutoss_0.1-14            
+[178] ggtree_3.12.0             GetoptLong_1.1.1          ggfun_0.2.0              
 [181] htmlwidgets_1.6.4         Formula_1.2-5             class_7.3-23             
 [184] memoise_2.0.1             crayon_1.5.3              gridGraphics_0.5-1       
 [187] rappdirs_0.3.4            smoother_1.3              filelock_1.0.3           
@@ -1307,41 +6282,41 @@ loaded via a namespace (and not attached):
 [202] laeken_0.5.3              coda_0.19-4.1             tidygraph_1.3.1          
 [205] vcd_1.4-13                blme_1.0-7                pkgconfig_2.0.3          
 [208] cli_3.6.5                 beeswarm_0.4.0            ggforce_0.5.0            
-[211] TMB_1.9.18                ggiraph_0.9.6             ggsignif_0.6.4           
-[214] nnet_7.3-20               zeallot_0.2.0             ggalluvial_0.12.6        
-[217] maxLik_1.5-2.2            lmtest_0.9-40             textshaping_1.0.5        
-[220] RcppAnnoy_0.0.22          evmix_2.12                lmerTest_3.2-1           
-[223] gdtools_0.5.0             DEoptimR_1.2-0            timechange_0.3.0         
-[226] ggdendro_0.2.0            splines_4.4.1             blob_1.3.0               
-[229] XML_3.99-0.19             numDeriv_2016.8-1.1       globals_0.19.1           
-[232] ggbeeswarm_0.7.3          ica_1.0-3                 spam_2.11-1              
-[235] compiler_4.4.1            RcppEigen_0.3.4.0.2       rjson_0.2.23             
-[238] sf_1.1-1                  reformulas_0.4.4          qqconf_1.3.2             
-[241] leidenAlg_1.1.8           bit_4.6.0                 hexbin_1.28.5            
-[244] sn_2.1.3                  BiocNeighbors_1.22.0      glue_1.8.0               
-[247] estimability_1.5.1        formatR_1.14              digest_0.6.36            
-[250] irlba_2.3.5.1             tiff_0.1-12               graphlayouts_1.2.3       
-[253] magick_2.9.1              fontLiberation_0.1.0      foreach_1.5.2            
-[256] fontBitstreamVera_0.1.1   spatstat.random_3.4-2     SparseM_1.84-2           
-[259] zlibbioc_1.50.0           dotCall64_1.2             tweenr_2.0.3             
-[262] lattice_0.22-7            statmod_1.5.1             ggraph_2.2.2             
-[265] rsvd_1.0.5                gson_0.1.0                ggnewscale_0.5.2         
-[268] nloptr_2.2.1              mvtnorm_1.3-3             yaml_2.3.10              
-[271] qvalue_2.36.0             later_1.4.4               backports_1.5.0          
-[274] rstatix_0.7.3             shadowtext_0.1.6          Rsamtools_2.20.0         
-[277] parallel_4.4.1            fontquiver_0.2.1          quantreg_6.1             
-[280] miniUI_0.1.2              gtable_0.3.6              xfun_0.52                
-[283] Cairo_1.6-5               Biostrings_2.72.1         curl_7.0.0               
-[286] doParallel_1.0.17         KernSmooth_2.23-26        futile.options_1.0.1     
-[289] survival_3.8-3            jsonlite_2.0.0            svglite_2.2.2            
-[292] iterators_1.0.14          TH.data_1.1-5             spatstat.univar_3.1-4    
-[295] pbkrtest_0.5.5            RhpcBLASctl_0.23-42       EBImage_4.46.0           
-[298] fastmatch_1.1-8           gtools_3.9.5              spatstat.sparse_3.1-0    
-[301] RANN_2.6.2                bluster_1.14.0            wk_0.9.5                 
-[304] dbscan_1.2.4              spatstat.explore_3.5-3    scico_1.5.0              
-[307] bit64_4.6.0-1             DirichletReg_0.7-2        cluster_2.1.8.1          
-[310] Rdpack_2.6.6              farver_2.1.2              corpcor_1.6.10           
-[313] gplots_3.3.0              ranger_0.18.0            </code></pre>
+[211] whisker_0.4.1             TMB_1.9.18                ggiraph_0.9.6            
+[214] ggsignif_0.6.4            nnet_7.3-20               zeallot_0.2.0            
+[217] ggalluvial_0.12.6         maxLik_1.5-2.2            lmtest_0.9-40            
+[220] textshaping_1.0.5         RcppAnnoy_0.0.22          evmix_2.12               
+[223] lmerTest_3.2-1            gdtools_0.5.0             DEoptimR_1.2-0           
+[226] timechange_0.3.0          ggdendro_0.2.0            splines_4.4.1            
+[229] blob_1.3.0                XML_3.99-0.19             numDeriv_2016.8-1.1      
+[232] globals_0.19.1            ggbeeswarm_0.7.3          ica_1.0-3                
+[235] spam_2.11-1               compiler_4.4.1            RcppEigen_0.3.4.0.2      
+[238] rjson_0.2.23              sf_1.1-1                  reformulas_0.4.4         
+[241] qqconf_1.3.2              leidenAlg_1.1.8           bit_4.6.0                
+[244] hexbin_1.28.5             sn_2.1.3                  BiocNeighbors_1.22.0     
+[247] glue_1.8.0                estimability_1.5.1        formatR_1.14             
+[250] digest_0.6.36             irlba_2.3.5.1             tiff_0.1-12              
+[253] graphlayouts_1.2.3        magick_2.9.1              fontLiberation_0.1.0     
+[256] foreach_1.5.2             fontBitstreamVera_0.1.1   spatstat.random_3.4-2    
+[259] SparseM_1.84-2            zlibbioc_1.50.0           dotCall64_1.2            
+[262] tweenr_2.0.3              lattice_0.22-7            statmod_1.5.1            
+[265] ggraph_2.2.2              rsvd_1.0.5                gson_0.1.0               
+[268] ggnewscale_0.5.2          nloptr_2.2.1              mvtnorm_1.3-3            
+[271] yaml_2.3.10               qvalue_2.36.0             later_1.4.4              
+[274] backports_1.5.0           rstatix_0.7.3             shadowtext_0.1.6         
+[277] Rsamtools_2.20.0          parallel_4.4.1            fontquiver_0.2.1         
+[280] quantreg_6.1              miniUI_0.1.2              gtable_0.3.6             
+[283] xfun_0.52                 Cairo_1.6-5               Biostrings_2.72.1        
+[286] curl_7.0.0                doParallel_1.0.17         KernSmooth_2.23-26       
+[289] futile.options_1.0.1      survival_3.8-3            jsonlite_2.0.0           
+[292] svglite_2.2.2             iterators_1.0.14          TH.data_1.1-5            
+[295] spatstat.univar_3.1-4     pbkrtest_0.5.5            RhpcBLASctl_0.23-42      
+[298] EBImage_4.46.0            fastmatch_1.1-8           gtools_3.9.5             
+[301] spatstat.sparse_3.1-0     RANN_2.6.2                bluster_1.14.0           
+[304] wk_0.9.5                  dbscan_1.2.4              spatstat.explore_3.5-3   
+[307] scico_1.5.0               bit64_4.6.0-1             DirichletReg_0.7-2       
+[310] cluster_2.1.8.1           Rdpack_2.6.6              farver_2.1.2             
+[313] corpcor_1.6.10            gplots_3.3.0              ranger_0.18.0            </code></pre>
 </div>
 </div>
 </div>
