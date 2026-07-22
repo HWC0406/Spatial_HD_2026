@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="HWC" />
+
+<meta name="date" content="2026-07-22" />
+
+<title>Spatial_HD_FALC</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Spatial_HD_2026</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Spatial_HD_FALC</h1>
+<h4 class="author">HWC</h4>
+<h4 class="date">2026-07-22</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2026-07-22
+</p>
+<p>
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>Spatial_HD_2026/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.2). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R
+Markdown file created these results, you’ll want to first commit it to
+the Git repo. If you’re still working on the analysis, you can ignore
+this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20260722code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20260722)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20260722code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20260722)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomHWC0406SpatialHD2026tree5ba5883d20d41cd50ae7998dfb777c89ff69c6aftargetblank5ba5883a">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/tree/5ba5883d20d41cd50ae7998dfb777c89ff69c6af" target="_blank">5ba5883</a>
+</a>
+</p>
+</div>
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomHWC0406SpatialHD2026tree5ba5883d20d41cd50ae7998dfb777c89ff69c6aftargetblank5ba5883a"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version
+<a href="https://github.com/HWC0406/Spatial_HD_2026/tree/5ba5883d20d41cd50ae7998dfb777c89ff69c6af" target="_blank">5ba5883</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rproj.user/
+
+Untracked files:
+    Untracked:  analysis/SpatialHD_FALC.Rmd
+    Untracked:  analysis/detected_genes_obj2.txt
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with
+<code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="data-input" class="section level2">
+<h2>Data input</h2>
+<pre class="r"><code>obj1 &lt;- readRDS(&quot;/R/2026_Spatial_alignment/probe based_20260721/426181_2-20260707_Hu_PericardFALC_pat1_squD_S1_L001_8um.rds&quot;)
+
+
+obj2 &lt;- readRDS(&quot;/R/2026_Spatial_alignment/probe based_20260721/426181_2-20260707_Hu_PericardFALC_pat1_squD_S1_L001_16um.rds&quot;)
+
+
+sce_obj1 &lt;- as.SingleCellExperiment(obj1)
+sce_obj2 &lt;- as.SingleCellExperiment(obj2)
+
+
+# 3. Verify the conversion
+sce_obj1</code></pre>
+<pre><code>class: SingleCellExperiment 
+dim: 18085 77257 
+metadata(0):
+assays(1): counts
+rownames(18085): SAMD11 NOC2L ... ENSG00000274897 ENSG00000286265
+rowData names(0):
+colnames(77257): s_008um_00738_00232-1 s_008um_00116_00467-1 ... s_008um_00390_00338-1
+  s_008um_00362_00087-1
+colData names(6): orig.ident nCount_Spatial.008um ... percent_mt ident
+reducedDimNames(0):
+mainExpName: Spatial.008um
+altExpNames(0):</code></pre>
+<pre class="r"><code>sce_obj2</code></pre>
+<pre><code>class: SingleCellExperiment 
+dim: 18085 20614 
+metadata(0):
+assays(1): counts
+rownames(18085): SAMD11 NOC2L ... ENSG00000274897 ENSG00000286265
+rowData names(0):
+colnames(20614): s_016um_00353_00094-1 s_016um_00126_00213-1 ... s_016um_00188_00169-1
+  s_016um_00361_00190-1
+colData names(6): orig.ident nCount_Spatial.016um ... percent_mt ident
+reducedDimNames(0):
+mainExpName: Spatial.016um
+altExpNames(0):</code></pre>
+</div>
+<div id="sct-normalization" class="section level2">
+<h2>SCT normalization</h2>
+<pre class="r"><code>seurat_names &lt;- c(&quot;obj1&quot;, &quot;obj2&quot;)
+
+sce_list &lt;- list()  # holds the 2 separate results
+
+for (nm in seurat_names) {
+  message(&quot;Processing native Seurat object: &quot;, nm)
+  seu_obj &lt;- get(nm)
+
+  active_assay &lt;- DefaultAssay(seu_obj)
+  message(&quot;  Found active assay: &#39;&quot;, active_assay, &quot;&#39;&quot;)
+
+  seu_obj &lt;- seu_obj[, colSums(GetAssayData(seu_obj, assay = active_assay, slot = &quot;counts&quot;)) &gt; 0]
+  seu_obj &lt;- SCTransform(seu_obj, assay = active_assay, verbose = FALSE)
+
+  sce_final &lt;- as.SingleCellExperiment(seu_obj)
+
+  sct_residual_matrix &lt;- matrix(
+    0,
+    nrow = nrow(sce_final),
+    ncol = ncol(sce_final),
+    dimnames = list(rownames(sce_final), colnames(sce_final))
+  )
+  computed_residuals &lt;- seu_obj[[&quot;SCT&quot;]]$scale.data
+  matching_genes &lt;- intersect(rownames(sct_residual_matrix), rownames(computed_residuals))
+  sct_residual_matrix[matching_genes, ] &lt;- computed_residuals[matching_genes, ]
+
+  assays(sce_final)[[&quot;SCT_residuals&quot;]] &lt;- sct_residual_matrix
+
+  hvg_genes &lt;- VariableFeatures(seu_obj)
+  rowData(sce_final)$hvg &lt;- rownames(sce_final) %in% hvg_genes
+  metadata(sce_final)$sct_hvgs &lt;- VariableFeatures(seu_obj)
+  sce_list[[nm]] &lt;- sce_final   # keep them separate, indexed by name
+  message(&quot;  Successfully stored normalized container for: &quot;, nm)
+}</code></pre>
+<p>##Ploting of TOP20 genes</p>
+<pre class="r"><code>hvg_plots &lt;- list()
+
+for (nm in c(&quot;obj1&quot;, &quot;obj2&quot;)) {
+
+  sce_obj &lt;- sce_list[[nm]]
+  message(&quot;Processing: &quot;, nm)
+
+  # --- sanity: logcounts here is SCT&#39;s &#39;data&#39; slot, not a fresh lognorm ---
+  if (!&quot;logcounts&quot; %in% assayNames(sce_obj)) {
+    stop(&quot;No logcounts in &quot;, nm, &quot; - check what as.SingleCellExperiment() carried over.&quot;)
+  }
+
+  # --- HVGs from SCT, ranked by residual variance ---
+  hvg_all &lt;- rownames(sce_obj)[rowData(sce_obj)$hvg]
+  res_var &lt;- apply(assay(sce_obj, &quot;SCT_residuals&quot;)[hvg_all, , drop = FALSE], 1, var)
+  top_HVG &lt;- names(sort(res_var, decreasing = TRUE))[1:20]
+  message(&quot;  Top HVG: &quot;, paste(head(top_HVG, 3), collapse = &quot;, &quot;), &quot; ...&quot;)
+
+  # --- spatial coordinates from barcodes ---
+  barcodes &lt;- colnames(sce_obj)
+  bin_x &lt;- as.numeric(gsub(&quot;.*_([0-9]+)_[0-9]+-1&quot;, &quot;\\1&quot;, barcodes))
+  bin_y &lt;- as.numeric(gsub(&quot;.*_[0-9]+_([0-9]+)-1&quot;, &quot;\\1&quot;, barcodes))
+  if (anyNA(bin_x) || anyNA(bin_y)) {
+    warning(sum(is.na(bin_x) | is.na(bin_y)), &quot; barcodes in &quot;, nm,
+            &quot; did not match the coordinate pattern.&quot;)
+  }
+
+  expr_mat &lt;- logcounts(sce_obj)
+
+  plot_list &lt;- lapply(top_HVG, function(gene) {
+    df &lt;- data.frame(
+      x = bin_x,
+      y = bin_y,
+      expression = as.numeric(expr_mat[gene, ])
+    )
+    ggplot(df, aes(x = x, y = y, color = expression)) +
+      geom_point(size = 0.005, alpha = 0.5) +
+      scale_color_viridis_c(option = &quot;plasma&quot;) +
+      coord_fixed() +
+      theme_void() +
+      labs(title = gene, color = &quot;LogExpr&quot;) +
+      theme(
+        plot.title = element_text(hjust = 0.5, face = &quot;bold&quot;, size = 10),
+        legend.position = &quot;none&quot;
+      )
+  })
+
+  combined_plot &lt;- wrap_plots(plot_list, nrow = 4, ncol = 5)
+  hvg_plots[[nm]] &lt;- combined_plot
+  print(combined_plot)
+
+  message(&quot;Done: &quot;, nm)
+}</code></pre>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20TOP20%20genes-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20TOP20%20genes-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<div id="ploting-of-top50-genes" class="section level3 tabset">
+<h3 class="tabset">Ploting of TOP50 genes</h3>
+<div id="um_bin" class="section level4">
+<h4>8_um_bin</h4>
+<pre class="r"><code>nm &lt;- &quot;obj1&quot;
+sce_obj &lt;- sce_list[[nm]]
+
+# --- guards ---
+if (is.null(sce_obj)) {
+  stop(&quot;sce_list[[&#39;&quot;, nm, &quot;&#39;]] is NULL. Available: &quot;,
+       paste(names(sce_list), collapse = &quot;, &quot;))
+}
+if (!&quot;logcounts&quot; %in% assayNames(sce_obj)) {
+  stop(&quot;No logcounts in &quot;, nm, &quot; - check what as.SingleCellExperiment() carried over.&quot;)
+}
+
+# --- HVGs from SCT ---
+hvg_all &lt;- rownames(sce_obj)[rowData(sce_obj)$hvg]
+if (length(hvg_all) == 0) {
+  stop(&quot;No HVGs flagged in rowData(&quot;, nm, &quot;)$hvg - was this object built by loop 1?&quot;)
+}
+
+if (&quot;SCT_residuals&quot; %in% assayNames(sce_obj)) {
+  # rank by residual variance
+  res_var &lt;- apply(assay(sce_obj, &quot;SCT_residuals&quot;)[hvg_all, , drop = FALSE], 1, var)
+  top_HVG &lt;- names(sort(res_var, decreasing = TRUE))[seq_len(min(50, length(hvg_all)))]
+} else {
+  warning(&quot;No SCT_residuals assay - using unranked HVGs from rowData$hvg.&quot;)
+  top_HVG &lt;- head(hvg_all, 50)
+}
+message(&quot;Selected &quot;, length(top_HVG), &quot; HVGs; top 3: &quot;,
+        paste(head(top_HVG, 3), collapse = &quot;, &quot;))
+
+# --- spatial coordinates ---
+barcodes &lt;- colnames(sce_obj)
+bin_x &lt;- as.numeric(gsub(&quot;.*_([0-9]+)_[0-9]+-1&quot;, &quot;\\1&quot;, barcodes))
+bin_y &lt;- as.numeric(gsub(&quot;.*_[0-9]+_([0-9]+)-1&quot;, &quot;\\1&quot;, barcodes))
+if (anyNA(bin_x) || anyNA(bin_y)) {
+  warning(sum(is.na(bin_x) | is.na(bin_y)), &quot; barcodes did not match the coordinate pattern.&quot;)
+}
+
+expr_mat &lt;- logcounts(sce_obj)
+
+# --- plot one gene at a time ---
+for (i in seq_along(top_HVG)) {
+  gene &lt;- top_HVG[i]
+  message(&quot;Plotting &quot;, i, &quot;/&quot;, length(top_HVG), &quot;: &quot;, gene)
+  df &lt;- data.frame(x = bin_x, y = bin_y,
+                   expression = as.numeric(expr_mat[gene, ]))
+  p &lt;- (
+    ggplot(df, aes(x = x, y = y, color = expression))
+    + geom_point(size = 0.3, alpha = 0.6)
+    + scale_color_viridis_c(option = &quot;plasma&quot;)
+    + coord_fixed()
+    + theme_void()
+    + labs(title = gene, color = &quot;LogExpr&quot;)
+    + theme(plot.title = element_text(hjust = 0.5, face = &quot;bold&quot;, size = 12))
+  )
+  print(p)
+}</code></pre>
+<p><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-2.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-3.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-4.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-5.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-6.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-7.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-8.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-9.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-10.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-11.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-12.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-13.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-14.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-15.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-16.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-17.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-18.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-19.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-20.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-21.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-22.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-23.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-24.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-25.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-26.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-27.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-28.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-29.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-30.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-31.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-32.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-33.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-34.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-35.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-36.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-37.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-38.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-39.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-40.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-41.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-42.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-43.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-44.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-45.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-46.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-47.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-48.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-49.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/8_um_bin-50.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="um_bin-1" class="section level4">
+<h4>16_um_bin</h4>
+<pre class="r"><code>nm &lt;- &quot;obj2&quot;
+sce_obj &lt;- sce_list[[nm]]
+
+# --- guards ---
+if (is.null(sce_obj)) {
+  stop(&quot;sce_list[[&#39;&quot;, nm, &quot;&#39;]] is NULL. Available: &quot;,
+       paste(names(sce_list), collapse = &quot;, &quot;))
+}
+if (!&quot;logcounts&quot; %in% assayNames(sce_obj)) {
+  stop(&quot;No logcounts in &quot;, nm, &quot; - check what as.SingleCellExperiment() carried over.&quot;)
+}
+
+# --- HVGs from SCT ---
+hvg_all &lt;- rownames(sce_obj)[rowData(sce_obj)$hvg]
+if (length(hvg_all) == 0) {
+  stop(&quot;No HVGs flagged in rowData(&quot;, nm, &quot;)$hvg - was this object built by loop 1?&quot;)
+}
+
+if (&quot;SCT_residuals&quot; %in% assayNames(sce_obj)) {
+  # rank by residual variance
+  res_var &lt;- apply(assay(sce_obj, &quot;SCT_residuals&quot;)[hvg_all, , drop = FALSE], 1, var)
+  top_HVG &lt;- names(sort(res_var, decreasing = TRUE))[seq_len(min(50, length(hvg_all)))]
+} else {
+  warning(&quot;No SCT_residuals assay - using unranked HVGs from rowData$hvg.&quot;)
+  top_HVG &lt;- head(hvg_all, 50)
+}
+message(&quot;Selected &quot;, length(top_HVG), &quot; HVGs; top 3: &quot;,
+        paste(head(top_HVG, 3), collapse = &quot;, &quot;))
+
+# --- spatial coordinates ---
+barcodes &lt;- colnames(sce_obj)
+bin_x &lt;- as.numeric(gsub(&quot;.*_([0-9]+)_[0-9]+-1&quot;, &quot;\\1&quot;, barcodes))
+bin_y &lt;- as.numeric(gsub(&quot;.*_[0-9]+_([0-9]+)-1&quot;, &quot;\\1&quot;, barcodes))
+if (anyNA(bin_x) || anyNA(bin_y)) {
+  warning(sum(is.na(bin_x) | is.na(bin_y)), &quot; barcodes did not match the coordinate pattern.&quot;)
+}
+
+expr_mat &lt;- logcounts(sce_obj)
+
+# --- plot one gene at a time ---
+for (i in seq_along(top_HVG)) {
+  gene &lt;- top_HVG[i]
+  message(&quot;Plotting &quot;, i, &quot;/&quot;, length(top_HVG), &quot;: &quot;, gene)
+  df &lt;- data.frame(x = bin_x, y = bin_y,
+                   expression = as.numeric(expr_mat[gene, ]))
+  p &lt;- (
+    ggplot(df, aes(x = x, y = y, color = expression))
+    + geom_point(size = 0.3, alpha = 0.6)
+    + scale_color_viridis_c(option = &quot;plasma&quot;)
+    + coord_fixed()
+    + theme_void()
+    + labs(title = gene, color = &quot;LogExpr&quot;)
+    + theme(plot.title = element_text(hjust = 0.5, face = &quot;bold&quot;, size = 12))
+  )
+  print(p)
+}</code></pre>
+<p><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-2.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-3.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-4.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-5.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-6.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-7.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-8.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-9.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-10.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-11.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-12.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-13.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-14.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-15.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-16.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-17.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-18.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-19.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-20.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-21.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-22.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-23.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-24.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-25.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-26.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-27.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-28.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-29.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-30.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-31.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-32.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-33.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-34.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-35.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-36.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-37.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-38.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-39.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-40.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-41.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-42.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-43.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-44.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-45.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-46.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-47.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-48.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-49.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/16_um_bin-50.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>##Ploting of selected genes_16um_bin</p>
+<pre class="r"><code>nm &lt;- &quot;obj2&quot;
+sce_obj &lt;- sce_list[[nm]]
+if (!&quot;logcounts&quot; %in% assayNames(sce_obj)) {
+  sce_obj &lt;- logNormCounts(sce_obj)
+}
+
+genes_of_interest &lt;- c(&quot;CCL19&quot;, &quot;CXCL13&quot;, &quot;CCL11&quot;, &quot;IL33&quot;,&quot;IL6&quot;,&quot;ICAM1&quot;,&quot;VCAM1&quot;, &quot;PDPN&quot;,&quot;INFG&quot;,&quot;TNF&quot;,&quot;STAT3&quot;,&quot;STAT1&quot;,&quot;STAT4&quot;,&quot;CD4&quot;,&quot;CD8&quot;,&quot;FOXP3&quot;,&quot;IL17A&quot;,&quot;RORC&quot;)
+
+barcodes &lt;- colnames(sce_obj)
+bin_x &lt;- as.numeric(gsub(&quot;.*_([0-9]+)_[0-9]+-1&quot;, &quot;\\1&quot;, barcodes))
+bin_y &lt;- as.numeric(gsub(&quot;.*_[0-9]+_([0-9]+)-1&quot;, &quot;\\1&quot;, barcodes))
+
+for (i in seq_along(genes_of_interest)) {
+  gene &lt;- genes_of_interest[i]
+
+  # Decide if the gene is detectable
+  in_object   &lt;- gene %in% rownames(sce_obj)
+  expr        &lt;- if (in_object) logcounts(sce_obj)[gene, ] else NULL
+  detectable  &lt;- in_object &amp;&amp; any(expr &gt; 0)
+
+  message(&quot;Plotting &quot;, i, &quot;/&quot;, length(genes_of_interest), &quot;: &quot;, gene,
+          if (!detectable) &quot;  [not detectable]&quot; else &quot;&quot;)
+
+  if (detectable) {
+    df &lt;- data.frame(x = bin_x, y = bin_y, expression = expr)
+    df &lt;- df[order(df$expression), ]          # positive spots on top
+    p &lt;- ggplot(df, aes(x = x, y = y, color = expression)) +
+      geom_point(size = 0.3, alpha = 0.6) +
+      scale_color_viridis_c(option = &quot;plasma&quot;) +
+      coord_fixed() + theme_void() +
+      labs(title = gene, color = &quot;LogExpr&quot;) +
+      theme(plot.title = element_text(hjust = 0.5, face = &quot;bold&quot;, size = 12))
+
+  } else {
+    # grey tissue outline + &quot;not detectable&quot; annotation
+    df &lt;- data.frame(x = bin_x, y = bin_y)
+    reason &lt;- if (!in_object) &quot;not in dataset&quot; else &quot;all zero&quot;
+    p &lt;- ggplot(df, aes(x = x, y = y)) +
+      geom_point(size = 0.3, alpha = 0.4, color = &quot;grey80&quot;) +
+      coord_fixed() + theme_void() +
+      labs(title = paste0(gene, &quot; - not detectable&quot;)) +
+      annotate(&quot;text&quot;, x = mean(range(bin_x, na.rm = TRUE)),
+               y = mean(range(bin_y, na.rm = TRUE)),
+               label = paste0(&quot;Not detectable\n(&quot;, reason, &quot;)&quot;),
+               fontface = &quot;italic&quot;, size = 4, color = &quot;grey30&quot;) +
+      theme(plot.title = element_text(hjust = 0.5, face = &quot;bold&quot;, size = 12))
+  }
+
+  print(p)
+}</code></pre>
+<p><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-2.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-3.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-4.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-5.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-6.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-7.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-8.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-9.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-10.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-11.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-12.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-13.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-14.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-15.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-16.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-17.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Ploting%20of%20selected%20genes_16um_bin-18.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>##Set up cell types</p>
+<pre class="r"><code>my_signatures &lt;- list(
+
+  VEC        = c(&quot;PECAM1&quot;, &quot;CDH5&quot;, &quot;VWF&quot;, &quot;EGFL7&quot;, &quot;ICAM2&quot;, &quot;ADGRL4&quot;,&quot;CALCRL&quot;, &quot;S1PR1&quot;, &quot;PLVAP&quot;, &quot;AQP1&quot;, &quot;ENG&quot;,                    &quot;CD34&quot;),
+  Fb         = c(&quot;COL3A1&quot;,&quot;COL1A2&quot;, &quot;CCL19&quot;,&quot;CXCL13&quot;, &quot;VCAM1&quot;,&quot;ICAM1&quot;, &quot;COL1A1&quot;),
+  PeriFb    = c(&quot;ACTA2&quot;,&quot;TAGLN&quot;,&quot;MYH11&quot;, &quot;RGS5&quot;,&quot;NOTCH3&quot;),
+  Myeloid    = c(&quot;CTSS&quot;, &quot;MRC1&quot;, &quot;SIRPA&quot;, &quot;PTPRC&quot;, &quot;CSF1R&quot;, &quot;P2RY6&quot;,
+                 &quot;HLA-DRA&quot;, &quot;HLA-DRB1&quot;, &quot;HLA-DPA1&quot;, &quot;HLA-DPB1&quot;, &quot;HLA-DQA1&quot;,
+                 &quot;CSF3R&quot;, &quot;IL1B&quot;, &quot;S100A9&quot;, &quot;MMP9&quot;, &quot;CXCR2&quot;, &quot;C1QA&quot;, &quot;LYZ&quot;, &quot;AIF1&quot;, &quot;FCER1G&quot;, &quot;TYROBP&quot;, &quot;CD68&quot;,                    &quot;MS4A7&quot;),
+  Tcell      = c(  &quot;CD3D&quot;, &quot;CD3E&quot;, &quot;CD3G&quot;, &quot;CD247&quot;,&quot;TRAC&quot;, &quot;TRBC1&quot;, &quot;TRBC2&quot;,&quot;LCK&quot;, &quot;ZAP70&quot;, &quot;LAT&quot;, &quot;ITK&quot;, &quot;LCP2&quot;,                    &quot;SKAP1&quot;, &quot;THEMIS&quot;,&quot;BCL11B&quot;, &quot;CD2&quot;, &quot;CD6&quot;, &quot;CD28&quot;, &quot;CD27&quot;, &quot;IL7R&quot;, &quot;IL2RB&quot;),
+
+  Bcell   = c(&quot;MS4A1&quot;, &quot;CD79A&quot;, &quot;CD37&quot;, &quot;CD72&quot;,&quot;FCMR&quot;, &quot;HVCN1&quot;, &quot;ADAM28&quot;, &quot;FCRL3&quot;, &quot;POU2AF1&quot;,&quot;MZB1&quot;, &quot;JCHAIN&quot;,                  &quot;XBP1&quot;, &quot;SEC11C&quot;, &quot;SSR4&quot;, &quot;TXNDC5&quot;, &quot;FKBP11&quot;,&quot;IGKC&quot;, &quot;IGHG1&quot;, &quot;IGHG3&quot;, &quot;IGHA1&quot;)
+)
+
+
+sig_present &lt;- lapply(my_signatures, intersect, rownames(sce_obj))
+
+for (s in names(my_signatures)) {
+  missing &lt;- setdiff(my_signatures[[s]], sig_present[[s]])
+  message(s, &quot;: &quot;, length(sig_present[[s]]), &quot;/&quot;, length(my_signatures[[s]]), &quot; present&quot;,
+          if (length(missing)) paste0(&quot;  MISSING: &quot;, paste(missing, collapse = &quot;, &quot;)) else &quot;&quot;)
+}
+
+# drop signatures too small to be meaningful
+sig_use &lt;- sig_present[lengths(sig_present) &gt;= 3]
+
+
+score_signature &lt;- function(sce, genes) {
+  mat &lt;- SummarizedExperiment::assay(sce, &quot;logcounts&quot;)[genes, , drop = FALSE]
+  mat &lt;- as.matrix(base::as.matrix(mat))     # force a real base matrix
+  storage.mode(mat) &lt;- &quot;double&quot;
+
+  mu &lt;- base::rowMeans(mat)
+  sdv &lt;- sqrt(base::rowSums((mat - mu)^2) / (ncol(mat) - 1))
+  sdv[sdv == 0 | is.na(sdv)] &lt;- 1            # zero-variance genes -&gt; score 0
+
+  z &lt;- (mat - mu) / sdv                      # recycles down columns, correct here
+  base::colMeans(z)
+}
+
+sig_scores &lt;- sapply(sig_use, function(g) score_signature(sce_obj, g))
+stopifnot(is.matrix(sig_scores), nrow(sig_scores) == ncol(sce_obj))
+dim(sig_scores)</code></pre>
+<pre><code>[1] 20396     6</code></pre>
+<p>##Cell type projection</p>
+<pre class="r"><code>barcodes &lt;- colnames(sce_obj)
+bin_x &lt;- as.numeric(gsub(&quot;.*_([0-9]+)_[0-9]+-1&quot;, &quot;\\1&quot;, barcodes))
+bin_y &lt;- as.numeric(gsub(&quot;.*_[0-9]+_([0-9]+)-1&quot;, &quot;\\1&quot;, barcodes))
+stopifnot(!anyNA(bin_x), !anyNA(bin_y))
+
+sig_plots &lt;- lapply(colnames(sig_scores), function(s) {
+  df &lt;- data.frame(x = bin_x, y = bin_y, score = sig_scores[, s])
+  df &lt;- df[order(df$score), ]
+  lims &lt;- quantile(df$score, c(0.01, 0.99), na.rm = TRUE)
+  ggplot(df, aes(x = x, y = y, color = score)) +
+    geom_point(size = 0.4, alpha = 0.7) +
+    scale_color_viridis_c(option = &quot;magma&quot;, limits = lims, oob = scales::squish) +
+    coord_fixed() + theme_void() +
+    labs(title = s, color = &quot;Score&quot;) +
+    theme(plot.title = element_text(hjust = 0.5, face = &quot;bold&quot;, size = 12))
+})
+names(sig_plots) &lt;- colnames(sig_scores)
+wrap_plots(sig_plots, ncol = 3)</code></pre>
+<p><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20projection-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>##Cell type distribution</p>
+<pre class="r"><code># --- drop dead signatures ---
+sig_scores &lt;- sig_scores[, apply(sig_scores, 2, sd) &gt; 0, drop = FALSE]
+
+# --- winner-take-all assignment ---
+winner_idx  &lt;- max.col(sig_scores, ties.method = &quot;first&quot;)
+winner      &lt;- colnames(sig_scores)[winner_idx]
+winner_score &lt;- sig_scores[cbind(seq_len(nrow(sig_scores)), winner_idx)]
+
+# runner-up, to measure how decisive the call is
+runner_up &lt;- apply(sig_scores, 1, function(v) sort(v, decreasing = TRUE)[2])
+margin    &lt;- winner_score - runner_up
+
+# --- call bins &quot;Unassigned&quot; when the winner is weak ---
+thr &lt;- 0                                  # tune this
+winner[winner_score &lt; thr] &lt;- &quot;Unassigned&quot;
+
+table(winner)</code></pre>
+<pre><code>winner
+     Bcell         Fb    Myeloid     PeriFb      Tcell Unassigned        VEC 
+      4655       1631       1995        274        564      10850        427 </code></pre>
+<pre class="r"><code>cell_colors &lt;- c(
+  VEC        = &quot;#ff7f0e&quot;,
+  Fb         = &quot;#2ca02c&quot;,
+  Myeloid    = &quot;#e377c2&quot;,
+  Tcell      = &quot;#bcbd22&quot;,
+  Bcell      = &quot;#17becf&quot;,
+  PeriFb     = &quot;#9467bd&quot;,
+  Unassigned = &quot;grey90&quot;
+)
+
+df &lt;- data.frame(
+  x = bin_x, y = bin_y,
+  label = factor(winner, levels = c(colnames(sig_scores), &quot;Unassigned&quot;)),
+  strength = winner_score
+)
+df &lt;- df[order(df$label == &quot;Unassigned&quot;, decreasing = TRUE), ]  # grey drawn first
+
+ggplot(df, aes(x = x, y = y, fill = label)) +
+  geom_tile(width = 1, height = 1) +
+  scale_fill_manual(values = cell_colors, drop = FALSE) +
+  coord_fixed() + theme_void() +
+  labs(title = &quot;Dominant signature per bin (16 µm)&quot;, fill = NULL) +
+  guides(fill = guide_legend(override.aes = list(size = 3))) +
+  theme(plot.title = element_text(hjust = 0.5, face = &quot;bold&quot;))</code></pre>
+<p><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>##Cell type distribution_scaling</p>
+<pre class="r"><code># only loop over columns we have a colour for
+cts &lt;- intersect(colnames(sig_scores), names(cell_colors))
+missing_col &lt;- setdiff(colnames(sig_scores), names(cell_colors))
+if (length(missing_col))
+  message(&quot;No colour defined, skipping: &quot;, paste(missing_col, collapse = &quot;, &quot;))
+stopifnot(length(cts) &gt; 0)
+
+
+
+score_plots &lt;- list()
+for (i in seq_along(cts)) {
+
+  ct &lt;- cts[i]
+  message(&quot;Plotting &quot;, i, &quot;/&quot;, length(cts), &quot;: &quot;, ct)
+
+  d    &lt;- data.frame(x = bin_x, y = bin_y, score = sig_scores[, ct])
+  lims &lt;- quantile(d$score, c(0.01, 0.99), na.rm = TRUE)
+
+  p &lt;- ggplot(d, aes(x = x, y = y, fill = score)) +
+    geom_tile(width = 1, height = 1) +
+    scale_fill_gradient(low = &quot;grey92&quot;, high = cell_colors[[ct]],
+                        limits = lims, oob = scales::squish) +
+    coord_fixed() + theme_void() +
+    labs(title = ct, fill = &quot;Score&quot;) +
+    theme(plot.title = element_text(hjust = 0.5, face = &quot;bold&quot;, size = 11))
+
+  score_plots[[ct]] &lt;- p
+  print(p)
+}</code></pre>
+<p><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-2.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-3.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-4.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-5.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-6.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>wrap_plots(score_plots, ncol = 3)</code></pre>
+<p><img src="figure/SpatialHD_FALC.Rmd/Cell%20type%20distribution_scaling-7.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+</div>
+<div id="session-info" class="section level2">
+<h2>session info</h2>
+<pre class="r"><code>date()</code></pre>
+<pre><code>[1] &quot;Wed Jul 22 14:16:23 2026&quot;</code></pre>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.4.1 (2024-06-14 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 22631)
+
+Matrix products: default
+
+
+locale:
+[1] LC_COLLATE=English_United States.utf8  LC_CTYPE=English_United States.utf8   
+[3] LC_MONETARY=English_United States.utf8 LC_NUMERIC=C                          
+[5] LC_TIME=English_United States.utf8    
+
+time zone: Europe/Berlin
+tzcode source: internal
+
+attached base packages:
+[1] grid      stats4    stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] nnSVG_1.8.0                    igraph_2.2.1                   BayesSpace_1.14.0             
+ [4] Banksy_1.0.0                   scran_1.32.0                   Voyager_1.6.0                 
+ [7] ggspavis_1.10.0                SpatialFeatureExperiment_1.6.1 HDF5Array_1.32.1              
+[10] rhdf5_2.48.0                   DelayedArray_0.30.1            SparseArray_1.4.8             
+[13] S4Arrays_1.4.1                 abind_1.4-8                    Matrix_1.7-4                  
+[16] SpatialExperiment_1.14.0       patchwork_1.3.2                org.Mm.eg.db_3.19.1           
+[19] harmony_2.0.3                  Rcpp_1.1.0                     BiocParallel_1.38.0           
+[22] scDblFinder_1.18.0             writexl_1.5.4                  scRepertoire_2.0.7            
+[25] kableExtra_1.4.0               knitr_1.51                     magrittr_2.0.4                
+[28] RColorBrewer_1.1-3             NCmisc_1.3.1                   VennDiagram_1.8.2             
+[31] futile.logger_1.4.9            ggupset_0.4.1                  gridExtra_2.3                 
+[34] DOSE_3.30.5                    enrichplot_1.24.4              msigdbr_26.1.0                
+[37] org.Hs.eg.db_3.19.1            AnnotationDbi_1.66.0           clusterProfiler_4.12.6        
+[40] multtest_2.60.0                metap_1.12                     scater_1.32.1                 
+[43] scuttle_1.14.0                 destiny_3.18.0                 circlize_0.4.18               
+[46] muscat_1.18.0                  viridis_0.6.5                  viridisLite_0.4.2             
+[49] lubridate_1.9.4                forcats_1.0.1                  stringr_1.5.2                 
+[52] purrr_1.1.0                    readr_2.1.5                    tidyr_1.3.1                   
+[55] tibble_3.3.0                   tidyverse_2.0.0                dplyr_1.1.4                   
+[58] SingleCellExperiment_1.26.0    SummarizedExperiment_1.34.0    Biobase_2.64.0                
+[61] GenomicRanges_1.56.2           GenomeInfoDb_1.40.1            IRanges_2.38.1                
+[64] S4Vectors_0.42.1               BiocGenerics_0.50.0            MatrixGenerics_1.16.0         
+[67] matrixStats_1.5.0              pheatmap_1.0.13                ggpubr_0.6.2                  
+[70] ggplot2_4.0.0                  Seurat_5.3.0                   SeuratObject_5.2.0            
+[73] sp_2.2-0                       runSeurat3_0.1.0               ExploreSCdataSeurat3_0.1.0    
+
+loaded via a namespace (and not attached):
+  [1] xts_0.14.1                DBI_1.3.0                 bslib_0.11.0             
+  [4] httr_1.4.8                prettyunits_1.2.0         yulab.utils_0.2.4        
+  [7] gsl_2.1-8                 VIM_6.2.6                 ggplotify_0.1.3          
+ [10] GenomicAlignments_1.40.0  fANCOVA_0.6-1             sparseMatrixStats_1.16.0 
+ [13] remaCor_0.0.20            spatstat.geom_3.6-0       babelgene_22.9           
+ [16] TTR_0.24.4                pillar_1.11.1             R6_2.6.1                 
+ [19] boot_1.3-32               mime_0.13                 glmGamPoi_1.16.0         
+ [22] reticulate_1.45.0         edgeR_4.2.2               uwot_0.2.3               
+ [25] Rhdf5lib_1.26.0           ROCR_1.0-12               rprojroot_2.1.1          
+ [28] RcppHungarian_0.3         limma_3.60.6              S7_0.2.0                 
+ [31] parallelly_1.45.1         iNEXT_3.0.2               GlobalOptions_0.1.4      
+ [34] rbibutils_2.4.1           caTools_1.18.3            mgcv_1.9-4               
+ [37] polyclip_1.10-7           beachmat_2.20.0           htmltools_0.5.8.1        
+ [40] lambda.r_1.2.4            e1071_1.7-16              ggplot.multistats_1.0.1  
+ [43] ggrepel_0.9.6             classInt_0.4-11           car_3.1-5                
+ [46] spData_2.3.5              ComplexHeatmap_2.20.0     fgsea_1.30.0             
+ [49] aricode_1.1.0             spatstat.utils_3.2-0      TFisher_0.2.0            
+ [52] scatterplot3d_0.3-45      clue_0.3-66               scatterpie_0.2.6         
+ [55] fitdistrplus_1.2-6        goftest_1.2-3             tidyselect_1.2.1         
+ [58] sfheaders_0.4.5           RSQLite_2.4.3             truncdist_1.0-2          
+ [61] cowplot_1.2.0             GenomeInfoDbData_1.2.12   ScaledMatrix_1.12.0      
+ [64] scattermore_1.2           spatstat.data_3.1-9       fs_1.6.6                 
+ [67] xgboost_1.7.11.1          sctransform_0.4.2         BRISC_1.0.6              
+ [70] future.apply_1.20.2       glmmTMB_1.1.13            R.oo_1.27.1              
+ [73] workflowr_1.7.2           RcppHNSW_0.6.0            mathjaxr_2.0-0           
+ [76] vipor_0.4.7               rtracklayer_1.64.0        Rtsne_0.17               
+ [79] DelayedMatrixStats_1.26.0 lazyeval_0.2.2            sass_0.4.10              
+ [82] scales_1.4.0              carData_3.0-6             treeio_1.28.0            
+ [85] R.utils_2.13.0            bitops_1.0-9              aod_1.3.3                
+ [88] labeling_0.4.3            R.methodsS3_1.8.2         KEGGREST_1.44.1          
+ [91] promises_1.5.0            shape_1.4.6.1             terra_1.9-27             
+ [94] rhdf5filters_1.16.0       variancePartition_1.34.0  zoo_1.8-14               
+ [97] DropletUtils_1.24.0       spdep_1.4-2               locfit_1.5-9.12          
+[100] RSpectra_0.16-2           multcomp_1.4-30           assertthat_0.2.1         
+[103] tools_4.4.1               ape_5.8-1                 BiocFileCache_2.12.0     
+[106] shiny_1.14.0              pcaMethods_1.96.0         EnvStats_3.1.0           
+[109] git2r_0.36.2              fftwtools_0.9-11          rlang_1.1.4              
+[112] generics_0.1.4            BiocSingular_1.20.0       ggridges_0.5.7           
+[115] evaluate_1.0.5            httr2_1.2.3               stringdist_0.9.17        
+[118] BiocIO_1.14.0             otel_0.2.0                reshape2_1.4.4           
+[121] plotrix_3.8-14            colorspace_2.1-2          data.table_1.17.8        
+[124] withr_3.0.3               sccore_1.0.7              RCurl_1.98-1.17          
+[127] restfulr_0.0.16           xtable_1.8-8              plyr_1.8.9               
+[130] lme4_1.1-37               aplot_0.3.0               MatrixModels_0.5-4       
+[133] systemfonts_1.3.1         mclust_6.1.2              httpuv_1.6.16            
+[136] cubature_2.1.4            rmarkdown_2.31            metapod_1.12.0           
+[139] units_1.0-1               robustbase_0.99-7         rdist_0.0.5              
+[142] MASS_7.3-65               dqrng_0.4.1               broom_1.0.13             
+[145] deldir_2.0-4              GO.db_3.19.1              sandwich_3.1-1           
+[148] tensor_1.5.1              memuse_4.2-3              vctrs_0.6.5              
+[151] lifecycle_1.0.5           proxy_0.4-27              codetools_0.2-20         
+[154] fastDummies_1.7.6         mnormt_2.1.1              nlme_3.1-168             
+[157] future_1.70.0             DESeq2_1.44.0             ggside_0.4.1             
+[160] dbplyr_2.5.2              progress_1.2.3            jquerylib_0.1.4          
+[163] shinydashboard_0.7.3      rstudioapi_0.19.0         stringi_1.8.7            
+[166] miscTools_0.6-30          VGAM_1.1-13               hms_1.1.4                
+[169] pbapply_1.7-4             minqa_1.2.8               cachem_1.1.0             
+[172] tidytree_0.4.7            listenv_1.0.0             XVector_0.44.0           
+[175] plotly_4.12.0             mutoss_0.1-14             ggtree_3.12.0            
+[178] jpeg_0.1-11               GetoptLong_1.1.1          ggfun_0.2.0              
+[181] htmlwidgets_1.6.4         Formula_1.2-5             class_7.3-23             
+[184] memoise_2.0.1             crayon_1.5.3              gridGraphics_0.5-1       
+[187] rappdirs_0.3.4            smoother_1.3              filelock_1.0.3           
+[190] xml2_1.4.1                GOSemSim_2.30.2           s2_1.1.11                
+[193] UCSC.utils_1.0.0          png_0.1-8                 progressr_0.19.0         
+[196] tzdb_0.5.0                colourpicker_1.3.0        ggthemes_5.2.0           
+[199] emmeans_2.0.3             evd_2.3-7.1               fastmap_1.2.0            
+[202] laeken_0.5.3              coda_0.19-4.1             tidygraph_1.3.1          
+[205] vcd_1.4-13                blme_1.0-7                pkgconfig_2.0.3          
+[208] cli_3.6.5                 beeswarm_0.4.0            ggforce_0.5.0            
+[211] TMB_1.9.18                ggiraph_0.9.6             ggsignif_0.6.4           
+[214] nnet_7.3-20               zeallot_0.2.0             ggalluvial_0.12.6        
+[217] maxLik_1.5-2.2            lmtest_0.9-40             textshaping_1.0.5        
+[220] RcppAnnoy_0.0.22          evmix_2.12                lmerTest_3.2-1           
+[223] gdtools_0.5.0             DEoptimR_1.2-0            timechange_0.3.0         
+[226] ggdendro_0.2.0            splines_4.4.1             blob_1.3.0               
+[229] XML_3.99-0.19             numDeriv_2016.8-1.1       globals_0.19.1           
+[232] ggbeeswarm_0.7.3          ica_1.0-3                 spam_2.11-1              
+[235] compiler_4.4.1            RcppEigen_0.3.4.0.2       rjson_0.2.23             
+[238] sf_1.1-1                  reformulas_0.4.4          qqconf_1.3.2             
+[241] leidenAlg_1.1.8           bit_4.6.0                 hexbin_1.28.5            
+[244] sn_2.1.3                  BiocNeighbors_1.22.0      glue_1.8.0               
+[247] estimability_1.5.1        formatR_1.14              digest_0.6.36            
+[250] irlba_2.3.5.1             tiff_0.1-12               graphlayouts_1.2.3       
+[253] magick_2.9.1              fontLiberation_0.1.0      foreach_1.5.2            
+[256] fontBitstreamVera_0.1.1   spatstat.random_3.4-2     SparseM_1.84-2           
+[259] zlibbioc_1.50.0           dotCall64_1.2             tweenr_2.0.3             
+[262] lattice_0.22-7            statmod_1.5.1             ggraph_2.2.2             
+[265] rsvd_1.0.5                gson_0.1.0                ggnewscale_0.5.2         
+[268] nloptr_2.2.1              mvtnorm_1.3-3             yaml_2.3.10              
+[271] qvalue_2.36.0             later_1.4.4               backports_1.5.0          
+[274] rstatix_0.7.3             shadowtext_0.1.6          Rsamtools_2.20.0         
+[277] parallel_4.4.1            fontquiver_0.2.1          quantreg_6.1             
+[280] miniUI_0.1.2              gtable_0.3.6              xfun_0.52                
+[283] Cairo_1.6-5               Biostrings_2.72.1         curl_7.0.0               
+[286] doParallel_1.0.17         KernSmooth_2.23-26        futile.options_1.0.1     
+[289] survival_3.8-3            jsonlite_2.0.0            svglite_2.2.2            
+[292] iterators_1.0.14          TH.data_1.1-5             spatstat.univar_3.1-4    
+[295] pbkrtest_0.5.5            RhpcBLASctl_0.23-42       EBImage_4.46.0           
+[298] fastmatch_1.1-8           gtools_3.9.5              spatstat.sparse_3.1-0    
+[301] RANN_2.6.2                bluster_1.14.0            wk_0.9.5                 
+[304] dbscan_1.2.4              spatstat.explore_3.5-3    scico_1.5.0              
+[307] bit64_4.6.0-1             DirichletReg_0.7-2        cluster_2.1.8.1          
+[310] Rdpack_2.6.6              farver_2.1.2              corpcor_1.6.10           
+[313] gplots_3.3.0              ranger_0.18.0            </code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.4.1 (2024-06-14 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 22631)
+
+Matrix products: default
+
+
+locale:
+[1] LC_COLLATE=English_United States.utf8  LC_CTYPE=English_United States.utf8   
+[3] LC_MONETARY=English_United States.utf8 LC_NUMERIC=C                          
+[5] LC_TIME=English_United States.utf8    
+
+time zone: Europe/Berlin
+tzcode source: internal
+
+attached base packages:
+[1] grid      stats4    stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] nnSVG_1.8.0                    igraph_2.2.1                   BayesSpace_1.14.0             
+ [4] Banksy_1.0.0                   scran_1.32.0                   Voyager_1.6.0                 
+ [7] ggspavis_1.10.0                SpatialFeatureExperiment_1.6.1 HDF5Array_1.32.1              
+[10] rhdf5_2.48.0                   DelayedArray_0.30.1            SparseArray_1.4.8             
+[13] S4Arrays_1.4.1                 abind_1.4-8                    Matrix_1.7-4                  
+[16] SpatialExperiment_1.14.0       patchwork_1.3.2                org.Mm.eg.db_3.19.1           
+[19] harmony_2.0.3                  Rcpp_1.1.0                     BiocParallel_1.38.0           
+[22] scDblFinder_1.18.0             writexl_1.5.4                  scRepertoire_2.0.7            
+[25] kableExtra_1.4.0               knitr_1.51                     magrittr_2.0.4                
+[28] RColorBrewer_1.1-3             NCmisc_1.3.1                   VennDiagram_1.8.2             
+[31] futile.logger_1.4.9            ggupset_0.4.1                  gridExtra_2.3                 
+[34] DOSE_3.30.5                    enrichplot_1.24.4              msigdbr_26.1.0                
+[37] org.Hs.eg.db_3.19.1            AnnotationDbi_1.66.0           clusterProfiler_4.12.6        
+[40] multtest_2.60.0                metap_1.12                     scater_1.32.1                 
+[43] scuttle_1.14.0                 destiny_3.18.0                 circlize_0.4.18               
+[46] muscat_1.18.0                  viridis_0.6.5                  viridisLite_0.4.2             
+[49] lubridate_1.9.4                forcats_1.0.1                  stringr_1.5.2                 
+[52] purrr_1.1.0                    readr_2.1.5                    tidyr_1.3.1                   
+[55] tibble_3.3.0                   tidyverse_2.0.0                dplyr_1.1.4                   
+[58] SingleCellExperiment_1.26.0    SummarizedExperiment_1.34.0    Biobase_2.64.0                
+[61] GenomicRanges_1.56.2           GenomeInfoDb_1.40.1            IRanges_2.38.1                
+[64] S4Vectors_0.42.1               BiocGenerics_0.50.0            MatrixGenerics_1.16.0         
+[67] matrixStats_1.5.0              pheatmap_1.0.13                ggpubr_0.6.2                  
+[70] ggplot2_4.0.0                  Seurat_5.3.0                   SeuratObject_5.2.0            
+[73] sp_2.2-0                       runSeurat3_0.1.0               ExploreSCdataSeurat3_0.1.0    
+
+loaded via a namespace (and not attached):
+  [1] xts_0.14.1                DBI_1.3.0                 bslib_0.11.0             
+  [4] httr_1.4.8                prettyunits_1.2.0         yulab.utils_0.2.4        
+  [7] gsl_2.1-8                 VIM_6.2.6                 ggplotify_0.1.3          
+ [10] GenomicAlignments_1.40.0  fANCOVA_0.6-1             sparseMatrixStats_1.16.0 
+ [13] remaCor_0.0.20            spatstat.geom_3.6-0       babelgene_22.9           
+ [16] TTR_0.24.4                pillar_1.11.1             R6_2.6.1                 
+ [19] boot_1.3-32               mime_0.13                 glmGamPoi_1.16.0         
+ [22] reticulate_1.45.0         edgeR_4.2.2               uwot_0.2.3               
+ [25] Rhdf5lib_1.26.0           ROCR_1.0-12               rprojroot_2.1.1          
+ [28] RcppHungarian_0.3         limma_3.60.6              S7_0.2.0                 
+ [31] parallelly_1.45.1         iNEXT_3.0.2               GlobalOptions_0.1.4      
+ [34] rbibutils_2.4.1           caTools_1.18.3            mgcv_1.9-4               
+ [37] polyclip_1.10-7           beachmat_2.20.0           htmltools_0.5.8.1        
+ [40] lambda.r_1.2.4            e1071_1.7-16              ggplot.multistats_1.0.1  
+ [43] ggrepel_0.9.6             classInt_0.4-11           car_3.1-5                
+ [46] spData_2.3.5              ComplexHeatmap_2.20.0     fgsea_1.30.0             
+ [49] aricode_1.1.0             spatstat.utils_3.2-0      TFisher_0.2.0            
+ [52] scatterplot3d_0.3-45      clue_0.3-66               scatterpie_0.2.6         
+ [55] fitdistrplus_1.2-6        goftest_1.2-3             tidyselect_1.2.1         
+ [58] sfheaders_0.4.5           RSQLite_2.4.3             truncdist_1.0-2          
+ [61] cowplot_1.2.0             GenomeInfoDbData_1.2.12   ScaledMatrix_1.12.0      
+ [64] scattermore_1.2           spatstat.data_3.1-9       fs_1.6.6                 
+ [67] xgboost_1.7.11.1          sctransform_0.4.2         BRISC_1.0.6              
+ [70] future.apply_1.20.2       glmmTMB_1.1.13            R.oo_1.27.1              
+ [73] workflowr_1.7.2           RcppHNSW_0.6.0            mathjaxr_2.0-0           
+ [76] vipor_0.4.7               rtracklayer_1.64.0        Rtsne_0.17               
+ [79] DelayedMatrixStats_1.26.0 lazyeval_0.2.2            sass_0.4.10              
+ [82] scales_1.4.0              carData_3.0-6             treeio_1.28.0            
+ [85] R.utils_2.13.0            bitops_1.0-9              aod_1.3.3                
+ [88] labeling_0.4.3            R.methodsS3_1.8.2         KEGGREST_1.44.1          
+ [91] promises_1.5.0            shape_1.4.6.1             terra_1.9-27             
+ [94] rhdf5filters_1.16.0       variancePartition_1.34.0  zoo_1.8-14               
+ [97] DropletUtils_1.24.0       spdep_1.4-2               locfit_1.5-9.12          
+[100] RSpectra_0.16-2           multcomp_1.4-30           assertthat_0.2.1         
+[103] tools_4.4.1               ape_5.8-1                 BiocFileCache_2.12.0     
+[106] shiny_1.14.0              pcaMethods_1.96.0         EnvStats_3.1.0           
+[109] git2r_0.36.2              fftwtools_0.9-11          rlang_1.1.4              
+[112] generics_0.1.4            BiocSingular_1.20.0       ggridges_0.5.7           
+[115] evaluate_1.0.5            httr2_1.2.3               stringdist_0.9.17        
+[118] BiocIO_1.14.0             otel_0.2.0                reshape2_1.4.4           
+[121] plotrix_3.8-14            colorspace_2.1-2          data.table_1.17.8        
+[124] withr_3.0.3               sccore_1.0.7              RCurl_1.98-1.17          
+[127] restfulr_0.0.16           xtable_1.8-8              plyr_1.8.9               
+[130] lme4_1.1-37               aplot_0.3.0               MatrixModels_0.5-4       
+[133] systemfonts_1.3.1         mclust_6.1.2              httpuv_1.6.16            
+[136] cubature_2.1.4            rmarkdown_2.31            metapod_1.12.0           
+[139] units_1.0-1               robustbase_0.99-7         rdist_0.0.5              
+[142] MASS_7.3-65               dqrng_0.4.1               broom_1.0.13             
+[145] deldir_2.0-4              GO.db_3.19.1              sandwich_3.1-1           
+[148] tensor_1.5.1              memuse_4.2-3              vctrs_0.6.5              
+[151] lifecycle_1.0.5           proxy_0.4-27              codetools_0.2-20         
+[154] fastDummies_1.7.6         mnormt_2.1.1              nlme_3.1-168             
+[157] future_1.70.0             DESeq2_1.44.0             ggside_0.4.1             
+[160] dbplyr_2.5.2              progress_1.2.3            jquerylib_0.1.4          
+[163] shinydashboard_0.7.3      rstudioapi_0.19.0         stringi_1.8.7            
+[166] miscTools_0.6-30          VGAM_1.1-13               hms_1.1.4                
+[169] pbapply_1.7-4             minqa_1.2.8               cachem_1.1.0             
+[172] tidytree_0.4.7            listenv_1.0.0             XVector_0.44.0           
+[175] plotly_4.12.0             mutoss_0.1-14             ggtree_3.12.0            
+[178] jpeg_0.1-11               GetoptLong_1.1.1          ggfun_0.2.0              
+[181] htmlwidgets_1.6.4         Formula_1.2-5             class_7.3-23             
+[184] memoise_2.0.1             crayon_1.5.3              gridGraphics_0.5-1       
+[187] rappdirs_0.3.4            smoother_1.3              filelock_1.0.3           
+[190] xml2_1.4.1                GOSemSim_2.30.2           s2_1.1.11                
+[193] UCSC.utils_1.0.0          png_0.1-8                 progressr_0.19.0         
+[196] tzdb_0.5.0                colourpicker_1.3.0        ggthemes_5.2.0           
+[199] emmeans_2.0.3             evd_2.3-7.1               fastmap_1.2.0            
+[202] laeken_0.5.3              coda_0.19-4.1             tidygraph_1.3.1          
+[205] vcd_1.4-13                blme_1.0-7                pkgconfig_2.0.3          
+[208] cli_3.6.5                 beeswarm_0.4.0            ggforce_0.5.0            
+[211] TMB_1.9.18                ggiraph_0.9.6             ggsignif_0.6.4           
+[214] nnet_7.3-20               zeallot_0.2.0             ggalluvial_0.12.6        
+[217] maxLik_1.5-2.2            lmtest_0.9-40             textshaping_1.0.5        
+[220] RcppAnnoy_0.0.22          evmix_2.12                lmerTest_3.2-1           
+[223] gdtools_0.5.0             DEoptimR_1.2-0            timechange_0.3.0         
+[226] ggdendro_0.2.0            splines_4.4.1             blob_1.3.0               
+[229] XML_3.99-0.19             numDeriv_2016.8-1.1       globals_0.19.1           
+[232] ggbeeswarm_0.7.3          ica_1.0-3                 spam_2.11-1              
+[235] compiler_4.4.1            RcppEigen_0.3.4.0.2       rjson_0.2.23             
+[238] sf_1.1-1                  reformulas_0.4.4          qqconf_1.3.2             
+[241] leidenAlg_1.1.8           bit_4.6.0                 hexbin_1.28.5            
+[244] sn_2.1.3                  BiocNeighbors_1.22.0      glue_1.8.0               
+[247] estimability_1.5.1        formatR_1.14              digest_0.6.36            
+[250] irlba_2.3.5.1             tiff_0.1-12               graphlayouts_1.2.3       
+[253] magick_2.9.1              fontLiberation_0.1.0      foreach_1.5.2            
+[256] fontBitstreamVera_0.1.1   spatstat.random_3.4-2     SparseM_1.84-2           
+[259] zlibbioc_1.50.0           dotCall64_1.2             tweenr_2.0.3             
+[262] lattice_0.22-7            statmod_1.5.1             ggraph_2.2.2             
+[265] rsvd_1.0.5                gson_0.1.0                ggnewscale_0.5.2         
+[268] nloptr_2.2.1              mvtnorm_1.3-3             yaml_2.3.10              
+[271] qvalue_2.36.0             later_1.4.4               backports_1.5.0          
+[274] rstatix_0.7.3             shadowtext_0.1.6          Rsamtools_2.20.0         
+[277] parallel_4.4.1            fontquiver_0.2.1          quantreg_6.1             
+[280] miniUI_0.1.2              gtable_0.3.6              xfun_0.52                
+[283] Cairo_1.6-5               Biostrings_2.72.1         curl_7.0.0               
+[286] doParallel_1.0.17         KernSmooth_2.23-26        futile.options_1.0.1     
+[289] survival_3.8-3            jsonlite_2.0.0            svglite_2.2.2            
+[292] iterators_1.0.14          TH.data_1.1-5             spatstat.univar_3.1-4    
+[295] pbkrtest_0.5.5            RhpcBLASctl_0.23-42       EBImage_4.46.0           
+[298] fastmatch_1.1-8           gtools_3.9.5              spatstat.sparse_3.1-0    
+[301] RANN_2.6.2                bluster_1.14.0            wk_0.9.5                 
+[304] dbscan_1.2.4              spatstat.explore_3.5-3    scico_1.5.0              
+[307] bit64_4.6.0-1             DirichletReg_0.7-2        cluster_2.1.8.1          
+[310] Rdpack_2.6.6              farver_2.1.2              corpcor_1.6.10           
+[313] gplots_3.3.0              ranger_0.18.0            </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
