@@ -1,0 +1,893 @@
+---
+title: "Spatial_HD_FALC"
+author: "HWC"
+date: "2026-07-22"
+output:
+  html_document:
+    keep_md: true
+    toc: true
+    self_contained: true
+  pdf_document:
+    toc: true
+editor_options:
+  chunk_output_type: inline
+---
+
+
+
+```{r library, include=FALSE}
+
+## Greneral packages
+library(ExploreSCdataSeurat3)
+library(runSeurat3)
+library(Seurat)
+library(ggpubr)
+library(pheatmap)
+library(SingleCellExperiment)
+library(dplyr)
+library(tidyverse)
+library(viridis)
+library(muscat)
+library(circlize)
+library(destiny)
+library(scater)
+library(metap)
+library(multtest)
+library(clusterProfiler)
+library(org.Hs.eg.db)
+library(msigdbr)
+library(enrichplot)
+library(DOSE)
+library(grid)
+library(gridExtra)
+library(ggupset)
+library(VennDiagram)
+library(NCmisc)
+library(RColorBrewer)
+library(magrittr)
+library(knitr)
+library(kableExtra)
+library(scRepertoire)
+library(writexl)
+library (scDblFinder)
+library (BiocParallel)
+library(harmony)
+library(org.Mm.eg.db)
+library(patchwork)
+
+library(SpatialExperiment)
+library(scuttle)
+library(scater)
+library(HDF5Array)
+library(SpatialFeatureExperiment)
+library(ggspavis)
+library(Voyager)
+library(SingleCellExperiment)
+library(scran)
+
+library(Banksy)
+library(BayesSpace)
+library(igraph)
+library(nnSVG)
+
+```
+
+
+## Data input
+```{r Data input}
+
+obj1 <- readRDS("/R/Spatial_HD_2026/data/processed_seurat/430721_1-20260821_Hu_PericardFALC_AHP2_squA_S2_16um.rds")
+
+
+obj2 <- readRDS("/R/Spatial_HD_2026/data/processed_seurat/430721_2-20260821_Hu_PericardFALC_AHP3_squD_S1_16um.rds")
+
+
+sce_obj1 <- as.SingleCellExperiment(obj1)
+sce_obj2 <- as.SingleCellExperiment(obj2)
+
+
+# 3. Verify the conversion
+sce_obj1
+sce_obj2
+
+
+
+```
+
+## SCT normalization
+```{r SCT normalization}
+seurat_names <- c("obj1", "obj2")
+
+sce_list <- list()  # holds the 2 separate results
+
+for (nm in seurat_names) {
+  message("Processing native Seurat object: ", nm)
+  seu_obj <- get(nm)
+
+  active_assay <- DefaultAssay(seu_obj)
+  message("  Found active assay: '", active_assay, "'")
+
+  seu_obj <- seu_obj[, colSums(GetAssayData(seu_obj, assay = active_assay, slot = "counts")) > 0]
+  seu_obj <- SCTransform(seu_obj, assay = active_assay, verbose = FALSE)
+
+  sce_final <- as.SingleCellExperiment(seu_obj)
+
+  sct_residual_matrix <- matrix(
+    0,
+    nrow = nrow(sce_final),
+    ncol = ncol(sce_final),
+    dimnames = list(rownames(sce_final), colnames(sce_final))
+  )
+  computed_residuals <- seu_obj[["SCT"]]$scale.data
+  matching_genes <- intersect(rownames(sct_residual_matrix), rownames(computed_residuals))
+  sct_residual_matrix[matching_genes, ] <- computed_residuals[matching_genes, ]
+
+  assays(sce_final)[["SCT_residuals"]] <- sct_residual_matrix
+
+  hvg_genes <- VariableFeatures(seu_obj)
+  rowData(sce_final)$hvg <- rownames(sce_final) %in% hvg_genes
+  metadata(sce_final)$sct_hvgs <- VariableFeatures(seu_obj)
+  sce_list[[nm]] <- sce_final   # keep them separate, indexed by name
+  message("  Successfully stored normalized container for: ", nm)
+}
+
+
+
+```
+
+##Ploting of TOP20 genes
+```{r Ploting of TOP20 genes}
+
+hvg_plots <- list()
+
+for (nm in c("obj1", "obj2")) {
+
+  sce_obj <- sce_list[[nm]]
+  message("Processing: ", nm)
+
+  # --- sanity: logcounts here is SCT's 'data' slot, not a fresh lognorm ---
+  if (!"logcounts" %in% assayNames(sce_obj)) {
+    stop("No logcounts in ", nm, " - check what as.SingleCellExperiment() carried over.")
+  }
+
+  # --- HVGs from SCT, ranked by residual variance ---
+  hvg_all <- rownames(sce_obj)[rowData(sce_obj)$hvg]
+  res_var <- apply(assay(sce_obj, "SCT_residuals")[hvg_all, , drop = FALSE], 1, var)
+  top_HVG <- names(sort(res_var, decreasing = TRUE))[1:20]
+  message("  Top HVG: ", paste(head(top_HVG, 3), collapse = ", "), " ...")
+
+  # --- spatial coordinates from barcodes ---
+  barcodes <- colnames(sce_obj)
+  bin_x <- as.numeric(gsub(".*_([0-9]+)_[0-9]+-1", "\\1", barcodes))
+  bin_y <- as.numeric(gsub(".*_[0-9]+_([0-9]+)-1", "\\1", barcodes))
+  if (anyNA(bin_x) || anyNA(bin_y)) {
+    warning(sum(is.na(bin_x) | is.na(bin_y)), " barcodes in ", nm,
+            " did not match the coordinate pattern.")
+  }
+
+  expr_mat <- logcounts(sce_obj)
+
+  plot_list <- lapply(top_HVG, function(gene) {
+    df <- data.frame(
+      x = bin_x,
+      y = bin_y,
+      expression = as.numeric(expr_mat[gene, ])
+    )
+    ggplot(df, aes(x = x, y = y, color = expression)) +
+      geom_point(size = 0.005, alpha = 0.5) +
+      scale_color_viridis_c(option = "plasma") +
+      coord_fixed() +
+      theme_void() +
+      labs(title = gene, color = "LogExpr") +
+      theme(
+        plot.title = element_text(hjust = 0.5, face = "bold", size = 10),
+        legend.position = "none"
+      )
+  })
+
+  combined_plot <- wrap_plots(plot_list, nrow = 4, ncol = 5)
+  hvg_plots[[nm]] <- combined_plot
+  print(combined_plot)
+
+  message("Done: ", nm)
+}
+
+```
+
+
+
+
+
+```{r}
+n_top   <- 50
+n_row   <- 5
+n_col   <- 5
+per_page <- n_row * n_col
+
+hvg_plots  <- list()   # paginated grids, per sample
+hvg_panels <- list()   # individual gene panels, in case you want one on its own
+
+for (nm in c("obj1", "obj2")) {
+  sce_obj <- sce_list[[nm]]
+  message("Processing: ", nm)
+
+  # --- sanity: logcounts here is SCT's 'data' slot, not a fresh lognorm ---
+  if (!"logcounts" %in% assayNames(sce_obj)) {
+    stop("No logcounts in ", nm, " - check what as.SingleCellExperiment() carried over.")
+  }
+  if (!"SCT_residuals" %in% assayNames(sce_obj)) {
+    stop("No SCT_residuals in ", nm, " - cannot rank HVGs by residual variance.")
+  }
+
+  # --- HVGs from SCT, ranked by residual variance ---
+  hvg_all <- rownames(sce_obj)[rowData(sce_obj)$hvg]
+  if (length(hvg_all) == 0) {
+    stop("No HVGs flagged in rowData(", nm, ")$hvg - was this object built by loop 1?")
+  }
+  res_var <- apply(assay(sce_obj, "SCT_residuals")[hvg_all, , drop = FALSE], 1, var)
+  top_HVG <- names(sort(res_var, decreasing = TRUE))[seq_len(min(n_top, length(hvg_all)))]
+  message("  ", length(top_HVG), " HVGs; top 3: ",
+          paste(head(top_HVG, 3), collapse = ", "), " ...")
+
+  # --- spatial coordinates from barcodes ---
+  barcodes <- colnames(sce_obj)
+  bin_x <- as.numeric(gsub(".*_([0-9]+)_[0-9]+-1", "\\1", barcodes))
+  bin_y <- as.numeric(gsub(".*_[0-9]+_([0-9]+)-1", "\\1", barcodes))
+  if (anyNA(bin_x) || anyNA(bin_y)) {
+    warning(sum(is.na(bin_x) | is.na(bin_y)), " barcodes in ", nm,
+            " did not match the coordinate pattern.")
+  }
+
+  expr_mat <- logcounts(sce_obj)
+
+  plot_list <- lapply(top_HVG, function(gene) {
+    df <- data.frame(
+      x = bin_x,
+      y = bin_y,
+      expression = as.numeric(expr_mat[gene, ])
+    )
+    ggplot(df, aes(x = x, y = y, color = expression)) +
+      geom_point(size = 0.005, alpha = 0.5) +
+      scale_color_viridis_c(option = "plasma") +
+      coord_fixed() +
+      theme_void() +
+      labs(title = gene, color = "LogExpr") +
+      theme(
+        plot.title = element_text(hjust = 0.5, face = "bold", size = 8),
+        legend.position = "none"
+      )
+  })
+  names(plot_list) <- top_HVG
+  hvg_panels[[nm]] <- plot_list
+
+  # --- split into pages of per_page panels ---
+  pages <- split(seq_along(plot_list),
+                 ceiling(seq_along(plot_list) / per_page))
+
+  hvg_plots[[nm]] <- lapply(seq_along(pages), function(p) {
+    idx <- pages[[p]]
+    g <- wrap_plots(plot_list[idx], nrow = n_row, ncol = n_col) +
+      plot_annotation(
+        title = paste0(nm, " - top HVGs (", min(idx), "-", max(idx), ")"),
+        theme = theme(plot.title = element_text(face = "bold", hjust = 0.5))
+      )
+    print(g)
+    g
+  })
+
+  message("Done: ", nm, " (", length(pages), " pages)")
+}
+
+
+
+```
+
+
+
+
+
+
+
+##Ploting of selected genes_16um_bin
+```{r Ploting of selected genes_16um_bin}
+nm1 <- "obj1"
+sce_obj1 <- sce_list[[nm1]]
+
+if (!"logcounts" %in% assayNames(sce_obj1)) {
+  sce_obj1 <- logNormCounts(sce_obj1)
+}
+
+genes_of_interest <- c("CCL19", "CXCL13", "CCL11", "IL33","IL6","BMP4","TCF21", "COL11","VCAM1","FAT4","ALDH1A2","JCHAIN","CD4","CD3E","LY6G","CD14","MCAM","CLU","IL7R","IL23R","PTPRC","CD19","IGHD","EOMES","MSLN","CD68","DPP4","ITGAX")
+
+barcodes <- colnames(sce_obj1)
+bin_x <- as.numeric(gsub(".*_([0-9]+)_[0-9]+-1", "\\1", barcodes))
+bin_y <- as.numeric(gsub(".*_[0-9]+_([0-9]+)-1", "\\1", barcodes))
+
+for (i in seq_along(genes_of_interest)) {
+  gene <- genes_of_interest[i]
+
+  # Decide if the gene is detectable
+  in_object   <- gene %in% rownames(sce_obj1)
+  expr        <- if (in_object) logcounts(sce_obj1)[gene, ] else NULL
+  detectable  <- in_object && any(expr > 0)
+
+  message("Plotting ", i, "/", length(genes_of_interest), ": ", gene,
+          if (!detectable) "  [not detectable]" else "")
+
+  if (detectable) {
+    df <- data.frame(x = bin_x, y = bin_y, expression = expr)
+    df <- df[order(df$expression), ]          # positive spots on top
+
+    p <- ggplot(df, aes(x = x, y = y, color = expression)) +
+      geom_point(size = 0.3, alpha = 0.6) +
+      scale_color_viridis_c(option = "plasma") +
+      coord_fixed() + theme_void() +
+      labs(title = gene, color = "LogExpr") +
+      theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12))
+  } else {
+    # grey tissue outline + "not detectable" annotation
+    df <- data.frame(x = bin_x, y = bin_y)
+    reason <- if (!in_object) "not in dataset" else "all zero"
+
+    p <- ggplot(df, aes(x = x, y = y)) +
+      geom_point(size = 0.3, alpha = 0.4, color = "grey80") +
+      coord_fixed() + theme_void() +
+      labs(title = paste0(gene, " - not detectable")) +
+      annotate("text", x = mean(range(bin_x, na.rm = TRUE)),
+               y = mean(range(bin_y, na.rm = TRUE)),
+               label = paste0("Not detectable\n(", reason, ")"),
+               fontface = "italic", size = 4, color = "grey30") +
+      theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12))
+  }
+
+  print(p)
+}
+
+```
+
+```{r}
+nm2 <- "obj2"
+sce_obj2 <- sce_list[[nm2]]
+
+if (!"logcounts" %in% assayNames(sce_obj2)) {
+  sce_obj2 <- logNormCounts(sce_obj2)
+}
+
+genes_of_interest <- c("CCL19", "CXCL13", "CCL11", "IL33","IL6","BMP4","TCF21", "COL11A1","VCAM1","FAT4","ALDH1A2","JCHAIN","CD4","CD3E","LY6G","CD14","MCAM","CLU","IL7R","IL23R","PTPRC","CD19","IGHD","EOMES","MSLN","CD68","DPP4","ITGAX")
+
+barcodes2 <- colnames(sce_obj2)
+bin_x2 <- as.numeric(gsub(".*_([0-9]+)_[0-9]+-1", "\\1", barcodes2))
+bin_y2 <- as.numeric(gsub(".*_[0-9]+_([0-9]+)-1", "\\1", barcodes2))
+
+for (i in seq_along(genes_of_interest)) {
+  gene <- genes_of_interest[i]
+
+  # Decide if the gene is detectable
+  in_object   <- gene %in% rownames(sce_obj2)
+  expr        <- if (in_object) logcounts(sce_obj2)[gene, ] else NULL
+  detectable  <- in_object && any(expr > 0)
+
+  message("Plotting ", i, "/", length(genes_of_interest), ": ", gene,
+          if (!detectable) "  [not detectable]" else "")
+
+  if (detectable) {
+    df2 <- data.frame(x = bin_x2, y = bin_y2, expression = expr)
+    df2 <- df2[order(df2$expression), ]          # positive spots on top
+
+    p2 <- ggplot(df2, aes(x = x, y = y, color = expression)) +
+      geom_point(size = 0.3, alpha = 0.6) +
+      scale_color_viridis_c(option = "plasma") +
+      coord_fixed() + theme_void() +
+      labs(title = gene, color = "LogExpr") +
+      theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12))
+  } else {
+    # grey tissue outline + "not detectable" annotation
+    df2 <- data.frame(x = bin_x2, y = bin_y2)
+    reason <- if (!in_object) "not in dataset" else "all zero"
+
+    p2 <- ggplot(df2, aes(x = x, y = y)) +
+      geom_point(size = 0.3, alpha = 0.4, color = "grey80") +
+      coord_fixed() + theme_void() +
+      labs(title = paste0(gene, " - not detectable")) +
+      annotate("text", x = mean(range(bin_x2, na.rm = TRUE)),
+               y = mean(range(bin_y2, na.rm = TRUE)),
+               label = paste0("Not detectable\n(", reason, ")"),
+               fontface = "italic", size = 4, color = "grey30") +
+      theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12))
+  }
+
+  print(p2)
+}
+```
+
+
+```{r}
+
+samples <- c("obj1", "obj2")
+
+genes_of_interest <- c("CCL19","CXCL13","CCL11","IL33","IL6","BMP4","TCF21","COL11A1",
+                       "VCAM1","FAT4","ALDH1A2","JCHAIN","CD4","CD3E","LY6G","CD14",
+                       "MCAM","CLU","IL7R","IL23R","PTPRC","CD19","IGHD","EOMES",
+                       "MSLN","CD68","DPP4","ITGAX")
+
+# --- prep each sample once, outside the gene loop ---
+prep <- lapply(samples, function(nm) {
+  sce_obj <- sce_list[[nm]]
+
+  # logcounts here is SCT's 'data' slot (log1p of corrected counts).
+  # Do NOT logNormCounts() — that would normalize already-corrected values.
+  if (!"logcounts" %in% assayNames(sce_obj)) {
+    stop("No logcounts in ", nm,
+         " - was DefaultAssay set to 'SCT' before as.SingleCellExperiment()?")
+  }
+
+  barcodes <- colnames(sce_obj)
+  list(
+    name = nm,
+    expr = logcounts(sce_obj),
+    x    = as.numeric(gsub(".*_([0-9]+)_[0-9]+-1", "\\1", barcodes)),
+    y    = as.numeric(gsub(".*_[0-9]+_([0-9]+)-1", "\\1", barcodes))
+  )
+})
+names(prep) <- samples
+
+gene_plots <- list()
+
+for (i in seq_along(genes_of_interest)) {
+  gene <- genes_of_interest[i]
+
+  # --- detectability per sample ---
+  status <- lapply(prep, function(s) {
+    in_object <- gene %in% rownames(s$expr)
+    e <- if (in_object) as.numeric(s$expr[gene, ]) else NULL
+    list(in_object  = in_object,
+         expr       = e,
+         detectable = in_object && any(e > 0))
+  })
+
+  det <- vapply(status, `[[`, logical(1), "detectable")
+
+  message("Plotting ", i, "/", length(genes_of_interest), ": ", gene,
+          "  [", paste(samples, ifelse(det, "ok", "not detectable"),
+                       sep = ": ", collapse = "; "), "]")
+
+  # --- shared colour limits across whichever samples have signal ---
+  lims <- if (any(det)) {
+    range(unlist(lapply(status[det], `[[`, "expr")), na.rm = TRUE)
+  } else NULL
+
+  panels <- lapply(samples, function(nm) {
+    s  <- prep[[nm]]
+    st <- status[[nm]]
+
+    if (st$detectable) {
+      df <- data.frame(x = s$x, y = s$y, expression = st$expr)
+      df <- df[order(df$expression), ]          # positive spots on top
+
+      ggplot(df, aes(x = x, y = y, color = expression)) +
+        geom_point(size = 0.3, alpha = 0.6) +
+        scale_color_viridis_c(option = "plasma", limits = lims) +
+        coord_fixed() + theme_void() +
+        labs(subtitle = nm, color = "LogExpr") +
+        theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 10))
+    } else {
+      df <- data.frame(x = s$x, y = s$y)
+      reason <- if (!st$in_object) "not in dataset" else "all zero"
+
+      ggplot(df, aes(x = x, y = y)) +
+        geom_point(size = 0.3, alpha = 0.4, color = "grey80") +
+        coord_fixed() + theme_void() +
+        labs(subtitle = paste0(nm, " - not detectable")) +
+        annotate("text",
+                 x = mean(range(s$x, na.rm = TRUE)),
+                 y = mean(range(s$y, na.rm = TRUE)),
+                 label = paste0("Not detectable\n(", reason, ")"),
+                 fontface = "italic", size = 4, color = "grey30") +
+        theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 10))
+    }
+  })
+  names(panels) <- samples
+
+  p <- wrap_plots(panels, nrow = 1) +
+    plot_layout(guides = "collect") +
+    plot_annotation(
+      title = gene,
+      theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14))
+    )
+
+  gene_plots[[gene]] <- p
+  print(p)
+}
+```
+
+
+
+
+
+##Set up cell types
+```{r Set up cell types}
+samples <- c("obj1", "obj2")
+
+my_signatures <- list(
+  VEC     = c("PECAM1","CDH5","VWF","ICAM2","PLVAP","AQP1","ENG"),
+  Fb      = c("COL3A1","COL1A2","PDGFRA","PDGFRB","DCN","LUM","CLU","COL1A1",
+              "ACTA2","TAGLN","MYH11","RGS5","NOTCH3"),
+  FRC     = c("CCL19","CXCL13","VCAM1","ICAM1"),
+  Myeloid = c("MRC1","SIRPA","PTPRC","CSF1R","HLA-DRA","HLA-DRB1","S100A9","LYZ",
+              "FCN1","ITGAX","CD14","MARCO","SIGLEC1","CCR2","CLEC4C","TLR7"),
+  Tcell   = c("CD3D","CD3E","CD3G","CD28","IL7R","IL2RB","CD4","CCR7","CTLA4"),
+  Bcell   = c("MS4A1","CD79A","CD79B","CD72","CD38","IGHD","IGHM","CD24",
+              "JCHAIN","IGKC","IGHG1","IGHG3","IGHA1")
+)
+
+# genes must be present in EVERY object so scores are built from the same set
+common_genes <- Reduce(intersect, lapply(sce_list[samples], rownames))
+sig_present  <- lapply(my_signatures, intersect, common_genes)
+
+for (s in names(my_signatures)) {
+  missing <- setdiff(my_signatures[[s]], sig_present[[s]])
+  message(s, ": ", length(sig_present[[s]]), "/", length(my_signatures[[s]]), " present",
+          if (length(missing)) paste0("  MISSING: ", paste(missing, collapse = ", ")) else "")
+}
+
+sig_use <- sig_present[lengths(sig_present) >= 3]
+message("Using ", length(sig_use), " signatures: ", paste(names(sig_use), collapse = ", "))
+```
+
+
+
+##Cell type projection
+```{r Cell type projection}
+score_signature <- function(sce, genes) {
+  mat <- SummarizedExperiment::assay(sce, "logcounts")[genes, , drop = FALSE]
+  mat <- as.matrix(base::as.matrix(mat))
+  storage.mode(mat) <- "double"
+  mu  <- base::rowMeans(mat)
+  sdv <- sqrt(base::rowSums((mat - mu)^2) / (ncol(mat) - 1))
+  sdv[sdv == 0 | is.na(sdv)] <- 1
+  z <- (mat - mu) / sdv
+  base::colMeans(z)
+}
+
+score_list <- list()
+coord_list <- list()
+
+for (nm in samples) {
+  sce_obj <- sce_list[[nm]]
+  message("Scoring: ", nm)
+
+  m <- sapply(sig_use, function(g) score_signature(sce_obj, g))
+  stopifnot(is.matrix(m), nrow(m) == ncol(sce_obj))
+
+  barcodes <- colnames(sce_obj)
+  bx <- as.numeric(gsub(".*_([0-9]+)_[0-9]+-1", "\\1", barcodes))
+  by <- as.numeric(gsub(".*_[0-9]+_([0-9]+)-1", "\\1", barcodes))
+  stopifnot(!anyNA(bx), !anyNA(by))
+
+  score_list[[nm]] <- m
+  coord_list[[nm]] <- data.frame(sample = nm, x = bx, y = by)
+  message("  ", nrow(m), " bins x ", ncol(m), " signatures")
+}
+
+# keep signatures with non-zero variance in ALL samples
+keep <- Reduce(intersect, lapply(score_list, function(m) colnames(m)[apply(m, 2, sd) > 0]))
+score_list <- lapply(score_list, function(m) m[, keep, drop = FALSE])
+message("Retained: ", paste(keep, collapse = ", "))
+```
+
+
+```{r}
+sig_plots <- list()
+
+for (i in seq_along(keep)) {
+  s <- keep[i]
+  message("Plotting ", i, "/", length(keep), ": ", s)
+
+  # shared limits across both samples
+  lims <- quantile(unlist(lapply(score_list, function(m) m[, s])),
+                   c(0.01, 0.99), na.rm = TRUE)
+
+  panels <- lapply(samples, function(nm) {
+    d <- data.frame(x     = coord_list[[nm]]$x,
+                    y     = coord_list[[nm]]$y,
+                    score = score_list[[nm]][, s])
+    d <- d[order(d$score), ]
+
+    ggplot(d, aes(x = x, y = y, color = score)) +
+      geom_point(size = 0.4, alpha = 0.7) +
+      scale_color_viridis_c(option = "magma", limits = lims, oob = scales::squish) +
+      coord_fixed() + theme_void() +
+      labs(subtitle = nm, color = "Score") +
+      theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 10))
+  })
+  names(panels) <- samples
+
+  p <- wrap_plots(panels, nrow = 1) +
+    plot_layout(guides = "collect") +
+    plot_annotation(
+      title = s,
+      theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14))
+    )
+
+  sig_plots[[s]] <- p
+  print(p)
+}
+```
+
+
+
+
+
+
+##Cell type distribution
+```{r Cell type distribution}
+cell_colors <- c(
+  VEC        = "#ff7f0e",
+  Fb         = "#2ca02c",
+  FRC        = "#9467bd",
+  Myeloid    = "#e377c2",
+  Tcell      = "#bcbd22",
+  Bcell      = "#17becf",
+  Unassigned = "grey90"
+)
+
+thr <- 0
+
+assign_df <- do.call(rbind, lapply(samples, function(nm) {
+  m <- score_list[[nm]]
+
+  winner_idx   <- max.col(m, ties.method = "first")
+  winner       <- colnames(m)[winner_idx]
+  winner_score <- m[cbind(seq_len(nrow(m)), winner_idx)]
+
+  # runner-up, to measure how decisive the call is
+  runner_up <- apply(replace(m, cbind(seq_len(nrow(m)), winner_idx), -Inf), 1, max)
+  margin    <- winner_score - runner_up
+
+  winner[winner_score < thr] <- "Unassigned"
+
+  cbind(coord_list[[nm]], label = winner, strength = winner_score, margin = margin)
+}))
+
+assign_df$sample <- factor(assign_df$sample, levels = samples)
+assign_df$label  <- factor(assign_df$label, levels = c(keep, "Unassigned"))
+
+print(table(assign_df$sample, assign_df$label))
+
+plot_df <- assign_df[order(assign_df$label == "Unassigned", decreasing = TRUE), ]
+
+tile_panels <- lapply(samples, function(nm) {
+  d <- plot_df[plot_df$sample == nm, ]
+  ggplot(d, aes(x = x, y = y, fill = label)) +
+    geom_tile(width = 1, height = 1) +
+    scale_fill_manual(values = cell_colors, drop = FALSE) +
+    coord_fixed() + theme_void() +
+    labs(subtitle = nm, fill = NULL) +
+    theme(plot.subtitle = element_text(hjust = 0.5, face = "bold"))
+})
+names(tile_panels) <- samples
+
+celltype_map <- wrap_plots(tile_panels, nrow = 1) +
+  plot_layout(guides = "collect") +
+  plot_annotation(
+    title = "Dominant signature per bin (16 µm)",
+    theme = theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+  ) &
+  guides(fill = guide_legend(override.aes = list(size = 3)))
+
+print(celltype_map)
+
+# composition
+ggplot(assign_df, aes(x = sample, fill = label)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(values = cell_colors, drop = FALSE) +
+  labs(y = "Fraction of bins", x = NULL, fill = NULL) +
+  theme_minimal()
+```
+
+
+##Cell type distribution_scaling
+```{r Cell type distribution_scaling}
+# only loop over signatures we have a colour for
+cts <- intersect(keep, names(cell_colors))
+missing_col <- setdiff(keep, names(cell_colors))
+if (length(missing_col))
+  message("No colour defined, skipping: ", paste(missing_col, collapse = ", "))
+stopifnot(length(cts) > 0)
+
+score_plots <- list()
+
+for (i in seq_along(cts)) {
+  ct <- cts[i]
+  message("Plotting ", i, "/", length(cts), ": ", ct)
+
+  # shared limits across both samples so the panels are comparable
+  lims <- quantile(unlist(lapply(score_list, function(m) m[, ct])),
+                   c(0.01, 0.99), na.rm = TRUE)
+
+  panels <- lapply(samples, function(nm) {
+    d <- data.frame(x     = coord_list[[nm]]$x,
+                    y     = coord_list[[nm]]$y,
+                    score = score_list[[nm]][, ct])
+
+    ggplot(d, aes(x = x, y = y, fill = score)) +
+      geom_tile(width = 1, height = 1) +
+      scale_fill_gradient(low = "grey92", high = cell_colors[[ct]],
+                          limits = lims, oob = scales::squish) +
+      coord_fixed() + theme_void() +
+      labs(subtitle = nm, fill = "Score") +
+      theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 10))
+  })
+  names(panels) <- samples
+
+  p <- wrap_plots(c(panels, he_panels), ncol = 2) +
+    plot_layout(guides = "collect") +
+    plot_annotation(
+      title = ct,
+      theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 13))
+    )
+
+  score_plots[[ct]] <- p
+  print(p)
+}
+```
+
+
+
+
+
+```{r}
+library(ggplot2)
+library(patchwork)
+
+crop_he <- function(seu, image_name = NULL, pad_frac = 0.02) {
+  if (is.null(image_name)) image_name <- Images(seu)[1]
+  img <- seu[[image_name]]
+
+  he <- GetImage(img, mode = "raster")
+  ih <- nrow(he); iw <- ncol(he)
+
+  coords <- GetTissueCoordinates(img)
+  cn <- colnames(coords)
+
+  ycol <- if ("imagerow" %in% cn) "imagerow" else if ("y" %in% cn) "y" else cn[1]
+  xcol <- if ("imagecol" %in% cn) "imagecol" else if ("x" %in% cn) "x" else cn[2]
+
+  cy <- as.numeric(coords[[ycol]])
+  cx <- as.numeric(coords[[xcol]])
+
+  # coords may be in full-res space while `he` is the lowres image
+  if (max(cx, na.rm = TRUE) > iw * 1.05 || max(cy, na.rm = TRUE) > ih * 1.05) {
+    sf <- ScaleFactors(img)
+    f  <- sf$lowres
+    message("  rescaling coordinates by lowres factor ", signif(f, 4))
+    cx <- cx * f; cy <- cy * f
+  }
+
+  padx <- pad_frac * diff(range(cx, na.rm = TRUE))
+  pady <- pad_frac * diff(range(cy, na.rm = TRUE))
+
+  c1 <- max(1,  floor(min(cx, na.rm = TRUE) - padx))
+  c2 <- min(iw, ceiling(max(cx, na.rm = TRUE) + padx))
+  r1 <- max(1,  floor(min(cy, na.rm = TRUE) - pady))
+  r2 <- min(ih, ceiling(max(cy, na.rm = TRUE) + pady))
+
+  message("  full image ", iw, "x", ih,
+          " -> crop ", c2 - c1 + 1, "x", r2 - r1 + 1)
+
+  list(raster = he[r1:r2, c1:c2, drop = FALSE],
+       xlim = c(c1, c2), ylim = c(r1, r2))
+}
+
+
+seu_list <- list(obj1 = obj1, obj2 = obj2)
+
+transp <- function(m) { a <- as.matrix(m); as.raster(t(a)) }
+
+he_panels <- lapply(names(seu_list), function(nm) {
+  cr <- crop_he(seu_list[[nm]])
+  r  <- transp(cr$raster)
+  ggplot() +
+    annotation_raster(r, xmin = 0, xmax = ncol(r), ymin = 0, ymax = nrow(r)) +
+    xlim(0, ncol(r)) + ylim(0, nrow(r)) +
+    coord_fixed() + theme_void() +
+    labs(subtitle = paste0(nm, " - H&E")) +
+    theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 10))
+})
+names(he_panels) <- names(seu_list)
+
+wrap_plots(list(sig_plots$Bcell, he_panels$obj2), nrow = 1)
+
+
+
+
+
+
+```
+
+
+
+```{r}
+# only loop over signatures we have a colour for
+cts <- intersect(keep, names(cell_colors))
+missing_col <- setdiff(keep, names(cell_colors))
+if (length(missing_col))
+  message("No colour defined, skipping: ", paste(missing_col, collapse = ", "))
+stopifnot(length(cts) > 0)
+
+score_plots <- list()
+
+for (i in seq_along(cts)) {
+  ct <- cts[i]
+  message("Plotting ", i, "/", length(cts), ": ", ct)
+
+  # shared limits across both samples so the two panels are comparable
+  all_scores <- unlist(lapply(score_list, function(m) m[, ct]))
+  lims <- quantile(all_scores, c(0.01, 0.99), na.rm = TRUE)
+
+  panels <- lapply(samples, function(nm) {
+    d <- data.frame(
+      x     = coord_list[[nm]]$x,
+      y     = coord_list[[nm]]$y,
+      score = score_list[[nm]][, ct]
+    )
+
+    ggplot(d, aes(x = x, y = y, fill = score)) +
+      geom_tile(width = 1, height = 1) +
+      scale_fill_gradient(low = "grey92", high = cell_colors[[ct]],
+                          limits = lims, oob = scales::squish) +
+      coord_fixed() + theme_void() +
+      labs(subtitle = nm, fill = "Score") +
+      theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 9))
+  })
+  names(panels) <- samples
+
+  p <- wrap_plots(c(panels, he_panels), nrow = 1) +
+    plot_layout(guides = "collect") +
+    plot_annotation(
+      title = ct,
+      theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 13))
+    )
+
+  score_plots[[ct]] <- p
+  print(p)
+}
+
+p <- (wrap_plots(panels, nrow = 1) / wrap_plots(he_panels, nrow = 1)) +
+    plot_layout(guides = "collect") +
+    plot_annotation(title = ct,
+                    theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 13)))
+
+
+
+  
+```
+
+
+```{r}
+top <- wrap_elements(wrap_plots(panels,    nrow = 1))
+bot <- wrap_elements(wrap_plots(he_panels, nrow = 1))
+
+p <- top / bot +
+    plot_annotation(
+      title = ct,
+      theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 13))
+    )
+score_plots[[ct]] <- p
+print(p)
+```
+
+
+
+
+
+
+
+
+
+
+## session info
+```{r date and session info}
+date()
+sessionInfo()
+```

@@ -1,0 +1,787 @@
+---
+title: "Spatial_HD_FALC"
+author: "HWC"
+date: "2026-09-03"
+output:
+  html_document:
+    keep_md: true
+    toc: true
+    self_contained: true
+  pdf_document:
+    toc: true
+editor_options:
+  chunk_output_type: inline
+---
+
+
+```{r library, include=FALSE}
+
+## General packages
+library(ExploreSCdataSeurat3)
+library(runSeurat3)
+library(Seurat)
+library(ggpubr)
+library(pheatmap)
+library(SingleCellExperiment)
+library(dplyr)
+library(tidyverse)
+library(viridis)
+library(muscat)
+library(circlize)
+library(destiny)
+library(scater)
+library(metap)
+library(multtest)
+library(clusterProfiler)
+library(org.Hs.eg.db)
+library(msigdbr)
+library(enrichplot)
+library(DOSE)
+library(grid)
+library(gridExtra)
+library(ggupset)
+library(VennDiagram)
+library(NCmisc)
+library(RColorBrewer)
+library(magrittr)
+library(knitr)
+library(kableExtra)
+library(scRepertoire)
+library(writexl)
+library(scDblFinder)
+library(BiocParallel)
+library(harmony)
+library(org.Mm.eg.db)
+library(patchwork)
+
+library(SpatialExperiment)
+library(scuttle)
+library(scater)
+library(HDF5Array)
+library(SpatialFeatureExperiment)
+library(ggspavis)
+library(Voyager)
+library(SingleCellExperiment)
+library(scran)
+
+library(Banksy)
+library(BayesSpace)
+library(igraph)
+library(nnSVG)
+
+```
+
+
+## Data input
+```{r Data input}
+
+obj1 <- readRDS("/R/Spatial_HD_2026/data/processed_seurat/430721_1-20260821_Hu_PericardFALC_AHP2_squA_S2_16um.rds")
+obj2 <- readRDS("/R/Spatial_HD_2026/data/processed_seurat/430721_2-20260821_Hu_PericardFALC_AHP3_squD_S1_16um.rds")
+
+samples  <- c("obj1", "obj2")
+seu_list <- list(obj1 = obj1, obj2 = obj2)
+
+# quick look at what came in
+for (nm in samples) {
+  message(nm, ": ", ncol(seu_list[[nm]]), " bins, ",
+          nrow(seu_list[[nm]]), " features; images: ",
+          paste(Images(seu_list[[nm]]), collapse = ", "))
+}
+
+```
+
+
+## SCT normalization
+```{r SCT normalization}
+
+sce_list <- list()  # holds the 2 separate results
+
+for (nm in samples) {
+  message("Processing native Seurat object: ", nm)
+  seu_obj <- seu_list[[nm]]
+
+  active_assay <- DefaultAssay(seu_obj)
+  message("  Found active assay: '", active_assay, "'")
+
+  seu_obj <- seu_obj[, colSums(GetAssayData(seu_obj, assay = active_assay, slot = "counts")) > 0]
+  seu_obj <- SCTransform(seu_obj, assay = active_assay, verbose = FALSE)
+
+  sce_final <- as.SingleCellExperiment(seu_obj)
+
+  sct_residual_matrix <- matrix(
+    0,
+    nrow = nrow(sce_final),
+    ncol = ncol(sce_final),
+    dimnames = list(rownames(sce_final), colnames(sce_final))
+  )
+  computed_residuals <- seu_obj[["SCT"]]$scale.data
+  matching_genes <- intersect(rownames(sct_residual_matrix), rownames(computed_residuals))
+  sct_residual_matrix[matching_genes, ] <- computed_residuals[matching_genes, ]
+
+  assays(sce_final)[["SCT_residuals"]] <- sct_residual_matrix
+
+  hvg_genes <- VariableFeatures(seu_obj)
+  rowData(sce_final)$hvg <- rownames(sce_final) %in% hvg_genes
+  metadata(sce_final)$sct_hvgs <- VariableFeatures(seu_obj)
+
+  sce_list[[nm]] <- sce_final   # keep them separate, indexed by name
+  message("  Stored normalized container for: ", nm,
+          " (", ncol(sce_final), " bins retained)")
+}
+
+```
+
+
+## Spatial coordinate helpers
+```{r Spatial coordinate helpers}
+
+# ---------------------------------------------------------------------------
+# get_coords(): the ONLY source of spatial coordinates in this document.
+# Reads GetTissueCoordinates() from the image object, matches barcodes to the
+# SCE (which has fewer columns after the zero-count filter above), rescales
+# full-resolution pixel coordinates into the lowres raster frame, and negates
+# y so that plots come out upright without scale_y_reverse().
+# ---------------------------------------------------------------------------
+get_coords <- function(seu, sce, image_name = NULL) {
+  if (is.null(image_name)) image_name <- Images(seu)[1]
+  img <- seu[[image_name]]
+
+  co <- GetTissueCoordinates(img)
+
+  # barcodes live either in a 'cell' column or in the rownames
+  bc <- if ("cell" %in% colnames(co)) as.character(co$cell) else rownames(co)
+
+  # column naming differs between VisiumV1 (imagerow/imagecol) and VisiumV2 (x/y)
+  xcol <- if ("imagecol" %in% colnames(co)) "imagecol" else "x"
+  ycol <- if ("imagerow" %in% colnames(co)) "imagerow" else "y"
+
+  idx <- match(colnames(sce), bc)
+  if (anyNA(idx)) {
+    stop(sum(is.na(idx)), " SCE barcodes have no entry in the tissue coordinates. ",
+         "Did the SCE and the Seurat object come from the same sample?")
+  }
+
+  px <- as.numeric(co[[xcol]])[idx]
+  py <- as.numeric(co[[ycol]])[idx]
+
+  # coordinates are usually full-res while GetImage() returns the lowres raster
+  he <- GetImage(img, mode = "raster")
+  f  <- 1
+  if (max(px, na.rm = TRUE) > ncol(he) * 1.05 ||
+      max(py, na.rm = TRUE) > nrow(he) * 1.05) {
+    f <- ScaleFactors(img)$lowres
+    message("  rescaling coordinates by lowres factor ", signif(f, 4))
+  }
+
+  data.frame(x = px * f, y = -py * f)   # minus: see coordinate note at top
+}
+
+
+# ---------------------------------------------------------------------------
+# crop_he(): trim the H&E to the tissue-detected region and return the raster
+# together with its bounds in the SAME coordinate frame get_coords() uses,
+# so an H&E panel and a score panel line up without any flip or transpose.
+# ---------------------------------------------------------------------------
+crop_he <- function(seu, image_name = NULL, pad_frac = 0.02) {
+  if (is.null(image_name)) image_name <- Images(seu)[1]
+  img <- seu[[image_name]]
+
+  he <- GetImage(img, mode = "raster")
+  ih <- nrow(he); iw <- ncol(he)
+
+  co   <- GetTissueCoordinates(img)
+  xcol <- if ("imagecol" %in% colnames(co)) "imagecol" else "x"
+  ycol <- if ("imagerow" %in% colnames(co)) "imagerow" else "y"
+
+  cx <- as.numeric(co[[xcol]])
+  cy <- as.numeric(co[[ycol]])
+
+  if (max(cx, na.rm = TRUE) > iw * 1.05 || max(cy, na.rm = TRUE) > ih * 1.05) {
+    f  <- ScaleFactors(img)$lowres
+    cx <- cx * f; cy <- cy * f
+  }
+
+  padx <- pad_frac * diff(range(cx, na.rm = TRUE))
+  pady <- pad_frac * diff(range(cy, na.rm = TRUE))
+
+  c1 <- max(1,  floor(min(cx, na.rm = TRUE) - padx))
+  c2 <- min(iw, ceiling(max(cx, na.rm = TRUE) + padx))
+  r1 <- max(1,  floor(min(cy, na.rm = TRUE) - pady))
+  r2 <- min(ih, ceiling(max(cy, na.rm = TRUE) + pady))
+
+  message("  full image ", iw, "x", ih,
+          " -> crop ", c2 - c1 + 1, "x", r2 - r1 + 1)
+
+  list(
+    raster = he[r1:r2, c1:c2, drop = FALSE],
+    xmin   =  c1, xmax =  c2,     # plot-space bounds, matching get_coords():
+    ymin   = -r2, ymax = -r1      # y negated, so ymin is the more negative one
+  )
+}
+
+
+# ---------------------------------------------------------------------------
+# he_panel(): an H&E panel in plot coordinates. No transpose, no flip -
+# orientation is inherited from the coordinate frame, so this is correct for
+# every sample regardless of how the section was laid on the slide.
+# ---------------------------------------------------------------------------
+he_panel <- function(seu, label) {
+  cr <- crop_he(seu)
+  ggplot() +
+    annotation_raster(cr$raster,
+                      xmin = cr$xmin, xmax = cr$xmax,
+                      ymin = cr$ymin, ymax = cr$ymax) +
+    xlim(cr$xmin, cr$xmax) +
+    ylim(cr$ymin, cr$ymax) +
+    coord_fixed() +
+    theme_void() +
+    labs(subtitle = paste0(label, " - H&E")) +
+    theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 10))
+}
+
+
+# --- build coordinates and H&E panels once, reused by every chunk below -----
+coord_list <- list()
+he_panels  <- list()
+
+for (nm in samples) {
+  message("Coordinates: ", nm)
+  xy <- get_coords(seu_list[[nm]], sce_list[[nm]])
+  coord_list[[nm]] <- data.frame(sample = nm, x = xy$x, y = xy$y)
+
+  message("H&E: ", nm)
+  he_panels[[nm]] <- he_panel(seu_list[[nm]], nm)
+}
+
+# sanity check: bin spacing in lowres pixels, useful for tuning point size
+for (nm in samples) {
+  d <- coord_list[[nm]]
+  message(nm, ": x span ", signif(diff(range(d$x)), 4),
+          " px, y span ", signif(diff(range(d$y)), 4),
+          " px, n = ", nrow(d))
+}
+
+wrap_plots(he_panels, nrow = 1)
+
+```
+
+
+## Plotting of top HVGs
+```{r Plotting of top HVGs}
+
+n_top    <- 50
+n_row    <- 5
+n_col    <- 5
+per_page <- n_row * n_col
+
+hvg_plots  <- list()   # paginated grids, per sample
+hvg_panels <- list()   # individual gene panels
+
+for (nm in samples) {
+  sce_obj <- sce_list[[nm]]
+  message("Processing: ", nm)
+
+  # logcounts here is SCT's 'data' slot (log1p of corrected counts).
+  # Do NOT logNormCounts() - that would re-normalize corrected values.
+  if (!"logcounts" %in% assayNames(sce_obj)) {
+    stop("No logcounts in ", nm, " - was DefaultAssay 'SCT' at conversion?")
+  }
+  if (!"SCT_residuals" %in% assayNames(sce_obj)) {
+    stop("No SCT_residuals in ", nm, " - cannot rank HVGs by residual variance.")
+  }
+
+  # --- HVGs from SCT, ranked by residual variance ---
+  hvg_all <- rownames(sce_obj)[rowData(sce_obj)$hvg]
+  if (length(hvg_all) == 0) {
+    stop("No HVGs flagged in rowData(", nm, ")$hvg.")
+  }
+  res_mat <- assay(sce_obj, "SCT_residuals")[hvg_all, , drop = FALSE]
+  res_var <- if (requireNamespace("matrixStats", quietly = TRUE)) {
+    setNames(matrixStats::rowVars(as.matrix(res_mat)), hvg_all)
+  } else {
+    apply(res_mat, 1, var)
+  }
+  top_HVG <- names(sort(res_var, decreasing = TRUE))[seq_len(min(n_top, length(hvg_all)))]
+  message("  ", length(top_HVG), " HVGs; top 3: ",
+          paste(head(top_HVG, 3), collapse = ", "), " ...")
+
+  xy       <- coord_list[[nm]]
+  expr_mat <- logcounts(sce_obj)
+
+  plot_list <- lapply(top_HVG, function(gene) {
+    df <- data.frame(x = xy$x, y = xy$y,
+                     expression = as.numeric(expr_mat[gene, ]))
+    df <- df[order(df$expression), ]
+    ggplot(df, aes(x = x, y = y, color = expression)) +
+      geom_point(size = 0.005, alpha = 0.5) +
+      scale_color_viridis_c(option = "plasma") +
+      coord_fixed() +
+      theme_void() +
+      labs(title = gene, color = "LogExpr") +
+      theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 8),
+            legend.position = "none")
+  })
+  names(plot_list) <- top_HVG
+  hvg_panels[[nm]] <- plot_list
+
+  # --- split into pages of per_page panels ---
+  pages <- split(seq_along(plot_list), ceiling(seq_along(plot_list) / per_page))
+
+  hvg_plots[[nm]] <- lapply(seq_along(pages), function(p) {
+    idx <- pages[[p]]
+    g <- wrap_plots(plot_list[idx], nrow = n_row, ncol = n_col) +
+      plot_annotation(
+        title = paste0(nm, " - top HVGs (", min(idx), "-", max(idx), ")"),
+        theme = theme(plot.title = element_text(face = "bold", hjust = 0.5))
+      )
+    print(g)
+    g
+  })
+
+  message("Done: ", nm, " (", length(pages), " pages)")
+}
+
+```
+
+
+## Plotting of selected genes, both samples
+```{r Plotting of selected genes}
+
+genes_of_interest <- c("CCL19","CXCL13","CCL11","IL33","IL6","BMP4","TCF21","COL11A1",
+                       "VCAM1","FAT4","ALDH1A2","JCHAIN","CD4","CD3E","CD14",
+                       "MCAM","CLU","IL7R","IL23R","PTPRC","CD19","IGHD","EOMES",
+                       "MSLN","CD68","DPP4","ITGAX")
+# NB: LY6G removed - no human ortholog. Use FCGR3B or CEACAM8 for neutrophils.
+
+# --- prep each sample once, outside the gene loop ---
+prep <- lapply(samples, function(nm) {
+  sce_obj <- sce_list[[nm]]
+  if (!"logcounts" %in% assayNames(sce_obj)) {
+    stop("No logcounts in ", nm, " - was DefaultAssay 'SCT' at conversion?")
+  }
+  list(name = nm,
+       expr = logcounts(sce_obj),
+       x    = coord_list[[nm]]$x,
+       y    = coord_list[[nm]]$y)
+})
+names(prep) <- samples
+
+# genes present in the SCE but absent from the raw assay are real absences;
+# genes absent here but present in RNA were dropped by SCTransform's min_cells
+for (nm in samples) {
+  gone <- setdiff(genes_of_interest, rownames(sce_list[[nm]]))
+  if (length(gone))
+    message(nm, " missing from SCT: ", paste(gone, collapse = ", "))
+}
+
+gene_plots <- list()
+
+for (i in seq_along(genes_of_interest)) {
+  gene <- genes_of_interest[i]
+
+  # --- detectability per sample ---
+  status <- lapply(prep, function(s) {
+    in_object <- gene %in% rownames(s$expr)
+    e <- if (in_object) as.numeric(s$expr[gene, ]) else NULL
+    list(in_object  = in_object,
+         expr       = e,
+         detectable = in_object && any(e > 0))
+  })
+
+  det <- vapply(status, `[[`, logical(1), "detectable")
+
+  message("Plotting ", i, "/", length(genes_of_interest), ": ", gene,
+          "  [", paste(samples, ifelse(det, "ok", "not detectable"),
+                       sep = ": ", collapse = "; "), "]")
+
+  # --- shared colour limits across whichever samples have signal ---
+  lims <- if (any(det)) {
+    range(unlist(lapply(status[det], `[[`, "expr")), na.rm = TRUE)
+  } else NULL
+
+  panels <- lapply(samples, function(nm) {
+    s  <- prep[[nm]]
+    st <- status[[nm]]
+
+    if (st$detectable) {
+      df <- data.frame(x = s$x, y = s$y, expression = st$expr)
+      df <- df[order(df$expression), ]          # positive spots drawn on top
+
+      ggplot(df, aes(x = x, y = y, color = expression)) +
+        geom_point(size = 0.3, alpha = 0.6) +
+        scale_color_viridis_c(option = "plasma", limits = lims) +
+        coord_fixed() + theme_void() +
+        labs(subtitle = nm, color = "LogExpr") +
+        theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 10))
+    } else {
+      df     <- data.frame(x = s$x, y = s$y)
+      reason <- if (!st$in_object) "not in dataset" else "all zero"
+
+      ggplot(df, aes(x = x, y = y)) +
+        geom_point(size = 0.3, alpha = 0.4, color = "grey80") +
+        coord_fixed() + theme_void() +
+        labs(subtitle = paste0(nm, " - not detectable")) +
+        annotate("text",
+                 x = mean(range(s$x, na.rm = TRUE)),
+                 y = mean(range(s$y, na.rm = TRUE)),
+                 label = paste0("Not detectable\n(", reason, ")"),
+                 fontface = "italic", size = 4, color = "grey30") +
+        theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 10))
+    }
+  })
+  names(panels) <- samples
+
+  # scores on the top row, matching H&E below
+  p <- wrap_plots(c(panels, he_panels), ncol = length(samples)) +
+    plot_layout(guides = "collect") +
+    plot_annotation(
+      title = gene,
+      theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14))
+    )
+
+  gene_plots[[gene]] <- p
+  print(p)
+}
+
+```
+
+
+## Set up cell type signatures
+```{r Set up cell types}
+
+my_signatures <- list(
+  VEC     = c("PECAM1","CDH5","VWF","ICAM2","PLVAP","AQP1","ENG"),
+  Fb      = c("COL3A1","COL1A2","PDGFRA","PDGFRB","DCN","LUM","COL1A1",
+              "ACTA2","TAGLN","MYH11","RGS5","NOTCH3"),
+  FRC     = c("CCL19","CXCL13","CLU","VCAM1","ICAM1"),
+  Myeloid = c("MRC1","SIRPA","PTPRC","CSF1R","HLA-DRA","HLA-DRB1","S100A9","LYZ",
+              "FCN1","ITGAX","CD14","MARCO","SIGLEC1","CCR2","CLEC4C","TLR7"),
+  Tcell   = c("CD3D","CD3E","CD3G","CD28","IL7R","IL2RB","CD4","CCR7","CTLA4"),
+  Bcell   = c("MS4A1","CD79A","CD79B","CD72","CD38","IGHD","IGHM","CD24",
+              "JCHAIN","IGKC","IGHG1","IGHG3","IGHA1")
+)
+
+# genes must be present in EVERY object so scores use the same gene set
+common_genes <- Reduce(intersect, lapply(sce_list[samples], rownames))
+sig_present  <- lapply(my_signatures, intersect, common_genes)
+
+for (s in names(my_signatures)) {
+  missing <- setdiff(my_signatures[[s]], sig_present[[s]])
+  message(s, ": ", length(sig_present[[s]]), "/", length(my_signatures[[s]]), " present",
+          if (length(missing)) paste0("  MISSING: ", paste(missing, collapse = ", ")) else "")
+}
+
+sig_use <- sig_present[lengths(sig_present) >= 3]
+message("Using ", length(sig_use), " signatures: ", paste(names(sig_use), collapse = ", "))
+
+cell_colors <- c(
+  VEC        = "#ff7f0e",
+  Fb         = "#2ca02c",
+  FRC        = "#9467bd",
+  Myeloid    = "#e377c2",
+  Tcell      = "#bcbd22",
+  Bcell      = "#17becf",
+  Unassigned = "grey90"
+)
+
+```
+
+
+## Cell type projection
+```{r Cell type projection}
+
+score_signature <- function(sce, genes) {
+  mat <- SummarizedExperiment::assay(sce, "logcounts")[genes, , drop = FALSE]
+  mat <- as.matrix(base::as.matrix(mat))     # force a real base matrix
+  storage.mode(mat) <- "double"
+  mu  <- base::rowMeans(mat)
+  sdv <- sqrt(base::rowSums((mat - mu)^2) / (ncol(mat) - 1))
+  sdv[sdv == 0 | is.na(sdv)] <- 1            # zero-variance genes -> score 0
+  z <- (mat - mu) / sdv
+  base::colMeans(z)
+}
+
+score_list <- list()
+
+for (nm in samples) {
+  sce_obj <- sce_list[[nm]]
+  message("Scoring: ", nm)
+
+  m <- sapply(sig_use, function(g) score_signature(sce_obj, g))
+  stopifnot(is.matrix(m), nrow(m) == ncol(sce_obj),
+            nrow(m) == nrow(coord_list[[nm]]))
+
+  score_list[[nm]] <- m
+  message("  ", nrow(m), " bins x ", ncol(m), " signatures")
+}
+
+# keep signatures with non-zero variance in ALL samples
+keep <- Reduce(intersect, lapply(score_list, function(m) colnames(m)[apply(m, 2, sd) > 0]))
+score_list <- lapply(score_list, function(m) m[, keep, drop = FALSE])
+message("Retained: ", paste(keep, collapse = ", "))
+
+```
+
+
+## Signature score maps
+```{r Signature score maps}
+
+sig_plots <- list()
+
+for (i in seq_along(keep)) {
+  s <- keep[i]
+  message("Plotting ", i, "/", length(keep), ": ", s)
+
+  # shared limits across both samples so the panels are comparable
+  lims <- quantile(unlist(lapply(score_list, function(m) m[, s])),
+                   c(0.01, 0.99), na.rm = TRUE)
+
+  panels <- lapply(samples, function(nm) {
+    d <- data.frame(x     = coord_list[[nm]]$x,
+                    y     = coord_list[[nm]]$y,
+                    score = score_list[[nm]][, s])
+    d <- d[order(d$score), ]
+
+    ggplot(d, aes(x = x, y = y, color = score)) +
+      geom_point(size = 0.4, alpha = 0.7) +
+      scale_color_viridis_c(option = "magma", limits = lims, oob = scales::squish) +
+      coord_fixed() + theme_void() +
+      labs(subtitle = nm, color = "Score") +
+      theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 10))
+  })
+  names(panels) <- samples
+
+  p <- wrap_plots(c(panels, he_panels), ncol = length(samples)) +
+    plot_layout(guides = "collect") +
+    plot_annotation(
+      title = s,
+      theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14))
+    )
+
+  sig_plots[[s]] <- p
+  print(p)
+}
+
+```
+
+
+## Signature score maps, per-type colour
+```{r Signature score maps per-type colour}
+
+cts <- intersect(keep, names(cell_colors))
+missing_col <- setdiff(keep, names(cell_colors))
+if (length(missing_col))
+  message("No colour defined, skipping: ", paste(missing_col, collapse = ", "))
+stopifnot(length(cts) > 0)
+
+score_plots <- list()
+
+for (i in seq_along(cts)) {
+  ct <- cts[i]
+  message("Plotting ", i, "/", length(cts), ": ", ct)
+
+  lims <- quantile(unlist(lapply(score_list, function(m) m[, ct])),
+                   c(0.01, 0.99), na.rm = TRUE)
+
+  panels <- lapply(samples, function(nm) {
+    d <- data.frame(x     = coord_list[[nm]]$x,
+                    y     = coord_list[[nm]]$y,
+                    score = score_list[[nm]][, ct])
+    d <- d[order(d$score), ]
+
+    ggplot(d, aes(x = x, y = y, color = score)) +
+      geom_point(size = 0.4, alpha = 0.8) +
+      scale_color_gradient(low = "grey92", high = cell_colors[[ct]],
+                           limits = lims, oob = scales::squish) +
+      coord_fixed() + theme_void() +
+      labs(subtitle = nm, color = "Score") +
+      theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 10))
+  })
+  names(panels) <- samples
+
+  p <- wrap_plots(c(panels, he_panels), ncol = length(samples)) +
+    plot_layout(guides = "collect") +
+    plot_annotation(
+      title = ct,
+      theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 13))
+    )
+
+  score_plots[[ct]] <- p
+  print(p)
+}
+
+```
+
+
+## Cell type distribution
+```{r Cell type distribution}
+
+thr <- 0   # tune this; see note on `margin` below
+
+assign_df <- do.call(rbind, lapply(samples, function(nm) {
+  m <- score_list[[nm]]
+
+  winner_idx   <- max.col(m, ties.method = "first")
+  winner       <- colnames(m)[winner_idx]
+  winner_score <- m[cbind(seq_len(nrow(m)), winner_idx)]
+
+  # runner-up, to measure how decisive the call is
+  runner_up <- apply(replace(m, cbind(seq_len(nrow(m)), winner_idx), -Inf), 1, max)
+  margin    <- winner_score - runner_up
+
+  winner[winner_score < thr] <- "Unassigned"
+
+  cbind(coord_list[[nm]], label = winner, strength = winner_score, margin = margin)
+}))
+
+assign_df$sample <- factor(assign_df$sample, levels = samples)
+assign_df$label  <- factor(assign_df$label,  levels = c(keep, "Unassigned"))
+
+print(table(assign_df$sample, assign_df$label))
+
+# grey drawn first so assigned bins sit on top
+plot_df <- assign_df[order(assign_df$label == "Unassigned", decreasing = TRUE), ]
+
+tile_panels <- lapply(samples, function(nm) {
+  d <- plot_df[plot_df$sample == nm, ]
+  ggplot(d, aes(x = x, y = y, color = label)) +
+    geom_point(size = 0.35) +
+    scale_color_manual(values = cell_colors, drop = FALSE) +
+    coord_fixed() + theme_void() +
+    labs(subtitle = nm, color = NULL) +
+    theme(plot.subtitle = element_text(hjust = 0.5, face = "bold"))
+})
+names(tile_panels) <- samples
+
+celltype_map <- wrap_plots(c(tile_panels, he_panels), ncol = length(samples)) +
+  plot_layout(guides = "collect") +
+  plot_annotation(
+    title = "Dominant signature per bin (16 \u00b5m)",
+    theme = theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+  ) &
+  guides(color = guide_legend(override.aes = list(size = 3)))
+
+print(celltype_map)
+
+
+celltype_map_clean <- wrap_plots(tile_panels, nrow = 1) +
+  plot_layout(guides = "collect") +
+  plot_annotation(
+    title = "Dominant signature per bin (16 µm)",
+    theme = theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+  ) &
+  guides(fill = guide_legend(override.aes = list(size = 3)))
+
+print(celltype_map_clean)
+
+
+
+
+# composition per sample
+ggplot(assign_df, aes(x = sample, fill = label)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(values = cell_colors, drop = FALSE) +
+  labs(y = "Fraction of bins", x = NULL, fill = NULL) +
+  theme_minimal()
+
+
+
+# how decisive were the calls? bins with a small margin are ambiguous
+# regardless of how high the winning score was - often a better filter than thr
+ggplot(assign_df, aes(x = margin, fill = sample)) +
+  geom_density(alpha = 0.4) +
+  labs(x = "Winner minus runner-up", y = "Density", fill = NULL) +
+  theme_minimal()
+
+
+```
+
+```{r}
+# Extract all valid cell types to loop through (ignoring "Unassigned")
+cell_types <- levels(assign_df$label)
+cell_types <- cell_types[cell_types != "Unassigned"]
+
+# Loop through each cell type
+for (ctype in cell_types) {
+  
+  # 1. Create a custom color palette for this specific cell type
+  # Make everything grey by default, then assign the specific color to the target
+  highlight_colors <- rep("grey85", length(cell_colors))
+  names(highlight_colors) <- names(cell_colors)
+  
+  # Keep the original color for the target cell type
+  if (ctype %in% names(cell_colors)) {
+    highlight_colors[ctype] <- cell_colors[ctype]
+  }
+  
+  # 2. Reorder data so the target cell type is drawn last (on top)
+  # This prevents the grey background points from covering up the target points
+  plot_df_loop <- assign_df
+  plot_df_loop$is_target <- plot_df_loop$label == ctype
+  plot_df_loop <- plot_df_loop[order(plot_df_loop$is_target), ]
+  
+  # 3. Generate the individual panels for this cell type
+  tile_panels_loop <- lapply(samples, function(nm) {
+    d <- plot_df_loop[plot_df_loop$sample == nm, ]
+    
+    ggplot(d, aes(x = x, y = y, color = label)) +
+      geom_point(size = 0.35) +
+      scale_color_manual(values = highlight_colors, drop = FALSE) +
+      coord_fixed() + 
+      theme_void() +
+      labs(subtitle = nm) +
+      theme(
+        plot.subtitle = element_text(hjust = 0.5, face = "bold"),
+        legend.position = "none" # Hide legend since the title explains the plot
+      )
+  })
+  
+  # 4. Assemble the panels using patchwork
+  celltype_map_single <- wrap_plots(tile_panels_loop, nrow = 1) +
+    plot_annotation(
+      title = sprintf("Spatial Distribution: %s", ctype),
+      theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 16))
+    )
+  
+  # 5. Print the plot to the graphics device
+  print(celltype_map_single)
+}
+```
+
+
+
+
+
+
+
+
+
+
+## Saving figures
+```{r Saving figures, eval=FALSE}
+
+# 79k points per panel is slow in the RStudio pane; write to file instead
+dir.create("figures", showWarnings = FALSE)
+
+pdf("figures/gene_maps.pdf", width = 10, height = 10)
+for (p in gene_plots) print(p)
+dev.off()
+
+pdf("figures/signature_maps.pdf", width = 10, height = 10)
+for (p in sig_plots) print(p)
+dev.off()
+
+pdf("figures/signature_maps_coloured.pdf", width = 10, height = 10)
+for (p in score_plots) print(p)
+dev.off()
+
+ggsave("figures/celltype_map.pdf", celltype_map, width = 12, height = 10)
+
+```
+
+
+## session info
+```{r date and session info}
+date()
+sessionInfo()
+```

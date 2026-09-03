@@ -10,5 +10,5 @@ editor_options:
 
 ## Spatial HD FALC
 analysis of SpatialHD_FALC
-[link](SpatialHD_FALC.html)
+[link](SpatialHD_FALC_revision_corrected.html)
 

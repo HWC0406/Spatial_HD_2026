@@ -80,10 +80,10 @@ library(nnSVG)
 ## Data input
 ```{r Data input}
 
-obj1 <- readRDS("/R/2026_Spatial_alignment/probe based_20260721/426181_2-20260707_Hu_PericardFALC_pat1_squD_S1_L001_8um.rds")
+obj1 <- readRDS("/R/Spatial_HD_2026/data/processed_seurat/430721_1-20260821_Hu_PericardFALC_AHP2_squA_S2_16um.rds")
 
 
-obj2 <- readRDS("/R/2026_Spatial_alignment/probe based_20260721/426181_2-20260707_Hu_PericardFALC_pat1_squD_S1_L001_16um.rds")
+obj2 <- readRDS("/R/Spatial_HD_2026/data/processed_seurat/430721_2-20260821_Hu_PericardFALC_AHP3_squD_S1_16um.rds")
 
 
 sce_obj1 <- as.SingleCellExperiment(obj1)
