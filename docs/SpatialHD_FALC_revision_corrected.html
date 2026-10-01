@@ -382,7 +382,7 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2026-09-03
+<strong>Last updated:</strong> 2026-09-09
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -420,10 +420,10 @@ changes </a>
 <div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R
-Markdown file created these results, you’ll want to first commit it to
-the Git repo. If you’re still working on the analysis, you can ignore
-this warning. When you’re finished, you can run
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
 <code>wflow_publish</code> to commit the R Markdown file and build the
 HTML.</p>
 </div>
@@ -550,15 +550,15 @@ data/processed_seurat/430721_2-20260821_Hu_PericardFALC_AHP3_squD_S1_16um.rds
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomHWC0406SpatialHD2026tree7d230c7bf4c7e6b6a9c5dd7939e82fe421686b14targetblank7d230c7a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomHWC0406SpatialHD2026tree645e54a9456ef6452db4bf6083f83b5d08951994targetblank645e54aa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/HWC0406/Spatial_HD_2026/tree/7d230c7bf4c7e6b6a9c5dd7939e82fe421686b14" target="_blank">7d230c7</a>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/tree/645e54a9456ef6452db4bf6083f83b5d08951994" target="_blank">645e54a</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomHWC0406SpatialHD2026tree7d230c7bf4c7e6b6a9c5dd7939e82fe421686b14targetblank7d230c7a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomHWC0406SpatialHD2026tree645e54a9456ef6452db4bf6083f83b5d08951994targetblank645e54aa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -568,7 +568,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/HWC0406/Spatial_HD_2026/tree/7d230c7bf4c7e6b6a9c5dd7939e82fe421686b14" target="_blank">7d230c7</a>.
+<a href="https://github.com/HWC0406/Spatial_HD_2026/tree/645e54a9456ef6452db4bf6083f83b5d08951994" target="_blank">645e54a</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -587,12 +587,8 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    data/processed_seurat/
 
-Untracked files:
-    Untracked:  analysis/SpatialHD_FALC_revision.Rmd
-    Untracked:  analysis/SpatialHD_FALC_revision_corrected.Rmd
-
 Unstaged changes:
-    Modified:   analysis/SpatialHD_FALC.Rmd
+    Modified:   analysis/SpatialHD_FALC_revision_corrected.Rmd
 
 </code></pre>
 <p>
@@ -608,9 +604,73 @@ have uncommitted changes.
 </div>
 <div id="versions" class="tab-pane fade">
 <p>
-There are no past versions. Publish this analysis with
-<code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were
+made to the R Markdown
+(<code>analysis/SpatialHD_FALC_revision_corrected.Rmd</code>) and HTML
+(<code>docs/SpatialHD_FALC_revision_corrected.html</code>) files. If
+you’ve configured a remote Git repository (see
+<code>?wflow_git_remote</code>), click on the hyperlinks in the table
+below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/analysis/SpatialHD_FALC_revision_corrected.Rmd" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+<td>
+new push
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/HWC0406/Spatial_HD_2026/645e54a9456ef6452db4bf6083f83b5d08951994/docs/SpatialHD_FALC_revision_corrected.html" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+<td>
+new push
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -629,8 +689,6 @@ for (nm in samples) {
           nrow(seu_list[[nm]]), &quot; features; images: &quot;,
           paste(Images(seu_list[[nm]]), collapse = &quot;, &quot;))
 }</code></pre>
-<pre><code>obj1: 49360 bins, 18085 features; images: slice1.016um</code></pre>
-<pre><code>obj2: 30836 bins, 18085 features; images: slice1.016um</code></pre>
 </div>
 <div id="sct-normalization" class="section level2">
 <h2>SCT normalization</h2>
@@ -668,53 +726,6 @@ for (nm in samples) {
   message(&quot;  Stored normalized container for: &quot;, nm,
           &quot; (&quot;, ncol(sce_final), &quot; bins retained)&quot;)
 }</code></pre>
-<pre><code>Processing native Seurat object: obj1</code></pre>
-<pre><code>  Found active assay: &#39;Spatial.016um&#39;</code></pre>
-<pre><code>Warning: The `slot` argument of `GetAssayData()` is deprecated as of SeuratObject 5.0.0.
-ℹ Please use the `layer` argument instead.
-This warning is displayed once per session.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-generated.</code></pre>
-<pre><code>Warning: Not validating Centroids objects
-Not validating Centroids objects</code></pre>
-<pre><code>Warning: Not validating FOV objects
-Not validating FOV objects
-Not validating FOV objects
-Not validating FOV objects
-Not validating FOV objects
-Not validating FOV objects</code></pre>
-<pre><code>Warning: Not validating Seurat objects</code></pre>
-<pre><code>Warning: The `slot` argument of `SetAssayData()` is deprecated as of SeuratObject 5.0.0.
-ℹ Please use the `layer` argument instead.
-ℹ The deprecated feature was likely used in the Seurat package.
-  Please report the issue at &lt;https://github.com/satijalab/seurat/issues&gt;.
-This warning is displayed once per session.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-generated.</code></pre>
-<pre><code>Warning: `PackageCheck()` was deprecated in SeuratObject 5.0.0.
-ℹ Please use `rlang::check_installed()` instead.
-ℹ The deprecated feature was likely used in the Seurat package.
-  Please report the issue at &lt;https://github.com/satijalab/seurat/issues&gt;.
-This warning is displayed once per session.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-generated.</code></pre>
-<pre><code>Warning: Layer &#39;data&#39; is empty</code></pre>
-<pre><code>Warning: Layer &#39;scale.data&#39; is empty</code></pre>
-<pre><code>  Stored normalized container for: obj1 (48464 bins retained)</code></pre>
-<pre><code>Processing native Seurat object: obj2</code></pre>
-<pre><code>  Found active assay: &#39;Spatial.016um&#39;</code></pre>
-<pre><code>Warning: Not validating Centroids objects</code></pre>
-<pre><code>Warning: Not validating Centroids objects</code></pre>
-<pre><code>Warning: Not validating FOV objects
-Not validating FOV objects
-Not validating FOV objects
-Not validating FOV objects
-Not validating FOV objects
-Not validating FOV objects</code></pre>
-<pre><code>Warning: Not validating Seurat objects</code></pre>
-<pre><code>Warning: Layer &#39;data&#39; is empty</code></pre>
-<pre><code>Warning: Layer &#39;scale.data&#39; is empty</code></pre>
-<pre><code>  Stored normalized container for: obj2 (30815 bins retained)</code></pre>
 </div>
 <div id="spatial-coordinate-helpers" class="section level2">
 <h2>Spatial coordinate helpers</h2>
@@ -834,26 +845,55 @@ for (nm in samples) {
 
   message(&quot;H&amp;E: &quot;, nm)
   he_panels[[nm]] &lt;- he_panel(seu_list[[nm]], nm)
-}</code></pre>
-<pre><code>Coordinates: obj1</code></pre>
-<pre><code>  rescaling coordinates by lowres factor 0.03765</code></pre>
-<pre><code>H&amp;E: obj1</code></pre>
-<pre><code>  full image 600x552 -&gt; crop 482x520</code></pre>
-<pre><code>Coordinates: obj2</code></pre>
-<pre><code>  rescaling coordinates by lowres factor 0.04081</code></pre>
-<pre><code>H&amp;E: obj2</code></pre>
-<pre><code>  full image 550x600 -&gt; crop 489x495</code></pre>
-<pre class="r"><code># sanity check: bin spacing in lowres pixels, useful for tuning point size
+}
+
+# sanity check: bin spacing in lowres pixels, useful for tuning point size
 for (nm in samples) {
   d &lt;- coord_list[[nm]]
   message(nm, &quot;: x span &quot;, signif(diff(range(d$x)), 4),
           &quot; px, y span &quot;, signif(diff(range(d$y)), 4),
           &quot; px, n = &quot;, nrow(d))
-}</code></pre>
-<pre><code>obj1: x span 461.1 px, y span 498.4 px, n = 48464</code></pre>
-<pre><code>obj2: x span 468.9 px, y span 474.4 px, n = 30815</code></pre>
-<pre class="r"><code>wrap_plots(he_panels, nrow = 1)</code></pre>
+}
+
+wrap_plots(he_panels, nrow = 1)</code></pre>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Spatial%20coordinate%20helpers-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Spatial-coordinate-helpers-1">
+Past versions of "Spatial coordinate helpers-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-Spatial-coordinate-helpers-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Spatial coordinate helpers-1.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="plotting-of-top-hvgs" class="section level2">
 <h2>Plotting of top HVGs</h2>
@@ -928,14 +968,158 @@ for (nm in samples) {
 
   message(&quot;Done: &quot;, nm, &quot; (&quot;, length(pages), &quot; pages)&quot;)
 }</code></pre>
-<pre><code>Processing: obj1</code></pre>
-<pre><code>  50 HVGs; top 3: IGKC, IGHG1, TAGLN ...</code></pre>
-<p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20top%20HVGs-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20top%20HVGs-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Done: obj1 (2 pages)</code></pre>
-<pre><code>Processing: obj2</code></pre>
-<pre><code>  50 HVGs; top 3: IGKC, IGHM, IGHG1 ...</code></pre>
-<p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20top%20HVGs-3.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20top%20HVGs-4.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Done: obj2 (2 pages)</code></pre>
+<p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20top%20HVGs-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-top-HVGs-1">
+Past versions of "Plotting of top HVGs-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-top-HVGs-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of top HVGs-1.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20top%20HVGs-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-top-HVGs-2">
+Past versions of "Plotting of top HVGs-2.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-top-HVGs-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of top HVGs-2.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20top%20HVGs-3.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-top-HVGs-3">
+Past versions of "Plotting of top HVGs-3.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-top-HVGs-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of top HVGs-3.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20top%20HVGs-4.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-top-HVGs-4">
+Past versions of "Plotting of top HVGs-4.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-top-HVGs-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of top HVGs-4.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="plotting-of-selected-genes-both-samples"
 class="section level2">
@@ -965,10 +1149,9 @@ for (nm in samples) {
   gone &lt;- setdiff(genes_of_interest, rownames(sce_list[[nm]]))
   if (length(gone))
     message(nm, &quot; missing from SCT: &quot;, paste(gone, collapse = &quot;, &quot;))
-}</code></pre>
-<pre><code>obj1 missing from SCT: MSLN</code></pre>
-<pre><code>obj2 missing from SCT: COL11A1, MSLN</code></pre>
-<pre class="r"><code>gene_plots &lt;- list()
+}
+
+gene_plots &lt;- list()
 
 for (i in seq_along(genes_of_interest)) {
   gene &lt;- genes_of_interest[i]
@@ -1036,60 +1219,1032 @@ for (i in seq_along(genes_of_interest)) {
   gene_plots[[gene]] &lt;- p
   print(p)
 }</code></pre>
-<pre><code>Plotting 1/27: CCL19  [obj1: ok; obj2: ok]</code></pre>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 2/27: CXCL13  [obj1: not detectable; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-1">
+Past versions of "Plotting of selected genes-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-1.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 3/27: CCL11  [obj1: not detectable; obj2: not detectable]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-2">
+Past versions of "Plotting of selected genes-2.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-2.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-3.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 4/27: IL33  [obj1: ok; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-3">
+Past versions of "Plotting of selected genes-3.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-3.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-4.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 5/27: IL6  [obj1: not detectable; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-4">
+Past versions of "Plotting of selected genes-4.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-4.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-5.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 6/27: BMP4  [obj1: not detectable; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-5">
+Past versions of "Plotting of selected genes-5.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-5.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-6.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 7/27: TCF21  [obj1: not detectable; obj2: not detectable]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-6">
+Past versions of "Plotting of selected genes-6.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-6.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-7.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 8/27: COL11A1  [obj1: not detectable; obj2: not detectable]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-7">
+Past versions of "Plotting of selected genes-7.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-7.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-8.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 9/27: VCAM1  [obj1: ok; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-8">
+Past versions of "Plotting of selected genes-8.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-8.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-9.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 10/27: FAT4  [obj1: ok; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-9">
+Past versions of "Plotting of selected genes-9.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-9.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-10.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 11/27: ALDH1A2  [obj1: ok; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-10">
+Past versions of "Plotting of selected genes-10.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-10" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-10.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-11.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 12/27: JCHAIN  [obj1: ok; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-11">
+Past versions of "Plotting of selected genes-11.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-11" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-11.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-12.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 13/27: CD4  [obj1: ok; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-12">
+Past versions of "Plotting of selected genes-12.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-12" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-12.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-13.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 14/27: CD3E  [obj1: ok; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-13">
+Past versions of "Plotting of selected genes-13.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-13" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-13.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-14.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 15/27: CD14  [obj1: ok; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-14">
+Past versions of "Plotting of selected genes-14.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-14" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-14.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-15.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 16/27: MCAM  [obj1: ok; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-15">
+Past versions of "Plotting of selected genes-15.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-15" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-15.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-16.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 17/27: CLU  [obj1: ok; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-16">
+Past versions of "Plotting of selected genes-16.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-16" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-16.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-17.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 18/27: IL7R  [obj1: ok; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-17">
+Past versions of "Plotting of selected genes-17.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-17" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-17.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-18.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 19/27: IL23R  [obj1: not detectable; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-18">
+Past versions of "Plotting of selected genes-18.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-18" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-18.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-19.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 20/27: PTPRC  [obj1: ok; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-19">
+Past versions of "Plotting of selected genes-19.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-19" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-19.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-20.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 21/27: CD19  [obj1: ok; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-20">
+Past versions of "Plotting of selected genes-20.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-20" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-20.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-21.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 22/27: IGHD  [obj1: not detectable; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-21">
+Past versions of "Plotting of selected genes-21.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-21" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-21.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-22.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 23/27: EOMES  [obj1: not detectable; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-22">
+Past versions of "Plotting of selected genes-22.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-22" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-22.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-23.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 24/27: MSLN  [obj1: not detectable; obj2: not detectable]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-23">
+Past versions of "Plotting of selected genes-23.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-23" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-23.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-24.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 25/27: CD68  [obj1: ok; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-24">
+Past versions of "Plotting of selected genes-24.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-24" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-24.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-25.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 26/27: DPP4  [obj1: not detectable; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-25">
+Past versions of "Plotting of selected genes-25.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-25" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-25.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-26.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 27/27: ITGAX  [obj1: ok; obj2: ok]</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-26">
+Past versions of "Plotting of selected genes-26.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-26" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-26.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting%20of%20selected%20genes-27.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plotting-of-selected-genes-27">
+Past versions of "Plotting of selected genes-27.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plotting-of-selected-genes-27" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Plotting of selected genes-27.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="set-up-cell-type-signatures" class="section level2">
 <h2>Set up cell type signatures</h2>
@@ -1113,17 +2268,12 @@ for (s in names(my_signatures)) {
   missing &lt;- setdiff(my_signatures[[s]], sig_present[[s]])
   message(s, &quot;: &quot;, length(sig_present[[s]]), &quot;/&quot;, length(my_signatures[[s]]), &quot; present&quot;,
           if (length(missing)) paste0(&quot;  MISSING: &quot;, paste(missing, collapse = &quot;, &quot;)) else &quot;&quot;)
-}</code></pre>
-<pre><code>VEC: 7/7 present</code></pre>
-<pre><code>Fb: 12/12 present</code></pre>
-<pre><code>FRC: 5/5 present</code></pre>
-<pre><code>Myeloid: 13/16 present  MISSING: HLA-DRA, HLA-DRB1, FCN1</code></pre>
-<pre><code>Tcell: 9/9 present</code></pre>
-<pre><code>Bcell: 13/13 present</code></pre>
-<pre class="r"><code>sig_use &lt;- sig_present[lengths(sig_present) &gt;= 3]
-message(&quot;Using &quot;, length(sig_use), &quot; signatures: &quot;, paste(names(sig_use), collapse = &quot;, &quot;))</code></pre>
-<pre><code>Using 6 signatures: VEC, Fb, FRC, Myeloid, Tcell, Bcell</code></pre>
-<pre class="r"><code>cell_colors &lt;- c(
+}
+
+sig_use &lt;- sig_present[lengths(sig_present) &gt;= 3]
+message(&quot;Using &quot;, length(sig_use), &quot; signatures: &quot;, paste(names(sig_use), collapse = &quot;, &quot;))
+
+cell_colors &lt;- c(
   VEC        = &quot;#ff7f0e&quot;,
   Fb         = &quot;#2ca02c&quot;,
   FRC        = &quot;#9467bd&quot;,
@@ -1158,16 +2308,12 @@ for (nm in samples) {
 
   score_list[[nm]] &lt;- m
   message(&quot;  &quot;, nrow(m), &quot; bins x &quot;, ncol(m), &quot; signatures&quot;)
-}</code></pre>
-<pre><code>Scoring: obj1</code></pre>
-<pre><code>  48464 bins x 6 signatures</code></pre>
-<pre><code>Scoring: obj2</code></pre>
-<pre><code>  30815 bins x 6 signatures</code></pre>
-<pre class="r"><code># keep signatures with non-zero variance in ALL samples
+}
+
+# keep signatures with non-zero variance in ALL samples
 keep &lt;- Reduce(intersect, lapply(score_list, function(m) colnames(m)[apply(m, 2, sd) &gt; 0]))
 score_list &lt;- lapply(score_list, function(m) m[, keep, drop = FALSE])
 message(&quot;Retained: &quot;, paste(keep, collapse = &quot;, &quot;))</code></pre>
-<pre><code>Retained: VEC, Fb, FRC, Myeloid, Tcell, Bcell</code></pre>
 </div>
 <div id="signature-score-maps" class="section level2">
 <h2>Signature score maps</h2>
@@ -1206,18 +2352,234 @@ for (i in seq_along(keep)) {
   sig_plots[[s]] &lt;- p
   print(p)
 }</code></pre>
-<pre><code>Plotting 1/6: VEC</code></pre>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Signature%20score%20maps-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 2/6: Fb</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Signature-score-maps-1">
+Past versions of "Signature score maps-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-Signature-score-maps-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Signature score maps-1.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Signature%20score%20maps-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 3/6: FRC</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Signature-score-maps-2">
+Past versions of "Signature score maps-2.png"
+</button>
+</p>
+<div id="fig-no-spaces-Signature-score-maps-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Signature score maps-2.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Signature%20score%20maps-3.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 4/6: Myeloid</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Signature-score-maps-3">
+Past versions of "Signature score maps-3.png"
+</button>
+</p>
+<div id="fig-no-spaces-Signature-score-maps-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Signature score maps-3.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Signature%20score%20maps-4.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 5/6: Tcell</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Signature-score-maps-4">
+Past versions of "Signature score maps-4.png"
+</button>
+</p>
+<div id="fig-no-spaces-Signature-score-maps-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Signature score maps-4.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Signature%20score%20maps-5.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 6/6: Bcell</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Signature-score-maps-5">
+Past versions of "Signature score maps-5.png"
+</button>
+</p>
+<div id="fig-no-spaces-Signature-score-maps-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Signature score maps-5.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Signature%20score%20maps-6.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Signature-score-maps-6">
+Past versions of "Signature score maps-6.png"
+</button>
+</p>
+<div id="fig-no-spaces-Signature-score-maps-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Signature score maps-6.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="signature-score-maps-per-type-colour" class="section level2">
 <h2>Signature score maps, per-type colour</h2>
@@ -1262,18 +2624,240 @@ for (i in seq_along(cts)) {
   score_plots[[ct]] &lt;- p
   print(p)
 }</code></pre>
-<pre><code>Plotting 1/6: VEC</code></pre>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Signature%20score%20maps%20per-type%20colour-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 2/6: Fb</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Signature-score-maps-per-type-colour-1">
+Past versions of "Signature score maps per-type colour-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-Signature-score-maps-per-type-colour-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Signature score maps per-type colour-1.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Signature%20score%20maps%20per-type%20colour-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 3/6: FRC</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Signature-score-maps-per-type-colour-2">
+Past versions of "Signature score maps per-type colour-2.png"
+</button>
+</p>
+<div id="fig-no-spaces-Signature-score-maps-per-type-colour-2"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Signature score maps per-type colour-2.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Signature%20score%20maps%20per-type%20colour-3.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 4/6: Myeloid</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Signature-score-maps-per-type-colour-3">
+Past versions of "Signature score maps per-type colour-3.png"
+</button>
+</p>
+<div id="fig-no-spaces-Signature-score-maps-per-type-colour-3"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Signature score maps per-type colour-3.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Signature%20score%20maps%20per-type%20colour-4.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 5/6: Tcell</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Signature-score-maps-per-type-colour-4">
+Past versions of "Signature score maps per-type colour-4.png"
+</button>
+</p>
+<div id="fig-no-spaces-Signature-score-maps-per-type-colour-4"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Signature score maps per-type colour-4.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Signature%20score%20maps%20per-type%20colour-5.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>Plotting 6/6: Bcell</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Signature-score-maps-per-type-colour-5">
+Past versions of "Signature score maps per-type colour-5.png"
+</button>
+</p>
+<div id="fig-no-spaces-Signature-score-maps-per-type-colour-5"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Signature score maps per-type colour-5.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Signature%20score%20maps%20per-type%20colour-6.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Signature-score-maps-per-type-colour-6">
+Past versions of "Signature score maps per-type colour-6.png"
+</button>
+</p>
+<div id="fig-no-spaces-Signature-score-maps-per-type-colour-6"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Signature score maps per-type colour-6.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="cell-type-distribution" class="section level2">
 <h2>Cell type distribution</h2>
@@ -1327,6 +2911,43 @@ celltype_map &lt;- wrap_plots(c(tile_panels, he_panels), ncol = length(samples))
 
 print(celltype_map)</code></pre>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Cell%20type%20distribution-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Cell-type-distribution-1">
+Past versions of "Cell type distribution-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-Cell-type-distribution-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Cell type distribution-1.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>celltype_map_clean &lt;- wrap_plots(tile_panels, nrow = 1) +
   plot_layout(guides = &quot;collect&quot;) +
   plot_annotation(
@@ -1337,6 +2958,43 @@ print(celltype_map)</code></pre>
 
 print(celltype_map_clean)</code></pre>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Cell%20type%20distribution-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Cell-type-distribution-2">
+Past versions of "Cell type distribution-2.png"
+</button>
+</p>
+<div id="fig-no-spaces-Cell-type-distribution-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Cell type distribution-2.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code># composition per sample
 ggplot(assign_df, aes(x = sample, fill = label)) +
   geom_bar(position = &quot;fill&quot;) +
@@ -1344,6 +3002,43 @@ ggplot(assign_df, aes(x = sample, fill = label)) +
   labs(y = &quot;Fraction of bins&quot;, x = NULL, fill = NULL) +
   theme_minimal()</code></pre>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Cell%20type%20distribution-3.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Cell-type-distribution-3">
+Past versions of "Cell type distribution-3.png"
+</button>
+</p>
+<div id="fig-no-spaces-Cell-type-distribution-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Cell type distribution-3.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code># how decisive were the calls? bins with a small margin are ambiguous
 # regardless of how high the winning score was - often a better filter than thr
 ggplot(assign_df, aes(x = margin, fill = sample)) +
@@ -1351,6 +3046,43 @@ ggplot(assign_df, aes(x = margin, fill = sample)) +
   labs(x = &quot;Winner minus runner-up&quot;, y = &quot;Density&quot;, fill = NULL) +
   theme_minimal()</code></pre>
 <p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/Cell%20type%20distribution-4.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Cell-type-distribution-4">
+Past versions of "Cell type distribution-4.png"
+</button>
+</p>
+<div id="fig-no-spaces-Cell-type-distribution-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/Cell type distribution-4.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code># Extract all valid cell types to loop through (ignoring &quot;Unassigned&quot;)
 cell_types &lt;- levels(assign_df$label)
 cell_types &lt;- cell_types[cell_types != &quot;Unassigned&quot;]
@@ -1400,7 +3132,234 @@ for (ctype in cell_types) {
   # 5. Print the plot to the graphics device
   print(celltype_map_single)
 }</code></pre>
-<p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-2.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-3.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-4.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-5.png" alt="" width="672" style="display: block; margin: auto;" /><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-6.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-1">
+Past versions of unnamed-chunk-1-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-1.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-2">
+Past versions of unnamed-chunk-1-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-2.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-3.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-3">
+Past versions of unnamed-chunk-1-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-3.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-4.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-4">
+Past versions of unnamed-chunk-1-4.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-4.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-5.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-5">
+Past versions of unnamed-chunk-1-5.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-5.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-6.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-6">
+Past versions of unnamed-chunk-1-6.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/blob/645e54a9456ef6452db4bf6083f83b5d08951994/docs/figure/SpatialHD_FALC_revision_corrected.Rmd/unnamed-chunk-1-6.png" target="_blank">645e54a</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="saving-figures" class="section level2">
 <h2>Saving figures</h2>
@@ -1424,7 +3383,7 @@ ggsave(&quot;figures/celltype_map.pdf&quot;, celltype_map, width = 12, height = 
 <div id="session-info" class="section level2">
 <h2>session info</h2>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Thu Sep  3 16:10:03 2026&quot;</code></pre>
+<pre><code>[1] &quot;Wed Sep  9 10:30:46 2026&quot;</code></pre>
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 4.4.1 (2024-06-14 ucrt)
 Platform: x86_64-w64-mingw32/x64
@@ -1434,217 +3393,149 @@ Matrix products: default
 
 
 locale:
-[1] LC_COLLATE=English_United States.utf8 
-[2] LC_CTYPE=English_United States.utf8   
-[3] LC_MONETARY=English_United States.utf8
-[4] LC_NUMERIC=C                          
+[1] LC_COLLATE=English_United States.utf8  LC_CTYPE=English_United States.utf8   
+[3] LC_MONETARY=English_United States.utf8 LC_NUMERIC=C                          
 [5] LC_TIME=English_United States.utf8    
 
 time zone: Europe/Berlin
 tzcode source: internal
 
 attached base packages:
-[1] grid      stats4    stats     graphics  grDevices utils     datasets 
-[8] methods   base     
+[1] grid      stats4    stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] nnSVG_1.8.0                    igraph_2.2.1                  
- [3] BayesSpace_1.14.0              Banksy_1.0.0                  
- [5] scran_1.32.0                   Voyager_1.6.0                 
- [7] ggspavis_1.10.0                SpatialFeatureExperiment_1.6.1
- [9] HDF5Array_1.32.1               rhdf5_2.48.0                  
-[11] DelayedArray_0.30.1            SparseArray_1.4.8             
-[13] S4Arrays_1.4.1                 abind_1.4-8                   
-[15] Matrix_1.7-4                   SpatialExperiment_1.14.0      
-[17] patchwork_1.3.2                org.Mm.eg.db_3.19.1           
-[19] harmony_2.0.5                  Rcpp_1.1.0                    
-[21] BiocParallel_1.38.0            scDblFinder_1.18.0            
-[23] writexl_2.0.0                  scRepertoire_2.0.7            
-[25] kableExtra_1.4.1               knitr_1.51                    
-[27] magrittr_2.0.4                 RColorBrewer_1.1-3            
-[29] NCmisc_1.3.1                   VennDiagram_1.8.2             
-[31] futile.logger_1.4.9            ggupset_0.4.1                 
-[33] gridExtra_2.3                  DOSE_3.30.5                   
-[35] enrichplot_1.24.4              msigdbr_26.1.0                
-[37] org.Hs.eg.db_3.19.1            AnnotationDbi_1.66.0          
-[39] clusterProfiler_4.12.6         multtest_2.60.0               
-[41] metap_1.12                     scater_1.32.1                 
-[43] scuttle_1.14.0                 destiny_3.18.0                
-[45] circlize_0.4.18                muscat_1.18.0                 
-[47] viridis_0.6.5                  viridisLite_0.4.2             
-[49] lubridate_1.9.4                forcats_1.0.1                 
-[51] stringr_1.5.2                  purrr_1.1.0                   
-[53] readr_2.1.5                    tidyr_1.3.1                   
-[55] tibble_3.3.0                   tidyverse_2.0.0               
-[57] dplyr_1.1.4                    SingleCellExperiment_1.26.0   
-[59] SummarizedExperiment_1.34.0    Biobase_2.64.0                
-[61] GenomicRanges_1.56.2           GenomeInfoDb_1.40.1           
-[63] IRanges_2.38.1                 S4Vectors_0.42.1              
-[65] BiocGenerics_0.50.0            MatrixGenerics_1.16.0         
-[67] matrixStats_1.5.0              pheatmap_1.0.13               
-[69] ggpubr_0.6.2                   ggplot2_4.0.0                 
-[71] Seurat_5.3.0                   SeuratObject_5.2.0            
-[73] sp_2.2-0                       runSeurat3_0.1.0              
-[75] ExploreSCdataSeurat3_0.1.0    
+ [1] nnSVG_1.8.0                    igraph_2.2.1                   BayesSpace_1.14.0             
+ [4] Banksy_1.0.0                   scran_1.32.0                   Voyager_1.6.0                 
+ [7] ggspavis_1.10.0                SpatialFeatureExperiment_1.6.1 HDF5Array_1.32.1              
+[10] rhdf5_2.48.0                   DelayedArray_0.30.1            SparseArray_1.4.8             
+[13] S4Arrays_1.4.1                 abind_1.4-8                    Matrix_1.7-4                  
+[16] SpatialExperiment_1.14.0       patchwork_1.3.2                org.Mm.eg.db_3.19.1           
+[19] harmony_2.0.5                  Rcpp_1.1.0                     BiocParallel_1.38.0           
+[22] scDblFinder_1.18.0             writexl_2.0.0                  scRepertoire_2.0.7            
+[25] kableExtra_1.4.1               knitr_1.51                     magrittr_2.0.4                
+[28] RColorBrewer_1.1-3             NCmisc_1.3.1                   VennDiagram_1.8.2             
+[31] futile.logger_1.4.9            ggupset_0.4.1                  gridExtra_2.3                 
+[34] DOSE_3.30.5                    enrichplot_1.24.4              msigdbr_26.1.0                
+[37] org.Hs.eg.db_3.19.1            AnnotationDbi_1.66.0           clusterProfiler_4.12.6        
+[40] multtest_2.60.0                metap_1.12                     scater_1.32.1                 
+[43] scuttle_1.14.0                 destiny_3.18.0                 circlize_0.4.18               
+[46] muscat_1.18.0                  viridis_0.6.5                  viridisLite_0.4.2             
+[49] lubridate_1.9.4                forcats_1.0.1                  stringr_1.5.2                 
+[52] purrr_1.1.0                    readr_2.1.5                    tidyr_1.3.1                   
+[55] tibble_3.3.0                   tidyverse_2.0.0                dplyr_1.1.4                   
+[58] SingleCellExperiment_1.26.0    SummarizedExperiment_1.34.0    Biobase_2.64.0                
+[61] GenomicRanges_1.56.2           GenomeInfoDb_1.40.1            IRanges_2.38.1                
+[64] S4Vectors_0.42.1               BiocGenerics_0.50.0            MatrixGenerics_1.16.0         
+[67] matrixStats_1.5.0              pheatmap_1.0.13                ggpubr_0.6.2                  
+[70] ggplot2_4.0.0                  Seurat_5.3.0                   SeuratObject_5.2.0            
+[73] sp_2.2-0                       runSeurat3_0.1.0               ExploreSCdataSeurat3_0.1.0    
 
 loaded via a namespace (and not attached):
-  [1] xts_0.14.1                DBI_1.3.0                
-  [3] bslib_0.12.0              httr_1.4.8               
-  [5] prettyunits_1.2.0         yulab.utils_0.2.4        
-  [7] gsl_2.1-8                 VIM_6.2.6                
-  [9] ggplotify_0.1.3           GenomicAlignments_1.40.0 
- [11] fANCOVA_0.6-1             sparseMatrixStats_1.16.0 
- [13] remaCor_0.0.20            spatstat.geom_3.6-0      
- [15] babelgene_22.9            TTR_0.24.4               
- [17] pillar_1.11.1             R6_2.6.1                 
- [19] boot_1.3-32               mime_0.13                
- [21] glmGamPoi_1.16.0          reticulate_1.45.0        
- [23] edgeR_4.2.2               uwot_0.2.3               
- [25] Rhdf5lib_1.26.0           ROCR_1.0-12              
- [27] rprojroot_2.1.1           RcppHungarian_0.3        
- [29] limma_3.60.6              S7_0.2.0                 
- [31] parallelly_1.45.1         iNEXT_3.0.2              
- [33] GlobalOptions_0.1.4       rbibutils_2.4.1          
- [35] caTools_1.18.3            mgcv_1.9-4               
- [37] polyclip_1.10-7           beachmat_2.20.0          
- [39] htmltools_0.5.8.1         lambda.r_1.2.4           
- [41] e1071_1.7-16              ggplot.multistats_1.0.1  
- [43] ggrepel_0.9.6             classInt_0.4-11          
- [45] car_3.1-5                 spData_2.3.5             
- [47] ComplexHeatmap_2.20.0     fgsea_1.30.0             
- [49] aricode_1.1.0             spatstat.utils_3.2-0     
- [51] TFisher_0.2.0             scatterplot3d_0.3-45     
- [53] clue_0.3-66               scatterpie_0.2.6         
- [55] fitdistrplus_1.2-6        goftest_1.2-3            
- [57] tidyselect_1.2.1          sfheaders_0.4.5          
- [59] RSQLite_2.4.3             truncdist_1.0-2          
- [61] cowplot_1.2.0             GenomeInfoDbData_1.2.12  
- [63] ScaledMatrix_1.12.0       scattermore_1.2          
- [65] spatstat.data_3.1-9       fs_1.6.6                 
- [67] xgboost_3.2.1.1           sctransform_0.4.2        
- [69] BRISC_1.0.6               future.apply_1.20.2      
- [71] glmmTMB_1.1.13            R.oo_1.27.1              
- [73] workflowr_1.7.2           RcppHNSW_0.6.0           
- [75] mathjaxr_2.0-0            vipor_0.4.7              
- [77] rtracklayer_1.64.0        Rtsne_0.17               
- [79] DelayedMatrixStats_1.26.0 lazyeval_0.2.2           
- [81] sass_0.4.10               scales_1.4.0             
- [83] carData_3.0-6             treeio_1.28.0            
- [85] R.utils_2.13.0            bitops_1.0-9             
- [87] aod_1.3.3                 labeling_0.4.3           
- [89] R.methodsS3_1.8.2         KEGGREST_1.44.1          
- [91] promises_1.5.0            shape_1.4.6.1            
- [93] terra_1.9-34              rhdf5filters_1.16.0      
- [95] variancePartition_1.34.0  zoo_1.8-14               
- [97] DropletUtils_1.24.0       spdep_1.4-2              
- [99] locfit_1.5-9.12           RSpectra_0.16-2          
-[101] multcomp_1.4-31           assertthat_0.2.1         
-[103] tools_4.4.1               ape_5.8-1                
-[105] BiocFileCache_2.12.0      shiny_1.14.0             
-[107] pcaMethods_1.96.0         EnvStats_3.1.0           
-[109] git2r_0.36.2              fftwtools_0.9-11         
-[111] rlang_1.1.4               generics_0.1.4           
-[113] BiocSingular_1.20.0       ggridges_0.5.7           
-[115] evaluate_1.0.5            httr2_1.2.3              
-[117] stringdist_0.9.17         BiocIO_1.14.0            
-[119] otel_0.2.0                reshape2_1.4.4           
-[121] plotrix_3.8-14            colorspace_2.1-2         
-[123] data.table_1.17.8         withr_3.0.3              
-[125] sccore_1.0.7              RCurl_1.98-1.19          
-[127] restfulr_0.0.17           xtable_1.8-8             
-[129] plyr_1.8.9                lme4_1.1-37              
-[131] aplot_0.3.1               MatrixModels_0.5-4       
-[133] systemfonts_1.3.1         mclust_6.1.3             
-[135] httpuv_1.6.16             cubature_2.1.4-1         
-[137] rmarkdown_2.31            metapod_1.12.0           
-[139] units_1.0-1               robustbase_0.99-7        
-[141] rdist_0.0.5               MASS_7.3-65              
-[143] dqrng_0.4.1               broom_1.0.13             
-[145] deldir_2.0-4              GO.db_3.19.1             
-[147] sandwich_3.1-3            tensor_1.5.1             
-[149] memuse_4.2-3              vctrs_0.6.5              
-[151] lifecycle_1.0.5           proxy_0.4-27             
-[153] codetools_0.2-20          fastDummies_1.7.6        
-[155] mnormt_2.1.1              nlme_3.1-168             
-[157] future_1.75.0             DESeq2_1.44.0            
-[159] ggside_0.4.1              dbplyr_2.5.2             
-[161] progress_1.2.3            jquerylib_0.1.4          
-[163] shinydashboard_0.7.3      rstudioapi_0.19.0        
-[165] stringi_1.8.7             miscTools_0.6-30         
-[167] VGAM_1.1-14               hms_1.1.4                
-[169] pbapply_1.7-4             minqa_1.2.8              
-[171] cachem_1.1.0              tidytree_0.4.8           
-[173] listenv_1.0.0             XVector_0.44.0           
-[175] plotly_4.12.1             mutoss_0.1-14            
-[177] ggtree_3.12.0             jpeg_0.1-11              
-[179] GetoptLong_1.1.1          ggfun_0.2.1              
-[181] htmlwidgets_1.6.4         Formula_1.2-6            
-[183] class_7.3-23              memoise_2.0.1            
-[185] crayon_1.5.3              gridGraphics_0.5-1       
-[187] rappdirs_0.3.4            smoother_1.3             
-[189] filelock_1.0.3            xml2_1.6.0               
-[191] GOSemSim_2.30.2           s2_1.1.11                
-[193] UCSC.utils_1.0.0          png_0.1-8                
-[195] progressr_1.0.0           tzdb_0.5.0               
-[197] colourpicker_1.3.0        ggthemes_5.2.0           
-[199] emmeans_2.0.4             evd_2.3-7.1              
-[201] fastmap_1.2.0             laeken_0.5.3             
-[203] coda_0.19-4.1             tidygraph_1.3.1          
-[205] vcd_1.4-14                blme_1.0-7               
-[207] pkgconfig_2.0.3           cli_3.6.5                
-[209] beeswarm_0.4.0            ggforce_0.5.0            
-[211] TMB_1.9.18                ggiraph_0.9.6            
-[213] ggsignif_0.6.4            nnet_7.3-20              
-[215] zeallot_0.2.0             ggalluvial_0.12.6        
-[217] maxLik_1.5-2.2            lmtest_0.9-40            
-[219] textshaping_1.0.5         RcppAnnoy_0.0.22         
-[221] evmix_2.12                lmerTest_3.2-1           
-[223] gdtools_0.5.0             DEoptimR_1.2-0           
-[225] timechange_0.3.0          ggdendro_0.2.0           
-[227] splines_4.4.1             blob_1.3.0               
-[229] XML_3.99-0.23             numDeriv_2016.8-1.1      
-[231] globals_0.19.1            ggbeeswarm_0.7.3         
-[233] ica_1.0-3                 spam_2.11-1              
-[235] compiler_4.4.1            RcppEigen_0.3.4.0.2      
-[237] rjson_0.2.23              sf_1.1-2                 
-[239] reformulas_0.4.4          qqconf_1.3.2             
-[241] leidenAlg_1.1.8           bit_4.6.0                
-[243] hexbin_1.28.5             sn_2.1.3                 
-[245] BiocNeighbors_1.22.0      glue_1.8.0               
-[247] estimability_2.0.0        formatR_1.14             
-[249] digest_0.6.36             irlba_2.3.5.1            
-[251] tiff_0.1-12               graphlayouts_1.2.3       
-[253] magick_2.9.1              fontLiberation_0.1.0     
-[255] foreach_1.5.2             fontBitstreamVera_0.1.1  
-[257] spatstat.random_3.4-2     SparseM_1.84-2           
-[259] zlibbioc_1.50.0           dotCall64_1.2            
-[261] tweenr_2.0.3              lattice_0.22-7           
-[263] statmod_1.5.1             ggraph_2.2.2             
-[265] rsvd_1.0.5                gson_0.2.1               
-[267] ggnewscale_0.5.2          nloptr_2.2.1             
-[269] mvtnorm_1.3-3             yaml_2.3.10              
-[271] qvalue_2.36.0             later_1.4.4              
-[273] backports_1.5.0           rstatix_1.1.0            
-[275] shadowtext_0.1.6          Rsamtools_2.20.0         
-[277] parallel_4.4.1            fontquiver_0.2.1         
-[279] quantreg_6.1              miniUI_0.1.2             
-[281] gtable_0.3.6              xfun_0.52                
-[283] Cairo_1.6-5               Biostrings_2.72.1        
-[285] curl_7.0.0                doParallel_1.0.17        
-[287] KernSmooth_2.23-26        futile.options_1.0.1     
-[289] survival_3.8-3            jsonlite_2.0.0           
-[291] svglite_2.2.2             iterators_1.0.14         
-[293] TH.data_1.1-5             spatstat.univar_3.1-4    
-[295] pbkrtest_0.5.5            RhpcBLASctl_0.23-42      
-[297] EBImage_4.46.0            fastmatch_1.1-8          
-[299] gtools_3.9.5              spatstat.sparse_3.1-0    
-[301] RANN_2.6.2                bluster_1.14.0           
-[303] wk_0.9.5                  dbscan_1.2.5             
-[305] spatstat.explore_3.5-3    scico_1.5.0              
-[307] bit64_4.6.0-1             DirichletReg_0.7-2       
-[309] cluster_2.1.8.1           Rdpack_2.6.6             
-[311] farver_2.1.2              corpcor_1.6.10           
-[313] gplots_3.3.0              ranger_0.18.0            </code></pre>
+  [1] xts_0.14.1                DBI_1.3.0                 bslib_0.12.0             
+  [4] httr_1.4.8                prettyunits_1.2.0         yulab.utils_0.2.4        
+  [7] gsl_2.1-8                 VIM_6.2.6                 ggplotify_0.1.3          
+ [10] GenomicAlignments_1.40.0  fANCOVA_0.6-1             sparseMatrixStats_1.16.0 
+ [13] remaCor_0.0.20            spatstat.geom_3.6-0       babelgene_22.9           
+ [16] TTR_0.24.4                pillar_1.11.1             R6_2.6.1                 
+ [19] boot_1.3-32               mime_0.13                 glmGamPoi_1.16.0         
+ [22] reticulate_1.45.0         edgeR_4.2.2               uwot_0.2.3               
+ [25] Rhdf5lib_1.26.0           ROCR_1.0-12               rprojroot_2.1.1          
+ [28] RcppHungarian_0.3         limma_3.60.6              S7_0.2.0                 
+ [31] parallelly_1.45.1         iNEXT_3.0.2               GlobalOptions_0.1.4      
+ [34] rbibutils_2.4.1           caTools_1.18.3            mgcv_1.9-4               
+ [37] polyclip_1.10-7           beachmat_2.20.0           htmltools_0.5.8.1        
+ [40] lambda.r_1.2.4            e1071_1.7-16              ggplot.multistats_1.0.1  
+ [43] ggrepel_0.9.6             classInt_0.4-11           car_3.1-5                
+ [46] spData_2.3.5              ComplexHeatmap_2.20.0     fgsea_1.30.0             
+ [49] aricode_1.1.0             spatstat.utils_3.2-0      TFisher_0.2.0            
+ [52] scatterplot3d_0.3-45      clue_0.3-66               scatterpie_0.2.6         
+ [55] fitdistrplus_1.2-6        goftest_1.2-3             tidyselect_1.2.1         
+ [58] sfheaders_0.4.5           RSQLite_2.4.3             truncdist_1.0-2          
+ [61] cowplot_1.2.0             GenomeInfoDbData_1.2.12   ScaledMatrix_1.12.0      
+ [64] scattermore_1.2           spatstat.data_3.1-9       fs_1.6.6                 
+ [67] xgboost_3.2.1.1           sctransform_0.4.2         BRISC_1.0.6              
+ [70] future.apply_1.20.2       glmmTMB_1.1.13            R.oo_1.27.1              
+ [73] workflowr_1.7.2           RcppHNSW_0.6.0            mathjaxr_2.0-0           
+ [76] vipor_0.4.7               rtracklayer_1.64.0        Rtsne_0.17               
+ [79] DelayedMatrixStats_1.26.0 lazyeval_0.2.2            sass_0.4.10              
+ [82] scales_1.4.0              carData_3.0-6             treeio_1.28.0            
+ [85] R.utils_2.13.0            bitops_1.0-9              aod_1.3.3                
+ [88] labeling_0.4.3            R.methodsS3_1.8.2         KEGGREST_1.44.1          
+ [91] promises_1.5.0            shape_1.4.6.1             terra_1.9-34             
+ [94] rhdf5filters_1.16.0       variancePartition_1.34.0  zoo_1.8-14               
+ [97] DropletUtils_1.24.0       spdep_1.4-2               locfit_1.5-9.12          
+[100] RSpectra_0.16-2           multcomp_1.4-31           assertthat_0.2.1         
+[103] tools_4.4.1               ape_5.8-1                 BiocFileCache_2.12.0     
+[106] shiny_1.14.0              pcaMethods_1.96.0         EnvStats_3.1.0           
+[109] git2r_0.36.2              fftwtools_0.9-11          rlang_1.1.4              
+[112] generics_0.1.4            BiocSingular_1.20.0       ggridges_0.5.7           
+[115] evaluate_1.0.5            httr2_1.2.3               stringdist_0.9.17        
+[118] BiocIO_1.14.0             otel_0.2.0                reshape2_1.4.4           
+[121] plotrix_3.8-14            colorspace_2.1-2          data.table_1.17.8        
+[124] withr_3.0.3               sccore_1.0.7              RCurl_1.98-1.19          
+[127] restfulr_0.0.17           xtable_1.8-8              plyr_1.8.9               
+[130] lme4_1.1-37               aplot_0.3.1               MatrixModels_0.5-4       
+[133] systemfonts_1.3.1         mclust_6.1.3              httpuv_1.6.16            
+[136] cubature_2.1.4-1          rmarkdown_2.31            metapod_1.12.0           
+[139] units_1.0-1               robustbase_0.99-7         rdist_0.0.5              
+[142] MASS_7.3-65               dqrng_0.4.1               broom_1.0.13             
+[145] deldir_2.0-4              GO.db_3.19.1              sandwich_3.1-3           
+[148] tensor_1.5.1              memuse_4.2-3              vctrs_0.6.5              
+[151] lifecycle_1.0.5           proxy_0.4-27              codetools_0.2-20         
+[154] fastDummies_1.7.6         mnormt_2.1.1              nlme_3.1-168             
+[157] future_1.75.0             DESeq2_1.44.0             ggside_0.4.1             
+[160] dbplyr_2.5.2              progress_1.2.3            jquerylib_0.1.4          
+[163] shinydashboard_0.7.3      rstudioapi_0.19.0         stringi_1.8.7            
+[166] miscTools_0.6-30          VGAM_1.1-14               hms_1.1.4                
+[169] pbapply_1.7-4             minqa_1.2.8               cachem_1.1.0             
+[172] tidytree_0.4.8            listenv_1.0.0             XVector_0.44.0           
+[175] plotly_4.12.1             jpeg_0.1-11               mutoss_0.1-14            
+[178] ggtree_3.12.0             GetoptLong_1.1.1          ggfun_0.2.1              
+[181] htmlwidgets_1.6.4         Formula_1.2-6             class_7.3-23             
+[184] memoise_2.0.1             crayon_1.5.3              gridGraphics_0.5-1       
+[187] rappdirs_0.3.4            smoother_1.3              filelock_1.0.3           
+[190] xml2_1.6.0                GOSemSim_2.30.2           s2_1.1.11                
+[193] UCSC.utils_1.0.0          png_0.1-8                 progressr_1.0.0          
+[196] tzdb_0.5.0                colourpicker_1.3.0        ggthemes_5.2.0           
+[199] emmeans_2.0.4             evd_2.3-7.1               fastmap_1.2.0            
+[202] laeken_0.5.3              coda_0.19-4.1             tidygraph_1.3.1          
+[205] vcd_1.4-14                blme_1.0-7                pkgconfig_2.0.3          
+[208] cli_3.6.5                 beeswarm_0.4.0            ggforce_0.5.0            
+[211] whisker_0.4.1             TMB_1.9.18                ggiraph_0.9.6            
+[214] ggsignif_0.6.4            nnet_7.3-20               zeallot_0.2.0            
+[217] ggalluvial_0.12.6         maxLik_1.5-2.2            lmtest_0.9-40            
+[220] textshaping_1.0.5         RcppAnnoy_0.0.22          evmix_2.12               
+[223] lmerTest_3.2-1            gdtools_0.5.0             DEoptimR_1.2-0           
+[226] timechange_0.3.0          ggdendro_0.2.0            splines_4.4.1            
+[229] blob_1.3.0                XML_3.99-0.23             numDeriv_2016.8-1.1      
+[232] globals_0.19.1            ggbeeswarm_0.7.3          ica_1.0-3                
+[235] spam_2.11-1               compiler_4.4.1            RcppEigen_0.3.4.0.2      
+[238] rjson_0.2.23              sf_1.1-2                  reformulas_0.4.4         
+[241] qqconf_1.3.2              leidenAlg_1.1.8           bit_4.6.0                
+[244] hexbin_1.28.5             sn_2.1.3                  BiocNeighbors_1.22.0     
+[247] glue_1.8.0                estimability_2.0.0        formatR_1.14             
+[250] digest_0.6.36             irlba_2.3.5.1             tiff_0.1-12              
+[253] graphlayouts_1.2.3        magick_2.9.1              fontLiberation_0.1.0     
+[256] foreach_1.5.2             fontBitstreamVera_0.1.1   spatstat.random_3.4-2    
+[259] SparseM_1.84-2            zlibbioc_1.50.0           dotCall64_1.2            
+[262] tweenr_2.0.3              lattice_0.22-7            statmod_1.5.1            
+[265] ggraph_2.2.2              rsvd_1.0.5                gson_0.2.1               
+[268] ggnewscale_0.5.2          nloptr_2.2.1              mvtnorm_1.3-3            
+[271] yaml_2.3.10               qvalue_2.36.0             later_1.4.4              
+[274] backports_1.5.0           rstatix_1.1.0             shadowtext_0.1.6         
+[277] Rsamtools_2.20.0          parallel_4.4.1            fontquiver_0.2.1         
+[280] quantreg_6.1              miniUI_0.1.2              gtable_0.3.6             
+[283] xfun_0.52                 Cairo_1.6-5               Biostrings_2.72.1        
+[286] curl_7.0.0                doParallel_1.0.17         KernSmooth_2.23-26       
+[289] futile.options_1.0.1      survival_3.8-3            jsonlite_2.0.0           
+[292] svglite_2.2.2             iterators_1.0.14          TH.data_1.1-5            
+[295] spatstat.univar_3.1-4     pbkrtest_0.5.5            RhpcBLASctl_0.23-42      
+[298] EBImage_4.46.0            fastmatch_1.1-8           gtools_3.9.5             
+[301] spatstat.sparse_3.1-0     RANN_2.6.2                bluster_1.14.0           
+[304] wk_0.9.5                  dbscan_1.2.5              spatstat.explore_3.5-3   
+[307] scico_1.5.0               bit64_4.6.0-1             DirichletReg_0.7-2       
+[310] cluster_2.1.8.1           Rdpack_2.6.6              farver_2.1.2             
+[313] corpcor_1.6.10            gplots_3.3.0              ranger_0.18.0            </code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1662,217 +3553,149 @@ Matrix products: default
 
 
 locale:
-[1] LC_COLLATE=English_United States.utf8 
-[2] LC_CTYPE=English_United States.utf8   
-[3] LC_MONETARY=English_United States.utf8
-[4] LC_NUMERIC=C                          
+[1] LC_COLLATE=English_United States.utf8  LC_CTYPE=English_United States.utf8   
+[3] LC_MONETARY=English_United States.utf8 LC_NUMERIC=C                          
 [5] LC_TIME=English_United States.utf8    
 
 time zone: Europe/Berlin
 tzcode source: internal
 
 attached base packages:
-[1] grid      stats4    stats     graphics  grDevices utils     datasets 
-[8] methods   base     
+[1] grid      stats4    stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] nnSVG_1.8.0                    igraph_2.2.1                  
- [3] BayesSpace_1.14.0              Banksy_1.0.0                  
- [5] scran_1.32.0                   Voyager_1.6.0                 
- [7] ggspavis_1.10.0                SpatialFeatureExperiment_1.6.1
- [9] HDF5Array_1.32.1               rhdf5_2.48.0                  
-[11] DelayedArray_0.30.1            SparseArray_1.4.8             
-[13] S4Arrays_1.4.1                 abind_1.4-8                   
-[15] Matrix_1.7-4                   SpatialExperiment_1.14.0      
-[17] patchwork_1.3.2                org.Mm.eg.db_3.19.1           
-[19] harmony_2.0.5                  Rcpp_1.1.0                    
-[21] BiocParallel_1.38.0            scDblFinder_1.18.0            
-[23] writexl_2.0.0                  scRepertoire_2.0.7            
-[25] kableExtra_1.4.1               knitr_1.51                    
-[27] magrittr_2.0.4                 RColorBrewer_1.1-3            
-[29] NCmisc_1.3.1                   VennDiagram_1.8.2             
-[31] futile.logger_1.4.9            ggupset_0.4.1                 
-[33] gridExtra_2.3                  DOSE_3.30.5                   
-[35] enrichplot_1.24.4              msigdbr_26.1.0                
-[37] org.Hs.eg.db_3.19.1            AnnotationDbi_1.66.0          
-[39] clusterProfiler_4.12.6         multtest_2.60.0               
-[41] metap_1.12                     scater_1.32.1                 
-[43] scuttle_1.14.0                 destiny_3.18.0                
-[45] circlize_0.4.18                muscat_1.18.0                 
-[47] viridis_0.6.5                  viridisLite_0.4.2             
-[49] lubridate_1.9.4                forcats_1.0.1                 
-[51] stringr_1.5.2                  purrr_1.1.0                   
-[53] readr_2.1.5                    tidyr_1.3.1                   
-[55] tibble_3.3.0                   tidyverse_2.0.0               
-[57] dplyr_1.1.4                    SingleCellExperiment_1.26.0   
-[59] SummarizedExperiment_1.34.0    Biobase_2.64.0                
-[61] GenomicRanges_1.56.2           GenomeInfoDb_1.40.1           
-[63] IRanges_2.38.1                 S4Vectors_0.42.1              
-[65] BiocGenerics_0.50.0            MatrixGenerics_1.16.0         
-[67] matrixStats_1.5.0              pheatmap_1.0.13               
-[69] ggpubr_0.6.2                   ggplot2_4.0.0                 
-[71] Seurat_5.3.0                   SeuratObject_5.2.0            
-[73] sp_2.2-0                       runSeurat3_0.1.0              
-[75] ExploreSCdataSeurat3_0.1.0    
+ [1] nnSVG_1.8.0                    igraph_2.2.1                   BayesSpace_1.14.0             
+ [4] Banksy_1.0.0                   scran_1.32.0                   Voyager_1.6.0                 
+ [7] ggspavis_1.10.0                SpatialFeatureExperiment_1.6.1 HDF5Array_1.32.1              
+[10] rhdf5_2.48.0                   DelayedArray_0.30.1            SparseArray_1.4.8             
+[13] S4Arrays_1.4.1                 abind_1.4-8                    Matrix_1.7-4                  
+[16] SpatialExperiment_1.14.0       patchwork_1.3.2                org.Mm.eg.db_3.19.1           
+[19] harmony_2.0.5                  Rcpp_1.1.0                     BiocParallel_1.38.0           
+[22] scDblFinder_1.18.0             writexl_2.0.0                  scRepertoire_2.0.7            
+[25] kableExtra_1.4.1               knitr_1.51                     magrittr_2.0.4                
+[28] RColorBrewer_1.1-3             NCmisc_1.3.1                   VennDiagram_1.8.2             
+[31] futile.logger_1.4.9            ggupset_0.4.1                  gridExtra_2.3                 
+[34] DOSE_3.30.5                    enrichplot_1.24.4              msigdbr_26.1.0                
+[37] org.Hs.eg.db_3.19.1            AnnotationDbi_1.66.0           clusterProfiler_4.12.6        
+[40] multtest_2.60.0                metap_1.12                     scater_1.32.1                 
+[43] scuttle_1.14.0                 destiny_3.18.0                 circlize_0.4.18               
+[46] muscat_1.18.0                  viridis_0.6.5                  viridisLite_0.4.2             
+[49] lubridate_1.9.4                forcats_1.0.1                  stringr_1.5.2                 
+[52] purrr_1.1.0                    readr_2.1.5                    tidyr_1.3.1                   
+[55] tibble_3.3.0                   tidyverse_2.0.0                dplyr_1.1.4                   
+[58] SingleCellExperiment_1.26.0    SummarizedExperiment_1.34.0    Biobase_2.64.0                
+[61] GenomicRanges_1.56.2           GenomeInfoDb_1.40.1            IRanges_2.38.1                
+[64] S4Vectors_0.42.1               BiocGenerics_0.50.0            MatrixGenerics_1.16.0         
+[67] matrixStats_1.5.0              pheatmap_1.0.13                ggpubr_0.6.2                  
+[70] ggplot2_4.0.0                  Seurat_5.3.0                   SeuratObject_5.2.0            
+[73] sp_2.2-0                       runSeurat3_0.1.0               ExploreSCdataSeurat3_0.1.0    
 
 loaded via a namespace (and not attached):
-  [1] xts_0.14.1                DBI_1.3.0                
-  [3] bslib_0.12.0              httr_1.4.8               
-  [5] prettyunits_1.2.0         yulab.utils_0.2.4        
-  [7] gsl_2.1-8                 VIM_6.2.6                
-  [9] ggplotify_0.1.3           GenomicAlignments_1.40.0 
- [11] fANCOVA_0.6-1             sparseMatrixStats_1.16.0 
- [13] remaCor_0.0.20            spatstat.geom_3.6-0      
- [15] babelgene_22.9            TTR_0.24.4               
- [17] pillar_1.11.1             R6_2.6.1                 
- [19] boot_1.3-32               mime_0.13                
- [21] glmGamPoi_1.16.0          reticulate_1.45.0        
- [23] edgeR_4.2.2               uwot_0.2.3               
- [25] Rhdf5lib_1.26.0           ROCR_1.0-12              
- [27] rprojroot_2.1.1           RcppHungarian_0.3        
- [29] limma_3.60.6              S7_0.2.0                 
- [31] parallelly_1.45.1         iNEXT_3.0.2              
- [33] GlobalOptions_0.1.4       rbibutils_2.4.1          
- [35] caTools_1.18.3            mgcv_1.9-4               
- [37] polyclip_1.10-7           beachmat_2.20.0          
- [39] htmltools_0.5.8.1         lambda.r_1.2.4           
- [41] e1071_1.7-16              ggplot.multistats_1.0.1  
- [43] ggrepel_0.9.6             classInt_0.4-11          
- [45] car_3.1-5                 spData_2.3.5             
- [47] ComplexHeatmap_2.20.0     fgsea_1.30.0             
- [49] aricode_1.1.0             spatstat.utils_3.2-0     
- [51] TFisher_0.2.0             scatterplot3d_0.3-45     
- [53] clue_0.3-66               scatterpie_0.2.6         
- [55] fitdistrplus_1.2-6        goftest_1.2-3            
- [57] tidyselect_1.2.1          sfheaders_0.4.5          
- [59] RSQLite_2.4.3             truncdist_1.0-2          
- [61] cowplot_1.2.0             GenomeInfoDbData_1.2.12  
- [63] ScaledMatrix_1.12.0       scattermore_1.2          
- [65] spatstat.data_3.1-9       fs_1.6.6                 
- [67] xgboost_3.2.1.1           sctransform_0.4.2        
- [69] BRISC_1.0.6               future.apply_1.20.2      
- [71] glmmTMB_1.1.13            R.oo_1.27.1              
- [73] workflowr_1.7.2           RcppHNSW_0.6.0           
- [75] mathjaxr_2.0-0            vipor_0.4.7              
- [77] rtracklayer_1.64.0        Rtsne_0.17               
- [79] DelayedMatrixStats_1.26.0 lazyeval_0.2.2           
- [81] sass_0.4.10               scales_1.4.0             
- [83] carData_3.0-6             treeio_1.28.0            
- [85] R.utils_2.13.0            bitops_1.0-9             
- [87] aod_1.3.3                 labeling_0.4.3           
- [89] R.methodsS3_1.8.2         KEGGREST_1.44.1          
- [91] promises_1.5.0            shape_1.4.6.1            
- [93] terra_1.9-34              rhdf5filters_1.16.0      
- [95] variancePartition_1.34.0  zoo_1.8-14               
- [97] DropletUtils_1.24.0       spdep_1.4-2              
- [99] locfit_1.5-9.12           RSpectra_0.16-2          
-[101] multcomp_1.4-31           assertthat_0.2.1         
-[103] tools_4.4.1               ape_5.8-1                
-[105] BiocFileCache_2.12.0      shiny_1.14.0             
-[107] pcaMethods_1.96.0         EnvStats_3.1.0           
-[109] git2r_0.36.2              fftwtools_0.9-11         
-[111] rlang_1.1.4               generics_0.1.4           
-[113] BiocSingular_1.20.0       ggridges_0.5.7           
-[115] evaluate_1.0.5            httr2_1.2.3              
-[117] stringdist_0.9.17         BiocIO_1.14.0            
-[119] otel_0.2.0                reshape2_1.4.4           
-[121] plotrix_3.8-14            colorspace_2.1-2         
-[123] data.table_1.17.8         withr_3.0.3              
-[125] sccore_1.0.7              RCurl_1.98-1.19          
-[127] restfulr_0.0.17           xtable_1.8-8             
-[129] plyr_1.8.9                lme4_1.1-37              
-[131] aplot_0.3.1               MatrixModels_0.5-4       
-[133] systemfonts_1.3.1         mclust_6.1.3             
-[135] httpuv_1.6.16             cubature_2.1.4-1         
-[137] rmarkdown_2.31            metapod_1.12.0           
-[139] units_1.0-1               robustbase_0.99-7        
-[141] rdist_0.0.5               MASS_7.3-65              
-[143] dqrng_0.4.1               broom_1.0.13             
-[145] deldir_2.0-4              GO.db_3.19.1             
-[147] sandwich_3.1-3            tensor_1.5.1             
-[149] memuse_4.2-3              vctrs_0.6.5              
-[151] lifecycle_1.0.5           proxy_0.4-27             
-[153] codetools_0.2-20          fastDummies_1.7.6        
-[155] mnormt_2.1.1              nlme_3.1-168             
-[157] future_1.75.0             DESeq2_1.44.0            
-[159] ggside_0.4.1              dbplyr_2.5.2             
-[161] progress_1.2.3            jquerylib_0.1.4          
-[163] shinydashboard_0.7.3      rstudioapi_0.19.0        
-[165] stringi_1.8.7             miscTools_0.6-30         
-[167] VGAM_1.1-14               hms_1.1.4                
-[169] pbapply_1.7-4             minqa_1.2.8              
-[171] cachem_1.1.0              tidytree_0.4.8           
-[173] listenv_1.0.0             XVector_0.44.0           
-[175] plotly_4.12.1             mutoss_0.1-14            
-[177] ggtree_3.12.0             jpeg_0.1-11              
-[179] GetoptLong_1.1.1          ggfun_0.2.1              
-[181] htmlwidgets_1.6.4         Formula_1.2-6            
-[183] class_7.3-23              memoise_2.0.1            
-[185] crayon_1.5.3              gridGraphics_0.5-1       
-[187] rappdirs_0.3.4            smoother_1.3             
-[189] filelock_1.0.3            xml2_1.6.0               
-[191] GOSemSim_2.30.2           s2_1.1.11                
-[193] UCSC.utils_1.0.0          png_0.1-8                
-[195] progressr_1.0.0           tzdb_0.5.0               
-[197] colourpicker_1.3.0        ggthemes_5.2.0           
-[199] emmeans_2.0.4             evd_2.3-7.1              
-[201] fastmap_1.2.0             laeken_0.5.3             
-[203] coda_0.19-4.1             tidygraph_1.3.1          
-[205] vcd_1.4-14                blme_1.0-7               
-[207] pkgconfig_2.0.3           cli_3.6.5                
-[209] beeswarm_0.4.0            ggforce_0.5.0            
-[211] TMB_1.9.18                ggiraph_0.9.6            
-[213] ggsignif_0.6.4            nnet_7.3-20              
-[215] zeallot_0.2.0             ggalluvial_0.12.6        
-[217] maxLik_1.5-2.2            lmtest_0.9-40            
-[219] textshaping_1.0.5         RcppAnnoy_0.0.22         
-[221] evmix_2.12                lmerTest_3.2-1           
-[223] gdtools_0.5.0             DEoptimR_1.2-0           
-[225] timechange_0.3.0          ggdendro_0.2.0           
-[227] splines_4.4.1             blob_1.3.0               
-[229] XML_3.99-0.23             numDeriv_2016.8-1.1      
-[231] globals_0.19.1            ggbeeswarm_0.7.3         
-[233] ica_1.0-3                 spam_2.11-1              
-[235] compiler_4.4.1            RcppEigen_0.3.4.0.2      
-[237] rjson_0.2.23              sf_1.1-2                 
-[239] reformulas_0.4.4          qqconf_1.3.2             
-[241] leidenAlg_1.1.8           bit_4.6.0                
-[243] hexbin_1.28.5             sn_2.1.3                 
-[245] BiocNeighbors_1.22.0      glue_1.8.0               
-[247] estimability_2.0.0        formatR_1.14             
-[249] digest_0.6.36             irlba_2.3.5.1            
-[251] tiff_0.1-12               graphlayouts_1.2.3       
-[253] magick_2.9.1              fontLiberation_0.1.0     
-[255] foreach_1.5.2             fontBitstreamVera_0.1.1  
-[257] spatstat.random_3.4-2     SparseM_1.84-2           
-[259] zlibbioc_1.50.0           dotCall64_1.2            
-[261] tweenr_2.0.3              lattice_0.22-7           
-[263] statmod_1.5.1             ggraph_2.2.2             
-[265] rsvd_1.0.5                gson_0.2.1               
-[267] ggnewscale_0.5.2          nloptr_2.2.1             
-[269] mvtnorm_1.3-3             yaml_2.3.10              
-[271] qvalue_2.36.0             later_1.4.4              
-[273] backports_1.5.0           rstatix_1.1.0            
-[275] shadowtext_0.1.6          Rsamtools_2.20.0         
-[277] parallel_4.4.1            fontquiver_0.2.1         
-[279] quantreg_6.1              miniUI_0.1.2             
-[281] gtable_0.3.6              xfun_0.52                
-[283] Cairo_1.6-5               Biostrings_2.72.1        
-[285] curl_7.0.0                doParallel_1.0.17        
-[287] KernSmooth_2.23-26        futile.options_1.0.1     
-[289] survival_3.8-3            jsonlite_2.0.0           
-[291] svglite_2.2.2             iterators_1.0.14         
-[293] TH.data_1.1-5             spatstat.univar_3.1-4    
-[295] pbkrtest_0.5.5            RhpcBLASctl_0.23-42      
-[297] EBImage_4.46.0            fastmatch_1.1-8          
-[299] gtools_3.9.5              spatstat.sparse_3.1-0    
-[301] RANN_2.6.2                bluster_1.14.0           
-[303] wk_0.9.5                  dbscan_1.2.5             
-[305] spatstat.explore_3.5-3    scico_1.5.0              
-[307] bit64_4.6.0-1             DirichletReg_0.7-2       
-[309] cluster_2.1.8.1           Rdpack_2.6.6             
-[311] farver_2.1.2              corpcor_1.6.10           
-[313] gplots_3.3.0              ranger_0.18.0            </code></pre>
+  [1] xts_0.14.1                DBI_1.3.0                 bslib_0.12.0             
+  [4] httr_1.4.8                prettyunits_1.2.0         yulab.utils_0.2.4        
+  [7] gsl_2.1-8                 VIM_6.2.6                 ggplotify_0.1.3          
+ [10] GenomicAlignments_1.40.0  fANCOVA_0.6-1             sparseMatrixStats_1.16.0 
+ [13] remaCor_0.0.20            spatstat.geom_3.6-0       babelgene_22.9           
+ [16] TTR_0.24.4                pillar_1.11.1             R6_2.6.1                 
+ [19] boot_1.3-32               mime_0.13                 glmGamPoi_1.16.0         
+ [22] reticulate_1.45.0         edgeR_4.2.2               uwot_0.2.3               
+ [25] Rhdf5lib_1.26.0           ROCR_1.0-12               rprojroot_2.1.1          
+ [28] RcppHungarian_0.3         limma_3.60.6              S7_0.2.0                 
+ [31] parallelly_1.45.1         iNEXT_3.0.2               GlobalOptions_0.1.4      
+ [34] rbibutils_2.4.1           caTools_1.18.3            mgcv_1.9-4               
+ [37] polyclip_1.10-7           beachmat_2.20.0           htmltools_0.5.8.1        
+ [40] lambda.r_1.2.4            e1071_1.7-16              ggplot.multistats_1.0.1  
+ [43] ggrepel_0.9.6             classInt_0.4-11           car_3.1-5                
+ [46] spData_2.3.5              ComplexHeatmap_2.20.0     fgsea_1.30.0             
+ [49] aricode_1.1.0             spatstat.utils_3.2-0      TFisher_0.2.0            
+ [52] scatterplot3d_0.3-45      clue_0.3-66               scatterpie_0.2.6         
+ [55] fitdistrplus_1.2-6        goftest_1.2-3             tidyselect_1.2.1         
+ [58] sfheaders_0.4.5           RSQLite_2.4.3             truncdist_1.0-2          
+ [61] cowplot_1.2.0             GenomeInfoDbData_1.2.12   ScaledMatrix_1.12.0      
+ [64] scattermore_1.2           spatstat.data_3.1-9       fs_1.6.6                 
+ [67] xgboost_3.2.1.1           sctransform_0.4.2         BRISC_1.0.6              
+ [70] future.apply_1.20.2       glmmTMB_1.1.13            R.oo_1.27.1              
+ [73] workflowr_1.7.2           RcppHNSW_0.6.0            mathjaxr_2.0-0           
+ [76] vipor_0.4.7               rtracklayer_1.64.0        Rtsne_0.17               
+ [79] DelayedMatrixStats_1.26.0 lazyeval_0.2.2            sass_0.4.10              
+ [82] scales_1.4.0              carData_3.0-6             treeio_1.28.0            
+ [85] R.utils_2.13.0            bitops_1.0-9              aod_1.3.3                
+ [88] labeling_0.4.3            R.methodsS3_1.8.2         KEGGREST_1.44.1          
+ [91] promises_1.5.0            shape_1.4.6.1             terra_1.9-34             
+ [94] rhdf5filters_1.16.0       variancePartition_1.34.0  zoo_1.8-14               
+ [97] DropletUtils_1.24.0       spdep_1.4-2               locfit_1.5-9.12          
+[100] RSpectra_0.16-2           multcomp_1.4-31           assertthat_0.2.1         
+[103] tools_4.4.1               ape_5.8-1                 BiocFileCache_2.12.0     
+[106] shiny_1.14.0              pcaMethods_1.96.0         EnvStats_3.1.0           
+[109] git2r_0.36.2              fftwtools_0.9-11          rlang_1.1.4              
+[112] generics_0.1.4            BiocSingular_1.20.0       ggridges_0.5.7           
+[115] evaluate_1.0.5            httr2_1.2.3               stringdist_0.9.17        
+[118] BiocIO_1.14.0             otel_0.2.0                reshape2_1.4.4           
+[121] plotrix_3.8-14            colorspace_2.1-2          data.table_1.17.8        
+[124] withr_3.0.3               sccore_1.0.7              RCurl_1.98-1.19          
+[127] restfulr_0.0.17           xtable_1.8-8              plyr_1.8.9               
+[130] lme4_1.1-37               aplot_0.3.1               MatrixModels_0.5-4       
+[133] systemfonts_1.3.1         mclust_6.1.3              httpuv_1.6.16            
+[136] cubature_2.1.4-1          rmarkdown_2.31            metapod_1.12.0           
+[139] units_1.0-1               robustbase_0.99-7         rdist_0.0.5              
+[142] MASS_7.3-65               dqrng_0.4.1               broom_1.0.13             
+[145] deldir_2.0-4              GO.db_3.19.1              sandwich_3.1-3           
+[148] tensor_1.5.1              memuse_4.2-3              vctrs_0.6.5              
+[151] lifecycle_1.0.5           proxy_0.4-27              codetools_0.2-20         
+[154] fastDummies_1.7.6         mnormt_2.1.1              nlme_3.1-168             
+[157] future_1.75.0             DESeq2_1.44.0             ggside_0.4.1             
+[160] dbplyr_2.5.2              progress_1.2.3            jquerylib_0.1.4          
+[163] shinydashboard_0.7.3      rstudioapi_0.19.0         stringi_1.8.7            
+[166] miscTools_0.6-30          VGAM_1.1-14               hms_1.1.4                
+[169] pbapply_1.7-4             minqa_1.2.8               cachem_1.1.0             
+[172] tidytree_0.4.8            listenv_1.0.0             XVector_0.44.0           
+[175] plotly_4.12.1             jpeg_0.1-11               mutoss_0.1-14            
+[178] ggtree_3.12.0             GetoptLong_1.1.1          ggfun_0.2.1              
+[181] htmlwidgets_1.6.4         Formula_1.2-6             class_7.3-23             
+[184] memoise_2.0.1             crayon_1.5.3              gridGraphics_0.5-1       
+[187] rappdirs_0.3.4            smoother_1.3              filelock_1.0.3           
+[190] xml2_1.6.0                GOSemSim_2.30.2           s2_1.1.11                
+[193] UCSC.utils_1.0.0          png_0.1-8                 progressr_1.0.0          
+[196] tzdb_0.5.0                colourpicker_1.3.0        ggthemes_5.2.0           
+[199] emmeans_2.0.4             evd_2.3-7.1               fastmap_1.2.0            
+[202] laeken_0.5.3              coda_0.19-4.1             tidygraph_1.3.1          
+[205] vcd_1.4-14                blme_1.0-7                pkgconfig_2.0.3          
+[208] cli_3.6.5                 beeswarm_0.4.0            ggforce_0.5.0            
+[211] whisker_0.4.1             TMB_1.9.18                ggiraph_0.9.6            
+[214] ggsignif_0.6.4            nnet_7.3-20               zeallot_0.2.0            
+[217] ggalluvial_0.12.6         maxLik_1.5-2.2            lmtest_0.9-40            
+[220] textshaping_1.0.5         RcppAnnoy_0.0.22          evmix_2.12               
+[223] lmerTest_3.2-1            gdtools_0.5.0             DEoptimR_1.2-0           
+[226] timechange_0.3.0          ggdendro_0.2.0            splines_4.4.1            
+[229] blob_1.3.0                XML_3.99-0.23             numDeriv_2016.8-1.1      
+[232] globals_0.19.1            ggbeeswarm_0.7.3          ica_1.0-3                
+[235] spam_2.11-1               compiler_4.4.1            RcppEigen_0.3.4.0.2      
+[238] rjson_0.2.23              sf_1.1-2                  reformulas_0.4.4         
+[241] qqconf_1.3.2              leidenAlg_1.1.8           bit_4.6.0                
+[244] hexbin_1.28.5             sn_2.1.3                  BiocNeighbors_1.22.0     
+[247] glue_1.8.0                estimability_2.0.0        formatR_1.14             
+[250] digest_0.6.36             irlba_2.3.5.1             tiff_0.1-12              
+[253] graphlayouts_1.2.3        magick_2.9.1              fontLiberation_0.1.0     
+[256] foreach_1.5.2             fontBitstreamVera_0.1.1   spatstat.random_3.4-2    
+[259] SparseM_1.84-2            zlibbioc_1.50.0           dotCall64_1.2            
+[262] tweenr_2.0.3              lattice_0.22-7            statmod_1.5.1            
+[265] ggraph_2.2.2              rsvd_1.0.5                gson_0.2.1               
+[268] ggnewscale_0.5.2          nloptr_2.2.1              mvtnorm_1.3-3            
+[271] yaml_2.3.10               qvalue_2.36.0             later_1.4.4              
+[274] backports_1.5.0           rstatix_1.1.0             shadowtext_0.1.6         
+[277] Rsamtools_2.20.0          parallel_4.4.1            fontquiver_0.2.1         
+[280] quantreg_6.1              miniUI_0.1.2              gtable_0.3.6             
+[283] xfun_0.52                 Cairo_1.6-5               Biostrings_2.72.1        
+[286] curl_7.0.0                doParallel_1.0.17         KernSmooth_2.23-26       
+[289] futile.options_1.0.1      survival_3.8-3            jsonlite_2.0.0           
+[292] svglite_2.2.2             iterators_1.0.14          TH.data_1.1-5            
+[295] spatstat.univar_3.1-4     pbkrtest_0.5.5            RhpcBLASctl_0.23-42      
+[298] EBImage_4.46.0            fastmatch_1.1-8           gtools_3.9.5             
+[301] spatstat.sparse_3.1-0     RANN_2.6.2                bluster_1.14.0           
+[304] wk_0.9.5                  dbscan_1.2.5              spatstat.explore_3.5-3   
+[307] scico_1.5.0               bit64_4.6.0-1             DirichletReg_0.7-2       
+[310] cluster_2.1.8.1           Rdpack_2.6.6              farver_2.1.2             
+[313] corpcor_1.6.10            gplots_3.3.0              ranger_0.18.0            </code></pre>
 </div>
 </div>
 </div>

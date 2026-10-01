@@ -9,6 +9,6 @@ editor_options:
 ---
 
 ## Spatial HD FALC
-analysis of SpatialHD_FALC
-[link](SpatialHD_FALC_revision_corrected.html)
+Analysis of SpatialHD_FALC
+[link](Figure_SpatialHD_FALC_clean.html)
 

@@ -13,6 +13,11 @@ editor_options:
   chunk_output_type: inline
 ---
 
+```{r setup, include=FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
 
 ```{r library, include=FALSE}
 
@@ -64,10 +69,10 @@ library(Voyager)
 library(SingleCellExperiment)
 library(scran)
 
-library(Banksy)
-library(BayesSpace)
-library(igraph)
-library(nnSVG)
+library(UCell)
+library(BiocParallel)
+
+
 
 ```
 
@@ -76,10 +81,12 @@ library(nnSVG)
 ```{r Data input}
 
 obj1 <- readRDS("/R/Spatial_HD_2026/data/processed_seurat/430721_1-20260821_Hu_PericardFALC_AHP2_squA_S2_16um.rds")
-obj2 <- readRDS("/R/Spatial_HD_2026/data/processed_seurat/430721_2-20260821_Hu_PericardFALC_AHP3_squD_S1_16um.rds")
+obj2 <- readRDS("/R/Spatial_HD_2026/data/processed_seurat/433121_1-20260915_Hu_PericardFALC_AHP5_squA_S1_16um.rds")
+obj3 <- readRDS("/R/Spatial_HD_2026/data/processed_seurat/433121_2-20260915_Hu_PericardFALC_AHP6_squD_S2_16um.rds")
 
-samples  <- c("obj1", "obj2")
-seu_list <- list(obj1 = obj1, obj2 = obj2)
+
+samples  <- c("obj1", "obj2","obj3")
+seu_list <- list(obj1 = obj1, obj2 = obj2, obj3 = obj3)
 
 # quick look at what came in
 for (nm in samples) {
@@ -266,91 +273,17 @@ wrap_plots(he_panels, nrow = 1)
 ```
 
 
-## Plotting of top HVGs
-```{r Plotting of top HVGs}
-
-n_top    <- 50
-n_row    <- 5
-n_col    <- 5
-per_page <- n_row * n_col
-
-hvg_plots  <- list()   # paginated grids, per sample
-hvg_panels <- list()   # individual gene panels
-
-for (nm in samples) {
-  sce_obj <- sce_list[[nm]]
-  message("Processing: ", nm)
-
-  # logcounts here is SCT's 'data' slot (log1p of corrected counts).
-  # Do NOT logNormCounts() - that would re-normalize corrected values.
-  if (!"logcounts" %in% assayNames(sce_obj)) {
-    stop("No logcounts in ", nm, " - was DefaultAssay 'SCT' at conversion?")
-  }
-  if (!"SCT_residuals" %in% assayNames(sce_obj)) {
-    stop("No SCT_residuals in ", nm, " - cannot rank HVGs by residual variance.")
-  }
-
-  # --- HVGs from SCT, ranked by residual variance ---
-  hvg_all <- rownames(sce_obj)[rowData(sce_obj)$hvg]
-  if (length(hvg_all) == 0) {
-    stop("No HVGs flagged in rowData(", nm, ")$hvg.")
-  }
-  res_mat <- assay(sce_obj, "SCT_residuals")[hvg_all, , drop = FALSE]
-  res_var <- if (requireNamespace("matrixStats", quietly = TRUE)) {
-    setNames(matrixStats::rowVars(as.matrix(res_mat)), hvg_all)
-  } else {
-    apply(res_mat, 1, var)
-  }
-  top_HVG <- names(sort(res_var, decreasing = TRUE))[seq_len(min(n_top, length(hvg_all)))]
-  message("  ", length(top_HVG), " HVGs; top 3: ",
-          paste(head(top_HVG, 3), collapse = ", "), " ...")
-
-  xy       <- coord_list[[nm]]
-  expr_mat <- logcounts(sce_obj)
-
-  plot_list <- lapply(top_HVG, function(gene) {
-    df <- data.frame(x = xy$x, y = xy$y,
-                     expression = as.numeric(expr_mat[gene, ]))
-    df <- df[order(df$expression), ]
-    ggplot(df, aes(x = x, y = y, color = expression)) +
-      geom_point(size = 0.005, alpha = 0.5) +
-      scale_color_viridis_c(option = "plasma") +
-      coord_fixed() +
-      theme_void() +
-      labs(title = gene, color = "LogExpr") +
-      theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 8),
-            legend.position = "none")
-  })
-  names(plot_list) <- top_HVG
-  hvg_panels[[nm]] <- plot_list
-
-  # --- split into pages of per_page panels ---
-  pages <- split(seq_along(plot_list), ceiling(seq_along(plot_list) / per_page))
-
-  hvg_plots[[nm]] <- lapply(seq_along(pages), function(p) {
-    idx <- pages[[p]]
-    g <- wrap_plots(plot_list[idx], nrow = n_row, ncol = n_col) +
-      plot_annotation(
-        title = paste0(nm, " - top HVGs (", min(idx), "-", max(idx), ")"),
-        theme = theme(plot.title = element_text(face = "bold", hjust = 0.5))
-      )
-    print(g)
-    g
-  })
-
-  message("Done: ", nm, " (", length(pages), " pages)")
-}
-
-```
-
 
 ## Plotting of selected genes, both samples
 ```{r Plotting of selected genes}
 
-genes_of_interest <- c("CCL19","CXCL13","CCL11","IL33","IL6","BMP4","TCF21","COL11A1",
-                       "VCAM1","FAT4","ALDH1A2","JCHAIN","CD4","CD3E","CD14",
-                       "MCAM","CLU","IL7R","IL23R","PTPRC","CD19","IGHD","EOMES",
-                       "MSLN","CD68","DPP4","ITGAX")
+genes_of_interest <- c("CCL19","CXCL13","CCL11","IL33","IL6",
+                       "VCAM1","JCHAIN","CD4","CD3E","CD14",
+                       "MCAM","CLU","IL7R","IL23R","PTPRC","CD19",
+                       "IGHD","EOMES",
+                       "PECAM1","CDH5","VWF",
+                       "COL1A1","COL1A2","COL3A1","DCN","LUM","PDGFRA","PDGFRB",
+                       "LYZ","CD14","CSF1R","CD68","S100A9","MRC1","SIGLEC1")
 # NB: LY6G removed - no human ortholog. Use FCGR3B or CEACAM8 for neutrophils.
 
 # --- prep each sample once, outside the gene loop ---
@@ -450,15 +383,12 @@ for (i in seq_along(genes_of_interest)) {
 ```{r Set up cell types}
 
 my_signatures <- list(
-  VEC     = c("PECAM1","CDH5","VWF","ICAM2","PLVAP","AQP1","ENG"),
-  Fb      = c("COL3A1","COL1A2","PDGFRA","PDGFRB","DCN","LUM","COL1A1",
-              "ACTA2","TAGLN","MYH11","RGS5","NOTCH3"),
-  FRC     = c("CCL19","CXCL13","CLU","VCAM1","ICAM1"),
-  Myeloid = c("MRC1","SIRPA","PTPRC","CSF1R","HLA-DRA","HLA-DRB1","S100A9","LYZ",
-              "FCN1","ITGAX","CD14","MARCO","SIGLEC1","CCR2","CLEC4C","TLR7"),
-  Tcell   = c("CD3D","CD3E","CD3G","CD28","IL7R","IL2RB","CD4","CCR7","CTLA4"),
-  Bcell   = c("MS4A1","CD79A","CD79B","CD72","CD38","IGHD","IGHM","CD24",
-              "JCHAIN","IGKC","IGHG1","IGHG3","IGHA1")
+  VEC     = c("PECAM1","CLDN5", "ACKR1","VWF","PLVAP","ICAM2","AQP1"),
+  PeriFb_VSMC = c("COL1A1","COL1A2","MYL9","LUM","ACTA2","PDGFRB","TAGLN","MYH11"),
+  FRC     = c("CCL19","PDPN","VCAM1","IL33","CLU","IL7","CXCL12","DCN"),   
+  Myeloid = c("LYZ", "S100A9", "S100A8", "CTSS", "CST3", "GPNMB","CD68","MRC1"),
+  Tcell   = c("CD3D","CD3E","CD3G","IL7R","TRBC1", "TRBC2", "TRAC"),
+  Bcell   = c("MS4A1","CD79A","CD79B","IGHM","MZB1", "XBP1", "CD38")
 )
 
 # genes must be present in EVERY object so scores use the same gene set
@@ -476,8 +406,8 @@ message("Using ", length(sig_use), " signatures: ", paste(names(sig_use), collap
 
 cell_colors <- c(
   VEC        = "#ff7f0e",
-  Fb         = "#2ca02c",
-  FRC        = "#9467bd",
+  PeriFb_VSMC         = "#2ca02c",
+  FRC        = "#E41A1C",
   Myeloid    = "#e377c2",
   Tcell      = "#bcbd22",
   Bcell      = "#17becf",
@@ -564,10 +494,108 @@ for (i in seq_along(keep)) {
 
 ```
 
+```{r}
+
+
+score_ucell <- function(sce, sigs, maxRank = 1500, ncores = 4) {
+  cnt <- SummarizedExperiment::assay(sce, "counts")
+  if (is.null(colnames(cnt)) || anyDuplicated(colnames(cnt)))
+    stop("Bins need unique colnames to keep scores aligned with coordinates")
+
+  # drop genes absent from the matrix and report them
+  sigs <- lapply(sigs, function(g) {
+    miss <- setdiff(g, rownames(cnt))
+    if (length(miss)) message("  missing: ", paste(miss, collapse = ", "))
+    intersect(g, rownames(cnt))
+  })
+  sigs <- sigs[lengths(sigs) > 0]
+
+  sc <- ScoreSignatures_UCell(
+    matrix     = cnt,
+    features   = sigs,
+    maxRank    = maxRank,
+    name       = "",          # keep signature names without "_UCell" suffix
+    chunk.size = 2000,
+    BPPARAM    = MulticoreParam(ncores)   # use SnowParam() or SerialParam() on Windows
+  )
+
+  sc[colnames(sce), names(sigs), drop = FALSE]   # enforce bin order
+}
+
+# choose maxRank from the data: roughly the number of genes detected per bin
+detected <- unlist(lapply(sce_list, function(s)
+  Matrix::colSums(SummarizedExperiment::assay(s, "counts") > 0)))
+print(summary(detected))
+max_rank <- max(100, ceiling(quantile(detected, 0.9)))
+
+score_list <- list()
+
+for (nm in samples) {
+  sce_obj <- sce_list[[nm]]
+  message("Scoring (UCell): ", nm)
+
+  m <- score_ucell(sce_obj, sig_use, maxRank = max_rank)
+  stopifnot(nrow(m) == ncol(sce_obj),
+            nrow(m) == nrow(coord_list[[nm]]))
+
+  score_list[[nm]] <- m
+  message("  ", nrow(m), " bins x ", ncol(m), " signatures")
+}
+
+# keep signatures with non-zero variance in ALL samples
+keep <- Reduce(intersect, lapply(score_list, function(m) colnames(m)[apply(m, 2, sd) > 0]))
+score_list <- lapply(score_list, function(m) m[, keep, drop = FALSE])
+message("Retained: ", paste(keep, collapse = ", "))
+
+
+
+```
+
+
+```{r}
+sig_plots <- list()
+
+for (i in seq_along(keep)) {
+  s <- keep[i]
+  message("Plotting ", i, "/", length(keep), ": ", s)
+
+  # UCell scores start at 0, so anchor the lower limit there
+  lims <- c(0, quantile(unlist(lapply(score_list, function(m) m[, s])),
+                        0.99, na.rm = TRUE))
+
+  panels <- lapply(samples, function(nm) {
+    d <- data.frame(x     = coord_list[[nm]]$x,
+                    y     = coord_list[[nm]]$y,
+                    score = score_list[[nm]][, s])
+    d <- d[order(d$score), ]
+
+    ggplot(d, aes(x = x, y = y, color = score)) +
+      geom_point(size = 0.4, alpha = 0.7) +
+      scale_color_viridis_c(option = "magma", limits = lims, oob = scales::squish) +
+      coord_fixed() + theme_void() +
+      labs(subtitle = nm, color = "UCell score") +
+      theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 10))
+  })
+  names(panels) <- samples
+
+  p <- wrap_plots(c(panels, he_panels), ncol = length(samples)) +
+    plot_layout(guides = "collect") +
+    plot_annotation(
+      title = s,
+      theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14))
+    )
+
+  sig_plots[[s]] <- p
+  print(p)
+}
+
+```
+
+
+
 
 ## Signature score maps, per-type colour
 ```{r Signature score maps per-type colour}
-
 cts <- intersect(keep, names(cell_colors))
 missing_col <- setdiff(keep, names(cell_colors))
 if (length(missing_col))
@@ -580,8 +608,9 @@ for (i in seq_along(cts)) {
   ct <- cts[i]
   message("Plotting ", i, "/", length(cts), ": ", ct)
 
-  lims <- quantile(unlist(lapply(score_list, function(m) m[, ct])),
-                   c(0.01, 0.99), na.rm = TRUE)
+  # UCell scores start at 0: grey = no signal, cell-type colour = high enrichment
+  lims <- c(0, quantile(unlist(lapply(score_list, function(m) m[, ct])),
+                        0.99, na.rm = TRUE))
 
   panels <- lapply(samples, function(nm) {
     d <- data.frame(x     = coord_list[[nm]]$x,
@@ -594,7 +623,7 @@ for (i in seq_along(cts)) {
       scale_color_gradient(low = "grey92", high = cell_colors[[ct]],
                            limits = lims, oob = scales::squish) +
       coord_fixed() + theme_void() +
-      labs(subtitle = nm, color = "Score") +
+      labs(subtitle = nm, color = "UCell score") +
       theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 10))
   })
   names(panels) <- samples
@@ -612,145 +641,810 @@ for (i in seq_along(cts)) {
 
 ```
 
+```{r}
+# ---- Settings ----
+min_score  <- 0    # top score must exceed this, otherwise "Unassigned"
+min_margin <- 0       # e.g. 0.02 = top score must beat the runner-up by this much
+scale_sigs <- FALSE   # TRUE = rescale each signature before comparing (see note)
+
+# optional: rescale each signature by its pooled 99th percentile across samples
+sig_ref <- sapply(cts, function(ct)
+  quantile(unlist(lapply(score_list, function(m) m[, ct])), 0.99, na.rm = TRUE))
+sig_ref[sig_ref == 0] <- 1
+
+assign_winner <- function(m) {
+  m <- m[, cts, drop = FALSE]
+  if (scale_sigs) m <- sweep(m, 2, sig_ref[cts], "/")
+
+  idx    <- max.col(m, ties.method = "first")
+  top    <- m[cbind(seq_len(nrow(m)), idx)]
+  m2     <- m
+  m2[cbind(seq_len(nrow(m)), idx)] <- -Inf
+  second <- do.call(pmax, as.data.frame(m2))
+
+  label <- colnames(m)[idx]
+  label[top <= min_score | (top - second) < min_margin] <- "Unassigned"
+
+  data.frame(celltype = factor(label, levels = c(cts, "Unassigned")),
+             top_score = top,
+             margin    = top - second)
+}
+
+winner_list <- lapply(score_list, assign_winner)
+
+# ---- Composition per sample ----
+comp <- sapply(winner_list, function(w) round(100 * prop.table(table(w$celltype)), 1))
+print(comp)   # % of bins per cell type
+
+# ---- Spatial map ----
+ct_cols <- c(unlist(cell_colors[cts]), Unassigned = "grey90")
+
+panels <- lapply(samples, function(nm) {
+  d <- data.frame(x        = coord_list[[nm]]$x,
+                  y        = coord_list[[nm]]$y,
+                  celltype = winner_list[[nm]]$celltype)
+  d <- d[order(d$celltype == "Unassigned", decreasing = TRUE), ]  # Unassigned drawn first
+
+  ggplot(d, aes(x = x, y = y, color = celltype)) +
+    geom_point(size = 0.4, alpha = 0.9) +
+    scale_color_manual(values = ct_cols, drop = FALSE, name = "Cell type") +
+    guides(color = guide_legend(override.aes = list(size = 3, alpha = 1))) +
+    coord_fixed() + theme_void() +
+    labs(subtitle = nm) +
+    theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 10))
+})
+names(panels) <- samples
+
+p_winner <- wrap_plots(c(panels, he_panels), ncol = length(samples)) +
+  plot_layout(guides = "collect") +
+  plot_annotation(
+    title = "Winner-takes-all cell type assignment (UCell)",
+    theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 13))
+  )
+print(p_winner)
+```
+
+
+
+
+
+
+
 
 ## Cell type distribution
 ```{r Cell type distribution}
-
-thr <- 0   # tune this; see note on `margin` below
-
+# ---- Build assign_df from the winner-takes-all result ----
 assign_df <- do.call(rbind, lapply(samples, function(nm) {
-  m <- score_list[[nm]]
-
-  winner_idx   <- max.col(m, ties.method = "first")
-  winner       <- colnames(m)[winner_idx]
-  winner_score <- m[cbind(seq_len(nrow(m)), winner_idx)]
-
-  # runner-up, to measure how decisive the call is
-  runner_up <- apply(replace(m, cbind(seq_len(nrow(m)), winner_idx), -Inf), 1, max)
-  margin    <- winner_score - runner_up
-
-  winner[winner_score < thr] <- "Unassigned"
-
-  cbind(coord_list[[nm]], label = winner, strength = winner_score, margin = margin)
+  data.frame(sample = nm,
+             x      = coord_list[[nm]]$x,
+             y      = coord_list[[nm]]$y,
+             label  = winner_list[[nm]]$celltype)
 }))
+assign_df$label <- factor(assign_df$label, levels = c(cts, "Unassigned"))
 
-assign_df$sample <- factor(assign_df$sample, levels = samples)
-assign_df$label  <- factor(assign_df$label,  levels = c(keep, "Unassigned"))
-
-print(table(assign_df$sample, assign_df$label))
-
-# grey drawn first so assigned bins sit on top
-plot_df <- assign_df[order(assign_df$label == "Unassigned", decreasing = TRUE), ]
-
-tile_panels <- lapply(samples, function(nm) {
-  d <- plot_df[plot_df$sample == nm, ]
-  ggplot(d, aes(x = x, y = y, color = label)) +
-    geom_point(size = 0.35) +
-    scale_color_manual(values = cell_colors, drop = FALSE) +
-    coord_fixed() + theme_void() +
-    labs(subtitle = nm, color = NULL) +
-    theme(plot.subtitle = element_text(hjust = 0.5, face = "bold"))
-})
-names(tile_panels) <- samples
-
-celltype_map <- wrap_plots(c(tile_panels, he_panels), ncol = length(samples)) +
-  plot_layout(guides = "collect") +
-  plot_annotation(
-    title = "Dominant signature per bin (16 \u00b5m)",
-    theme = theme(plot.title = element_text(hjust = 0.5, face = "bold"))
-  ) &
-  guides(color = guide_legend(override.aes = list(size = 3)))
-
-print(celltype_map)
-
-
-celltype_map_clean <- wrap_plots(tile_panels, nrow = 1) +
-  plot_layout(guides = "collect") +
-  plot_annotation(
-    title = "Dominant signature per bin (16 µm)",
-    theme = theme(plot.title = element_text(hjust = 0.5, face = "bold"))
-  ) &
-  guides(fill = guide_legend(override.aes = list(size = 3)))
-
-print(celltype_map_clean)
-
-
-
-
-# composition per sample
-ggplot(assign_df, aes(x = sample, fill = label)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(values = cell_colors, drop = FALSE) +
-  labs(y = "Fraction of bins", x = NULL, fill = NULL) +
-  theme_minimal()
-
-
-
-# how decisive were the calls? bins with a small margin are ambiguous
-# regardless of how high the winning score was - often a better filter than thr
-ggplot(assign_df, aes(x = margin, fill = sample)) +
-  geom_density(alpha = 0.4) +
-  labs(x = "Winner minus runner-up", y = "Density", fill = NULL) +
-  theme_minimal()
-
-
-```
-
-```{r}
 # Extract all valid cell types to loop through (ignoring "Unassigned")
 cell_types <- levels(assign_df$label)
 cell_types <- cell_types[cell_types != "Unassigned"]
 
+highlight_plots <- list()
+
 # Loop through each cell type
 for (ctype in cell_types) {
-  
-  # 1. Create a custom color palette for this specific cell type
-  # Make everything grey by default, then assign the specific color to the target
-  highlight_colors <- rep("grey85", length(cell_colors))
-  names(highlight_colors) <- names(cell_colors)
-  
-  # Keep the original color for the target cell type
-  if (ctype %in% names(cell_colors)) {
-    highlight_colors[ctype] <- cell_colors[ctype]
-  }
-  
-  # 2. Reorder data so the target cell type is drawn last (on top)
-  # This prevents the grey background points from covering up the target points
+
+  # 1. Everything grey (including Unassigned), target cell type in its own colour
+  highlight_colors <- setNames(rep("grey85", length(levels(assign_df$label))),
+                               levels(assign_df$label))
+  highlight_colors[ctype] <- cell_colors[[ctype]]
+
+  # 2. Draw the target cell type last (on top)
   plot_df_loop <- assign_df
   plot_df_loop$is_target <- plot_df_loop$label == ctype
   plot_df_loop <- plot_df_loop[order(plot_df_loop$is_target), ]
-  
-  # 3. Generate the individual panels for this cell type
+
+  # 3. One panel per sample
   tile_panels_loop <- lapply(samples, function(nm) {
     d <- plot_df_loop[plot_df_loop$sample == nm, ]
-    
+    n_target <- sum(d$is_target)
+    pct      <- round(100 * n_target / nrow(d), 1)
+
     ggplot(d, aes(x = x, y = y, color = label)) +
-      geom_point(size = 0.35) +
+      geom_point(size = 0.15) +
       scale_color_manual(values = highlight_colors, drop = FALSE) +
-      coord_fixed() + 
+      coord_fixed() +
       theme_void() +
-      labs(subtitle = nm) +
+      labs(subtitle = sprintf("%s\n%s bins (%s%%)", nm,
+                              format(n_target, big.mark = ","), pct)) +
       theme(
-        plot.subtitle = element_text(hjust = 0.5, face = "bold"),
-        legend.position = "none" # Hide legend since the title explains the plot
+        plot.subtitle   = element_text(hjust = 0.5, face = "bold"),
+        legend.position = "none"
       )
   })
-  
-  # 4. Assemble the panels using patchwork
+
+  # 4. Assemble panels
   celltype_map_single <- wrap_plots(tile_panels_loop, nrow = 1) +
     plot_annotation(
-      title = sprintf("Spatial Distribution: %s", ctype),
+      title = sprintf("Spatial Distribution: %s (one cell type per spot)", ctype),
       theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 16))
     )
-  
-  # 5. Print the plot to the graphics device
+
+  highlight_plots[[ctype]] <- celltype_map_single
+
+  # 5. Print
   print(celltype_map_single)
 }
 ```
 
 
+```{r}
+# ---- Cell types to show together ----
+show_types <- c("Tcell", "FRC", "PeriFb_VSMC")
+stopifnot(all(show_types %in% levels(assign_df$label)))
+
+# Everything grey, selected cell types in their own colours
+overlay_colors <- setNames(rep("grey85", length(levels(assign_df$label))),
+                           levels(assign_df$label))
+overlay_colors[show_types] <- unlist(cell_colors[show_types])
+
+# Draw background first, then the selected types on top
+plot_df <- assign_df
+plot_df$is_target <- plot_df$label %in% show_types
+plot_df <- plot_df[order(plot_df$is_target), ]
+
+overlay_panels <- lapply(samples, function(nm) {
+  d <- plot_df[plot_df$sample == nm, ]
+  n_t   <- sum(d$label == "Tcell")
+  n_frc <- sum(d$label == "FRC")
+
+  ggplot(d, aes(x = x, y = y, color = label)) +
+    geom_point(size = 0.35) +
+    scale_color_manual(values = overlay_colors, breaks = show_types,
+                       name = "Cell type") +
+    guides(color = guide_legend(override.aes = list(size = 3))) +
+    coord_fixed() +
+    theme_void() +
+    labs(subtitle = sprintf("%s\nT cell: %s | FRC: %s", nm,
+                            format(n_t, big.mark = ","),
+                            format(n_frc, big.mark = ","))) +
+    theme(plot.subtitle = element_text(hjust = 0.5, face = "bold"))
+})
+
+p_overlay <- wrap_plots(overlay_panels, nrow = 1) +
+  plot_layout(guides = "collect") +
+  plot_annotation(
+    title = "T cell and FRC (winner-takes-all)",
+    theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 16))
+  )
+
+print(p_overlay)
+
+```
 
 
+
+```{r}
+nm <- "obj2"
+d_all <- assign_df[assign_df$sample == nm, ]
+
+ggplot(d_all, aes(x, y)) +
+  geom_point(size = 0.1, color = "grey60") +
+  coord_fixed() + theme_minimal()
+```
+```{r}
+
+
+bin_px <- sfs$spot  
+
+
+diag_orient <- function(swap, flip_x, flip_y) {
+  s  <- sfs$lowres
+  pr <- (if (swap) coords$x else coords$y) * s
+  pc <- (if (swap) coords$y else coords$x) * s
+  if (flip_y) pr <- dim(img)[1] - pr
+  if (flip_x) pc <- dim(img)[2] - pc
+
+  d <- data.frame(px = pc, py = pr)
+  d <- d[sample(nrow(d), min(20000, nrow(d))), ]
+
+  ggplot(d, aes(px, -py)) +
+    annotation_raster(img, xmin = 0, xmax = dim(img)[2],
+                      ymin = -dim(img)[1], ymax = 0) +
+    geom_point(size = 0.1, color = "red", alpha = 0.3) +
+    coord_fixed(xlim = c(0, dim(img)[2]), ylim = c(-dim(img)[1], 0), expand = FALSE) +
+    theme_void() +
+    labs(subtitle = sprintf("swap=%s | flip_x=%s | flip_y=%s", swap, flip_x, flip_y)) +
+    theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 8))
+}
+
+grid <- expand.grid(swap = c(TRUE, FALSE), flip_x = c(FALSE, TRUE), flip_y = c(FALSE, TRUE))
+wrap_plots(lapply(seq_len(nrow(grid)), function(i)
+  diag_orient(grid$swap[i], grid$flip_x[i], grid$flip_y[i])), ncol = 4)
+```
+
+```{r}
+
+
+# ---- Rebuild assign_df from the current winner-takes-all result ----
+assign_df <- do.call(rbind, lapply(samples, function(s) {
+  data.frame(sample = s,
+             x      = coord_list[[s]]$x,
+             y      = coord_list[[s]]$y,
+             label  = winner_list[[s]]$celltype)
+}))
+assign_df$label <- factor(assign_df$label, levels = c(cts, "Unassigned"))
+
+print(table(assign_df$label[assign_df$sample == "obj2"]))   # check Unassigned count
+
+
+
+# ---- Settings ----
+m         <- "obj2"
+obj2       <- readRDS("/R/Spatial_HD_2026/data/processed_seurat/433121_1-20260915_Hu_PericardFALC_AHP5_squA_S1_16um.rds")
+xlim_z     <- c(100, 265)      # in your coord_list units (from the plot)
+ylim_z     <- c(-405, -295)
+show_types <- setdiff(levels(assign_df$label), "Unassigned")   # all cell types
+pt         <- 1                # adjust until bins just touch
+alpha_ov   <- 1                # transparency of bins over H&E; lower = more histology visible
+ncol_grid  <- 4                # panels per row
+swap_xy    <- FALSE            # confirmed by orientation diagnostic
+flip_x     <- FALSE
+flip_y     <- FALSE
+
+stopifnot(all(show_types %in% names(cell_colors)))
+
+# ---- Image, scale factor and pixel coordinates from the Seurat object ----
+img_name <- Images(obj2)[1]
+print(Images(obj2))            # check this is the 16 µm image
+
+img    <- obj2[[img_name]]@image
+sfs    <- ScaleFactors(obj2[[img_name]])
+coords <- GetTissueCoordinates(obj2, image = img_name)
+
+scale <- sfs$lowres            # stored image is lowres (544 x 600 px)
+message("Image: ", dim(img)[1], " x ", dim(img)[2], " px; using lowres scale factor")
+
+pix_row <- if (swap_xy) coords$x else coords$y
+pix_col <- if (swap_xy) coords$y else coords$x
+if (flip_y) pix_row <- dim(img)[1] / scale - pix_row
+if (flip_x) pix_col <- dim(img)[2] / scale - pix_col
+
+# ---- Attach pixel coordinates to the winner-takes-all labels ----
+d_all <- assign_df[assign_df$sample == nm, ]
+d_all$barcode <- colnames(sce_list[[nm]])        # same order as coord_list
+m <- match(d_all$barcode, coords$cell)
+stopifnot(mean(!is.na(m)) > 0.99)                 # barcodes must match
+d_all$px <- pix_col[m]
+d_all$py <- pix_row[m]
+
+# ---- Bins inside the zoom window ----
+dz <- d_all[d_all$x >= xlim_z[1] & d_all$x <= xlim_z[2] &
+            d_all$y >= ylim_z[1] & d_all$y <= ylim_z[2], ]
+px_lim <- range(dz$px)
+py_lim <- range(dz$py)
+
+# ---- Crop H&E to the same pixel window ----
+r1 <- max(1, floor(py_lim[1] * scale));  r2 <- min(dim(img)[1], ceiling(py_lim[2] * scale))
+c1 <- max(1, floor(px_lim[1] * scale));  c2 <- min(dim(img)[2], ceiling(px_lim[2] * scale))
+if (nrow(dz) == 0 || r1 >= r2 || c1 >= c2)
+  stop(sprintf("Zoom window outside image: rows %d-%d, cols %d-%d, image %d x %d",
+               r1, r2, c1, c2, dim(img)[1], dim(img)[2]))
+he_crop <- img[r1:r2, c1:c2, , drop = FALSE]
+
+zoom_coord  <- coord_fixed(xlim = px_lim, ylim = -rev(py_lim), expand = FALSE)
+panel_theme <- theme_void() +
+  theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 11),
+        panel.border  = element_rect(color = "black", fill = NA, linewidth = 0.5))
+
+he_layer <- annotation_raster(he_crop, xmin = (c1 - 1) / scale, xmax = c2 / scale, ymin = -r2 / scale, ymax = -(r1 - 1) / scale)
+
+# ---- H&E panel ----
+p_he <- ggplot(dz, aes(px, -py)) +
+  geom_blank() +
+  he_layer +
+  zoom_coord +
+  panel_theme +
+  labs(subtitle = "H&E")
+
+# ---- Overlay function ----
+plot_he_overlay <- function(types, title) {
+  d <- dz[dz$label %in% types, ]
+  d$label <- droplevels(d$label)
+
+  ggplot(d, aes(px, -py, fill = label)) +
+    geom_blank(data = dz, aes(px, -py), inherit.aes = FALSE) +
+    he_layer +
+    geom_tile(width = bin_px * 1.05, height = bin_px * 1.05, alpha = alpha_ov) +
+    scale_fill_manual(values = unlist(cell_colors[show_types]), breaks = show_types,
+                      limits = show_types, name = "Cell type") +
+    zoom_coord + panel_theme +
+    labs(subtitle = title)
+}
+
+# ---- One panel per cell type (with bin count) + merged ----
+type_panels <- lapply(show_types, function(ct) {
+  n <- sum(dz$label == ct)
+  plot_he_overlay(ct, sprintf("H&E + %s (%s)", ct, format(n, big.mark = ",")))
+})
+
+p_he_merge <- plot_he_overlay(show_types, "H&E + all cell types")
+
+# ---- Assemble ----
+p_zoom_he <- wrap_plots(c(list(p_he), type_panels, list(p_he_merge)), ncol = ncol_grid) +
+  plot_layout(guides = "collect") +
+  plot_annotation(
+    title = sprintf("%s: all cell types on H&E (zoom)", nm),
+    theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 10))
+  )
+
+print(p_zoom_he)
+```
+
+
+```{r}
+other_col   <- "grey80"   # colour for bins not of the projected cell type
+other_alpha <- 0.6        # lower = more H&E visible under the grey bins
+
+plot_he_overlay <- function(types, title) {
+  d <- dz
+  d$fill_lab <- ifelse(d$label %in% types, as.character(d$label), "Other")
+  d$fill_lab <- factor(d$fill_lab, levels = c("Other", show_types))
+  d_other  <- d[d$fill_lab == "Other", ]
+  d_target <- d[d$fill_lab != "Other", ]
+
+  ggplot(d, aes(px, -py)) +
+    geom_blank() +
+    he_layer +
+    geom_tile(data = d_other, fill = other_col,
+              width = bin_px, height = bin_px, alpha = other_alpha) +
+    geom_tile(data = d_target, aes(fill = fill_lab),
+              width = bin_px, height = bin_px, alpha = alpha_ov) +
+    scale_fill_manual(values = unlist(cell_colors[show_types]), breaks = show_types,
+                      limits = show_types, name = "Cell type") +
+    zoom_coord + panel_theme +
+    labs(subtitle = title)
+}
+
+# ---- One panel per cell type (with bin count) + merged ----
+type_panels <- lapply(show_types, function(ct) {
+  n <- sum(dz$label == ct)
+  plot_he_overlay(ct, sprintf("%s\n(n = %s)", ct, format(n, big.mark = ",")))
+})
+
+p_he_merge <- plot_he_overlay(show_types, "All cell types")
+
+# ---- Assemble ----
+p_zoom_he <- wrap_plots(c(list(p_he), type_panels, list(p_he_merge)), ncol = ncol_grid) +
+  plot_layout(guides = "collect") +
+  plot_annotation(
+    title = sprintf("%s: all cell types on H&E (zoom)", nm),
+    theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 10))
+  )
+
+print(p_zoom_he)
+```
+
+
+
+
+
+```{r}
+
+# ---- Settings ----
+# =====================================================================
+nm          <- "obj2"
+seu_obj     <- obj2                   # the Seurat object for this sample
+swap_xy     <- FALSE                  # confirmed by orientation diagnostic
+flip_x      <- FALSE
+flip_y      <- FALSE
+
+xlim_z      <- c(100, 265)            # zoom window in coord_list units
+ylim_z      <- c(-405, -295)
+
+markers     <- c("CCL19", "CD3E", "PECAM1")
+marker_cols <- c(CCL19 = "#00BFFF", CD3E = "#FFD700", PECAM1 = "#FF1493")   # cyan, yellow, deep pink
+pt_full     <- 0.15                   # point size on the captured-area view
+pt_zoom     <- 1                      # point size on the zoomed view
+alpha_range <- c(0.3, 1)              # low -> high expression
+margin      <- 0.02                   # padding around the captured area (fraction of its size)
+
+# =====================================================================
+# ---- Image, scale factor and pixel coordinates (Seurat) ----
+# =====================================================================
+img_name <- Images(seu_obj)[1]
+img      <- seu_obj[[img_name]]@image
+scale    <- ScaleFactors(seu_obj[[img_name]])$lowres
+coords   <- GetTissueCoordinates(seu_obj, image = img_name)
+
+pix_row <- if (swap_xy) coords$x else coords$y
+pix_col <- if (swap_xy) coords$y else coords$x
+if (flip_y) pix_row <- dim(img)[1] / scale - pix_row
+if (flip_x) pix_col <- dim(img)[2] / scale - pix_col
+
+# =====================================================================
+# ---- Expression per bin from logcounts (SCE) ----
+# =====================================================================
+sce_obj <- sce_list[[nm]]
+if (!"logcounts" %in% assayNames(sce_obj))
+  stop("No logcounts in ", nm)
+
+gone <- setdiff(markers, rownames(sce_obj))
+if (length(gone)) message(nm, " missing from SCT: ", paste(gone, collapse = ", "))
+markers <- intersect(markers, rownames(sce_obj))
+
+lc <- as.matrix(logcounts(sce_obj)[markers, , drop = FALSE])
+
+det <- rowSums(lc > 0) > 0
+if (any(!det)) message("Not detectable (all zero): ", paste(markers[!det], collapse = ", "))
+markers <- markers[det]
+stopifnot(length(markers) > 0)
+
+# ---- Match SCE bins to Seurat pixel coordinates ----
+m <- match(colnames(sce_obj), coords$cell)
+if (mean(!is.na(m)) < 0.99) {
+  message("nm = ", nm, " | matched: ", round(100 * mean(!is.na(m)), 1), "%")
+  message("SCE barcodes:    ", paste(head(colnames(sce_obj), 3), collapse = ", "))
+  message("Seurat barcodes: ", paste(head(coords$cell, 3), collapse = ", "))
+  stop("Barcodes of sce_list[[nm]] and the Seurat object do not match")
+}
+
+df <- data.frame(cell = colnames(sce_obj),
+                 px   = pix_col[m],
+                 py   = pix_row[m],
+                 gx   = coord_list[[nm]]$x,      # grid coordinates, used for the zoom window
+                 gy   = coord_list[[nm]]$y)
+df <- cbind(df, t(lc[markers, , drop = FALSE]))
+
+# cap each marker at its 99th percentile of positive bins
+q99 <- setNames(
+  sapply(markers, function(g) unname(quantile(df[[g]][df[[g]] > 0], 0.99, na.rm = TRUE))),
+  markers
+)
+print(q99)
+
+# =====================================================================
+# ---- Crops: captured area and zoom window ----
+# =====================================================================
+crop_he <- function(xlim, ylim) {
+  r1 <- max(1, floor(ylim[1] * scale));  r2 <- min(dim(img)[1], ceiling(ylim[2] * scale))
+  c1 <- max(1, floor(xlim[1] * scale));  c2 <- min(dim(img)[2], ceiling(xlim[2] * scale))
+  if (r1 >= r2 || c1 >= c2)
+    stop(sprintf("Crop outside image: rows %d-%d, cols %d-%d, image %d x %d",
+                 r1, r2, c1, c2, dim(img)[1], dim(img)[2]))
+  annotation_raster(img[r1:r2, c1:c2, , drop = FALSE],
+                    xmin = (c1 - 1) / scale, xmax = c2 / scale,
+                    ymin = -r2 / scale,      ymax = -(r1 - 1) / scale)
+}
+
+# captured area = extent of all bins + margin
+bx <- range(df$px, na.rm = TRUE)
+by <- range(df$py, na.rm = TRUE)
+full_xlim <- c(max(0, bx[1] - diff(bx) * margin), min(dim(img)[2] / scale, bx[2] + diff(bx) * margin))
+full_ylim <- c(max(0, by[1] - diff(by) * margin), min(dim(img)[1] / scale, by[2] + diff(by) * margin))
+
+# zoom window: select bins by grid coordinates, then take their pixel extent
+in_zoom <- df$gx >= xlim_z[1] & df$gx <= xlim_z[2] &
+           df$gy >= ylim_z[1] & df$gy <= ylim_z[2]
+stopifnot(sum(in_zoom) > 0)
+px_lim <- range(df$px[in_zoom], na.rm = TRUE)
+py_lim <- range(df$py[in_zoom], na.rm = TRUE)
+
+panel_theme <- theme_void() +
+  theme(plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 11),
+        panel.border  = element_rect(color = "black", fill = NA, linewidth = 0.5))
+
+views <- list(
+  Full = list(
+    he    = crop_he(full_xlim, full_ylim),
+    coord = coord_fixed(xlim = full_xlim, ylim = -rev(full_ylim), expand = FALSE),
+    frame = data.frame(x = full_xlim, y = -full_ylim),
+    xlim  = full_xlim, ylim = full_ylim,
+    pt    = pt_full,
+    box   = TRUE
+  ),
+  Zoom = list(
+    he    = crop_he(px_lim, py_lim),
+    coord = coord_fixed(xlim = px_lim, ylim = -rev(py_lim), expand = FALSE),
+    frame = data.frame(x = px_lim, y = -py_lim),
+    xlim  = px_lim, ylim = py_lim,
+    pt    = pt_zoom,
+    box   = FALSE
+  )
+)
+
+# =====================================================================
+# ---- Panel builder: loops over markers; legend only on merged panel ----
+# =====================================================================
+make_marker_panel <- function(genes, view, title) {
+  p <- ggplot(view$frame, aes(x, y)) +
+    geom_blank() +
+    view$he
+
+  for (i in seq_along(genes)) {
+    g <- genes[i]
+    d <- df[df[[g]] > 0 &
+            df$px >= view$xlim[1] & df$px <= view$xlim[2] &
+            df$py >= view$ylim[1] & df$py <= view$ylim[2], ]
+    d$gene <- g
+    d$a    <- pmin(d[[g]] / q99[[g]], 1)
+
+    p <- p + geom_point(data = d, aes(px, -py, color = gene, alpha = a),
+                        shape = 15, size = view$pt, inherit.aes = FALSE)
+  }
+
+  if (view$box)
+    p <- p + annotate("rect", xmin = px_lim[1], xmax = px_lim[2],
+                      ymin = -py_lim[2], ymax = -py_lim[1],
+                      fill = NA, color = "black", linewidth = 0.6)
+
+  leg <- if (length(genes) == length(markers))
+    guide_legend(override.aes = list(size = 3, alpha = 1)) else "none"
+
+  p +
+    scale_color_manual(values = marker_cols[markers], limits = markers,
+                       name = "Marker", guide = leg) +
+    scale_alpha_continuous(range = alpha_range, limits = c(0, 1), guide = "none") +
+    view$coord + panel_theme +
+    labs(subtitle = title)
+}
+
+# =====================================================================
+# ---- Build panels: loop over views, then over markers ----
+# =====================================================================
+marker_panels <- list()
+
+for (v in names(views)) {
+  view <- views[[v]]
+
+  marker_panels[[paste(v, "HE")]] <- make_marker_panel(character(0), view, paste(v, "- H&E"))
+
+  for (i in seq_along(markers)) {
+    g <- markers[i]
+    marker_panels[[paste(v, g)]] <- make_marker_panel(g, view, paste(v, "-", g))
+  }
+
+  marker_panels[[paste(v, "merged")]] <- make_marker_panel(markers, view,
+                                          paste(v, "-", paste(markers, collapse = " + ")))
+}
+
+# =====================================================================
+# ---- Assemble: row 1 = captured area, row 2 = zoom ----
+# =====================================================================
+p_markers <- wrap_plots(marker_panels, ncol = length(markers) + 2) +
+  plot_layout(guides = "collect") +
+  plot_annotation(
+    title = sprintf("%s: %s on H&E", nm, paste(markers, collapse = ", ")),
+    theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 10))
+  )
+
+print(p_markers)
+
+# ggsave(sprintf("markers_%s.pdf", nm), p_markers, width = 20, height = 8)
+```
+
+```{r}
+library(magick)
+
+full <- image_read("/R/Spatial_HD_2026/data/image to merge/20260916_Hu_pericard_AHP5PB1_STHD_squA.jpg")
+geom <- sprintf("%dx%d+%d+%d",
+                ceiling(diff(px_lim)), ceiling(diff(py_lim)),
+                floor(px_lim[1]), floor(py_lim[1]))
+he_crop <- as.raster(image_crop(full, geom))
+
+he_layer <- annotation_raster(he_crop, xmin = px_lim[1], xmax = px_lim[2],
+                              ymin = -py_lim[2], ymax = -py_lim[1])
+
+p_he <- ggplot(dz, aes(px, -py)) +
+  geom_blank() +
+  he_layer +
+  zoom_coord +
+  panel_theme +
+  labs(subtitle = "H&E")
+
+he_crop <- as.raster(image_scale(image_crop(full, geom), "2000"))   # 2000 px wide
+
+
+
+
+
+# ---- H&E panel ----
+p_he <- ggplot(dz, aes(px, -py)) +
+  geom_blank() +
+  he_layer +
+  zoom_coord +
+  panel_theme +
+  labs(subtitle = "H&E")
+
+# ---- Overlay settings ----
+other_col   <- "grey80"   # colour for bins not of the projected cell type
+other_alpha <- 0.6        # lower = more H&E visible under the grey bins
+
+plot_he_overlay <- function(types, title) {
+  d <- dz
+  d$fill_lab <- ifelse(d$label %in% types, as.character(d$label), "Other")
+  d$fill_lab <- factor(d$fill_lab, levels = c("Other", show_types))
+  d_other  <- d[d$fill_lab == "Other", ]
+  d_target <- d[d$fill_lab != "Other", ]
+
+  ggplot(d, aes(px, -py)) +
+    geom_blank() +
+    he_layer +
+    geom_tile(data = d_other, fill = other_col,
+              width = bin_px, height = bin_px, alpha = other_alpha) +
+    geom_tile(data = d_target, aes(fill = fill_lab),
+              width = bin_px, height = bin_px, alpha = alpha_ov) +
+    scale_fill_manual(values = unlist(cell_colors[show_types]), breaks = show_types,
+                      limits = show_types, name = "Cell type") +
+    zoom_coord + panel_theme +
+    labs(subtitle = title)
+}
+
+# ---- One panel per cell type (with bin count) + merged ----
+type_panels <- lapply(show_types, function(ct) {
+  n <- sum(dz$label == ct)
+  plot_he_overlay(ct, sprintf("%s\n(n = %s)", ct, format(n, big.mark = ",")))
+})
+
+p_he_merge <- plot_he_overlay(show_types, "All cell types")
+
+# ---- Assemble ----
+p_zoom_he <- wrap_plots(c(list(p_he), type_panels, list(p_he_merge)), ncol = ncol_grid) +
+  plot_layout(guides = "collect") +
+  plot_annotation(
+    title = sprintf("%s: all cell types on H&E (zoom)", nm),
+    theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 10))
+  )
+
+print(p_zoom_he)
+
+
+```
+
+
+
+```{r}
+
+
+show_types2 <- setdiff(levels(assign_df$label), "Unassigned")   # all cell types
+stopifnot(all(show_types2 %in% names(cell_colors)))
+
+# =====================================================================
+# ---- Zoom 2: smaller window for nuclear detail (separate names) ----
+# =====================================================================
+xlim_z2      <- c(145, 205)     # in coord_list units
+ylim_z2      <- c(-400, -340)
+alpha_ov2    <- 0.5             # lower than zoom 1 so nuclei stay visible under the tiles
+other_col2   <- "grey80"
+other_alpha2 <- 0.3
+crop_px2     <- "2500"          # output width of the H&E crop in pixels
+
+# ---- Bins inside zoom 2 ----
+dz2 <- d_all[d_all$x >= xlim_z2[1] & d_all$x <= xlim_z2[2] &
+             d_all$y >= ylim_z2[1] & d_all$y <= ylim_z2[2], ]
+stopifnot(nrow(dz2) > 0)
+px_lim2 <- range(dz2$px) + c(-bin_px, bin_px) / 2   # include the full edge bins
+py_lim2 <- range(dz2$py) + c(-bin_px, bin_px) / 2
+
+zoom_coord2 <- coord_fixed(xlim = px_lim2, ylim = -rev(py_lim2), expand = FALSE)
+
+# ---- Hi-res H&E crop (full-res JPG, same pixel space as coords) ----
+geom2 <- sprintf("%dx%d+%d+%d",
+                 ceiling(diff(px_lim2)), ceiling(diff(py_lim2)),
+                 floor(px_lim2[1]), floor(py_lim2[1]))
+he_crop2  <- as.raster(image_scale(image_crop(full, geom2), crop_px2))
+he_layer2 <- annotation_raster(he_crop2, xmin = px_lim2[1], xmax = px_lim2[2],
+                               ymin = -py_lim2[2], ymax = -py_lim2[1])
+message("Zoom 2: ", nrow(dz2), " bins, crop ", geom2, " full-res px")
+
+# ---- H&E panel ----
+p_he2 <- ggplot(dz2, aes(px, -py)) +
+  geom_blank() +
+  he_layer2 +
+  zoom_coord2 +
+  panel_theme +
+  labs(subtitle = "H&E")
+
+# ---- Overlay function for zoom 2 ----
+plot_he_overlay2 <- function(types, title) {
+  d <- dz2
+  d$fill_lab <- ifelse(d$label %in% types, as.character(d$label), "Other")
+  d$fill_lab <- factor(d$fill_lab, levels = c("Other", show_types))
+  d_other  <- d[d$fill_lab == "Other", ]
+  d_target <- d[d$fill_lab != "Other", ]
+
+  ggplot(d, aes(px, -py)) +
+    geom_blank() +
+    he_layer2 +
+    geom_tile(data = d_other, fill = other_col2,
+              width = bin_px, height = bin_px, alpha = other_alpha2) +
+    geom_tile(data = d_target, aes(fill = fill_lab),
+              width = bin_px, height = bin_px, alpha = alpha_ov2) +
+    scale_fill_manual(values = unlist(cell_colors[show_types]), breaks = show_types,
+                      limits = show_types, name = "Cell type") +
+    zoom_coord2 + panel_theme +
+    labs(subtitle = title)
+}
+
+# ---- One panel per cell type + merged ----
+type_panels2 <- lapply(show_types, function(ct) {
+  n <- sum(dz2$label == ct)
+  plot_he_overlay2(ct, sprintf("%s\n(n = %s)", ct, format(n, big.mark = ",")))
+})
+
+p_he_merge2 <- plot_he_overlay2(show_types, "All cell types")
+
+# ---- Assemble ----
+p_zoom_he2 <- wrap_plots(c(list(p_he2), type_panels2, list(p_he_merge2)), ncol = ncol_grid) +
+  plot_layout(guides = "collect") +
+  plot_annotation(
+    title = sprintf("%s: all cell types on H&E (zoom 2)", nm),
+    theme = theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 10))
+  )
+
+print(p_zoom_he2)
+```
+
+
+
+
+##QC check of unassigned spots
+```{r}
+library(Matrix)
+
+chk_nm <- "obj2"                       # separate name so nm is not touched
+sce_chk <- sce_list[[chk_nm]]
+cnt     <- counts(sce_chk)
+w       <- winner_list[[chk_nm]]
+un      <- w$celltype == "Unassigned"
+cat("Unassigned:", sum(un), "| assigned:", sum(!un), "\n")
+
+# ---- 1. QC: are Unassigned bins just low-quality / low-count? ----
+qc <- data.frame(group  = ifelse(un, "Unassigned", "Assigned"),
+                 umi    = colSums(cnt),
+                 ngenes = colSums(cnt > 0))
+print(aggregate(cbind(umi, ngenes) ~ group, data = qc, FUN = median))
+cat("max_rank used in UCell:", max_rank, "\n")
+cat("Unassigned bins detecting more genes than max_rank (%):",
+    round(100 * mean(qc$ngenes[un] > max_rank), 1), "\n")
+
+# ---- 2. Signature genes: detected in Unassigned bins? ----
+sig_df <- stack(sig_use)                       # values = gene, ind = cell type
+names(sig_df) <- c("gene", "celltype")
+sig_df <- sig_df[sig_df$gene %in% rownames(cnt), ]
+
+sig_df$pct_unassigned <- round(100 * rowMeans(cnt[sig_df$gene, un,  drop = FALSE] > 0), 2)
+sig_df$pct_assigned   <- round(100 * rowMeans(cnt[sig_df$gene, !un, drop = FALSE] > 0), 2)
+sig_df <- sig_df[order(-sig_df$pct_unassigned), ]
+print(sig_df, row.names = FALSE)
+
+cat("Unassigned bins with >= 1 signature UMI (%):",
+    round(100 * mean(colSums(cnt[unique(sig_df$gene), un, drop = FALSE]) > 0), 1), "\n")
+
+# ---- 3. What do Unassigned bins express? ----
+pct_un   <- rowMeans(cnt[, un,  drop = FALSE] > 0)
+pct_as   <- rowMeans(cnt[, !un, drop = FALSE] > 0)
+mean_un  <- rowMeans(cnt[, un,  drop = FALSE])
+
+gene_tab <- data.frame(gene           = rownames(cnt),
+                       pct_unassigned = round(100 * pct_un, 2),
+                       pct_assigned   = round(100 * pct_as, 2),
+                       mean_count_un  = round(mean_un, 3),
+                       log2_enrich    = round(log2((pct_un + 0.001) / (pct_as + 0.001)), 2),
+                       in_signature   = rownames(cnt) %in% sig_df$gene,
+                       mito_ribo      = grepl("^MT-|^RP[SL]", rownames(cnt)))
+
+# 3a. most frequently detected genes in Unassigned bins
+top_detected <- head(gene_tab[order(-gene_tab$pct_unassigned), ], 30)
+print(top_detected, row.names = FALSE)
+
+# 3b. genes enriched in Unassigned vs assigned bins (detected in >= 5% of Unassigned)
+top_enriched <- gene_tab[gene_tab$pct_unassigned >= 5, ]
+top_enriched <- head(top_enriched[order(-top_enriched$log2_enrich), ], 30)
+print(top_enriched, row.names = FALSE)
+
+# ---- Save full tables ----
+write.csv(gene_tab[order(-gene_tab$pct_unassigned), ],
+          sprintf("unassigned_genes_%s.csv", chk_nm), row.names = FALSE)
+write.csv(sig_df, sprintf("unassigned_signature_genes_%s.csv", chk_nm), row.names = FALSE)
+```
 
 
 
