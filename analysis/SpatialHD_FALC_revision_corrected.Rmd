@@ -831,6 +831,10 @@ ggplot(d_all, aes(x, y)) +
 ```
 ```{r}
 
+img_name <- Images(obj2)[1]
+img      <- obj2[[img_name]]@image
+sfs      <- ScaleFactors(obj2[[img_name]])
+coords   <- GetTissueCoordinates(obj2, image = img_name)
 
 bin_px <- sfs$spot  
 

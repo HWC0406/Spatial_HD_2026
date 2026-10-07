@@ -320,28 +320,34 @@ for (sig in keep_z) {
 
 
 ## UCell scoring
+
 ```{r UCell scoring}
-score_ucell <- function(sce, sigs, maxRank, ncores = 4) {
-  cnt <- counts(sce)
+score_ucell <- function(seu, sce, sigs, maxRank, ncores = 4) {
+  # raw counts from the untouched Seurat object, same bins and order as the SCE
+  raw <- LayerData(seu, assay = DefaultAssay(seu), layer = "counts")
+  cnt <- raw[, colnames(sce)]
   if (is.null(colnames(cnt)) || anyDuplicated(colnames(cnt)))
     stop("Bins need unique colnames to keep scores aligned with coordinates")
 
   sigs <- lapply(sigs, intersect, rownames(cnt))
   sigs <- sigs[lengths(sigs) > 0]
 
+  bp <- if (.Platform$OS.type == "windows") SnowParam(ncores) else MulticoreParam(ncores)
   sc <- ScoreSignatures_UCell(matrix = cnt, features = sigs, maxRank = maxRank,
-                              name = "", chunk.size = 2000,
-                              BPPARAM = MulticoreParam(ncores))   # SnowParam() on Windows
+                              name = "", chunk.size = 2000, BPPARAM = bp)
   sc[colnames(sce), names(sigs), drop = FALSE]                    # enforce bin order
 }
 
-# maxRank: a signature gene only counts if it ranks within the top max_rank
-# genes of a bin. Set from the data (90th percentile of detected genes per bin).
-detected <- unlist(lapply(sce_list, function(sce) colSums(counts(sce) > 0)))
+# maxRank from the raw counts (90th percentile of detected genes per bin)
+detected <- unlist(lapply(samples, function(s) {
+  raw <- LayerData(seu_list[[s]], assay = DefaultAssay(seu_list[[s]]), layer = "counts")
+  Matrix::colSums(raw[, colnames(sce_list[[s]])] > 0)
+}))
 print(summary(detected))
 max_rank <- max(100, ceiling(quantile(detected, 0.9)))
 
-score_list <- lapply(sce_list, score_ucell, sigs = sig_use, maxRank = max_rank)
+score_list <- setNames(lapply(samples, function(s)
+  score_ucell(seu_list[[s]], sce_list[[s]], sigs = sig_use, maxRank = max_rank)), samples)
 for (s in samples) stopifnot(nrow(score_list[[s]]) == nrow(coord_list[[s]]))
 
 keep <- Reduce(intersect, lapply(score_list, function(m) colnames(m)[apply(m, 2, sd) > 0]))
@@ -352,6 +358,12 @@ cts <- intersect(keep, names(cell_colors))
 if (length(setdiff(keep, cts)))
   message("No colour defined, skipping: ", paste(setdiff(keep, cts), collapse = ", "))
 ```
+
+
+
+
+
+
 
 
 ## UCell score maps
