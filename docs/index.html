@@ -281,7 +281,7 @@ $(document).ready(function () {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -292,8 +292,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -306,9 +306,9 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>Spatial_HD_2026/</code> <span
@@ -331,33 +331,36 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomHWC0406SpatialHD2026tree3f9d3912f2a1605a07e6e29859e1a257ac06103btargetblank3f9d391a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomHWC0406SpatialHD2026treef57017cb1ea39b16c335b3a215b630e2f7d9e0cetargetblankf57017ca">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/HWC0406/Spatial_HD_2026/tree/3f9d3912f2a1605a07e6e29859e1a257ac06103b" target="_blank">3f9d391</a>
+<a href="https://github.com/HWC0406/Spatial_HD_2026/tree/f57017cb1ea39b16c335b3a215b630e2f7d9e0ce" target="_blank">f57017c</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomHWC0406SpatialHD2026tree3f9d3912f2a1605a07e6e29859e1a257ac06103btargetblank3f9d391a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomHWC0406SpatialHD2026treef57017cb1ea39b16c335b3a215b630e2f7d9e0cetargetblankf57017ca"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -367,7 +370,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/HWC0406/Spatial_HD_2026/tree/3f9d3912f2a1605a07e6e29859e1a257ac06103b" target="_blank">3f9d391</a>.
+<a href="https://github.com/HWC0406/Spatial_HD_2026/tree/f57017cb1ea39b16c335b3a215b630e2f7d9e0ce" target="_blank">f57017c</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -386,6 +389,9 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    data/image to merge/
     Ignored:    data/processed_seurat/
+
+Unstaged changes:
+    Modified:   analysis/index.Rmd
 
 </code></pre>
 <p>
@@ -429,6 +435,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/HWC0406/Spatial_HD_2026/f57017cb1ea39b16c335b3a215b630e2f7d9e0ce/docs/index.html" target="_blank">f57017c</a>
+</td>
+<td>
+HWC0406
+</td>
+<td>
+2026-10-07
+</td>
+<td>
+1007
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -676,7 +699,7 @@ Start workflowr project.
 </div>
 <div id="spatial-hd-falc" class="section level2">
 <h2>Spatial HD FALC</h2>
-<p>Analysis of SpatialHD_FALC_new <a
+<p>Analysis of SpatialHD_FALC_revision <a
 href="Figure_SpatialHD_FALC_clean.html">link</a></p>
 </div>
 </div>
